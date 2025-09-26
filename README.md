@@ -1,36 +1,161 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Corporate Website
 
-## Getting Started
+A modern corporate website built with Next.js frontend and NestJS backend.
 
-First, run the development server:
+## 🚀 Tech Stack
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+### Frontend (Next.js)
+- **Next.js 15** - React framework with App Router
+- **TypeScript** - Type safety and better developer experience
+- **Tailwind CSS** - Utility-first CSS framework
+- **Framer Motion** - Animation library for smooth interactions
+- **React Query** - Data fetching and state management
+- **Sonner** - Toast notifications
+- **Lucide React** - Beautiful icons
+- **Axios** - HTTP client for API requests
+
+### Backend (NestJS)
+- **NestJS** - Progressive Node.js framework
+- **TypeScript** - Type safety
+- **JWT** - Authentication and authorization
+- **Passport** - Authentication middleware
+- **Helmet** - Security headers
+- **Swagger** - API documentation
+- **Class Validator** - Request validation
+- **Compression** - Response compression
+- **Throttling** - Rate limiting
+
+## 📁 Project Structure
+
+```
+corporate-website/
+├── src/                    # Next.js frontend
+│   ├── app/               # App Router pages
+│   ├── components/        # Reusable components
+│   │   └── ui/           # UI components
+│   ├── lib/              # Utilities and configurations
+│   └── hooks/            # Custom React hooks
+├── backend/              # NestJS backend
+│   ├── src/              # Source code
+│   │   ├── app.controller.ts
+│   │   ├── app.module.ts
+│   │   ├── app.service.ts
+│   │   └── main.ts
+│   └── test/             # E2E tests
+└── README.md
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 🛠️ Installation & Setup
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### Prerequisites
+- Node.js 18+ 
+- npm or yarn
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### Frontend Setup
+```bash
+cd corporate-website
+npm install
+npm run dev
+```
 
-## Learn More
+### Backend Setup
+```bash
+cd corporate-website/backend
+npm install
+npm run start:dev
+```
 
-To learn more about Next.js, take a look at the following resources:
+## 🚀 Development
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### Frontend Development
+```bash
+npm run dev          # Start development server
+npm run build        # Build for production
+npm run start        # Start production server
+npm run lint         # Run ESLint
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### Backend Development
+```bash
+npm run start:dev    # Start with hot reload
+npm run build        # Build the application
+npm run start        # Start production server
+npm run test         # Run unit tests
+npm run test:e2e     # Run e2e tests
+npm run lint         # Run ESLint
+```
 
-## Deploy on Vercel
+## 📚 API Documentation
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Once the backend is running, visit:
+- **Swagger UI**: http://localhost:3001/api/docs
+- **Health Check**: http://localhost:3001/health
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## 🔧 Configuration
+
+### Environment Variables
+
+Create `.env.local` in the root directory:
+```env
+NEXT_PUBLIC_API_URL=http://localhost:3001
+NEXT_PUBLIC_APP_NAME=Corporate Website
+NODE_ENV=development
+```
+
+Create `.env` in the backend directory:
+```env
+PORT=3001
+NODE_ENV=development
+JWT_SECRET=your-super-secret-jwt-key-here
+FRONTEND_URL=http://localhost:3000
+```
+
+## 🎨 Features
+
+- **Responsive Design** - Mobile-first approach with Tailwind CSS
+- **Dark Mode** - Built-in dark mode support
+- **Animations** - Smooth animations with Framer Motion
+- **Toast Notifications** - User feedback with Sonner
+- **API Integration** - Axios with interceptors
+- **Type Safety** - Full TypeScript support
+- **Security** - Helmet, CORS, and validation
+- **Documentation** - Swagger API docs
+- **Performance** - Optimized builds and caching
+
+## 📦 Dependencies
+
+### Frontend Dependencies
+- `@tanstack/react-query` - Data fetching
+- `animate.js` - Animation utilities
+- `axios` - HTTP client
+- `framer-motion` - Animation library
+- `lucide-react` - Icon library
+- `sonner` - Toast notifications
+- `clsx` - Conditional className utility
+- `tailwind-merge` - Tailwind class merging
+
+### Backend Dependencies
+- `@nestjs/jwt` - JWT authentication
+- `@nestjs/passport` - Authentication strategies
+- `@nestjs/config` - Configuration management
+- `@nestjs/throttler` - Rate limiting
+- `@nestjs/swagger` - API documentation
+- `passport-jwt` - JWT strategy
+- `passport-local` - Local strategy
+- `helmet` - Security headers
+- `compression` - Response compression
+- `class-validator` - Validation decorators
+- `class-transformer` - Object transformation
+- `bcryptjs` - Password hashing
+
+## 🤝 Contributing
+
+1. Fork the repository
+2. Create a feature branch
+3. Make your changes
+4. Add tests if applicable
+5. Submit a pull request
+
+## 📄 License
+
+This project is licensed under the MIT License.
