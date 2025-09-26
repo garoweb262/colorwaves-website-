@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "motion/react";
+import { motion } from "framer-motion";
 import { Handshake, Users, Target, Award } from "lucide-react";
 import { Button } from "@/components/ui/button";
 

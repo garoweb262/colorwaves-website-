@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import { Toaster } from "sonner";
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { Providers } from "@/components/providers";
 import { Navbar } from "@/components/navbar";
 import { Footer } from "@/components/footer";
 import "./globals.css";
@@ -16,25 +16,15 @@ export const metadata: Metadata = {
   description: "Modern corporate website built with Next.js",
 };
 
-// Create a client
-const queryClient = new QueryClient({
-  defaultOptions: {
-    queries: {
-      staleTime: 60 * 1000, // 1 minute
-      retry: 1,
-    },
-  },
-});
-
 export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <body className={`${inter.variable} font-sans antialiased`}>
-        <QueryClientProvider client={queryClient}>
+        <Providers>
           <Navbar />
           <main className="min-h-screen">
             {children}
@@ -46,7 +36,7 @@ export default function RootLayout({
             richColors
             closeButton
           />
-        </QueryClientProvider>
+        </Providers>
       </body>
     </html>
   );
