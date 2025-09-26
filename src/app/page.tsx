@@ -4,6 +4,7 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import { toast } from "sonner";
 import { Button } from "@/components/ui/button";
+import { HeroSlider } from "@/components/hero-slider";
 import { 
   Heart, 
   Star, 
@@ -51,8 +52,10 @@ export default function Home() {
 
   return (
     <div className="bg-gradient-to-br from-slate-50 to-slate-100 dark:from-slate-900 dark:to-slate-800">
+      {/* Hero Slider */}
+      <HeroSlider />
 
-      {/* Hero Section */}
+      {/* Main Content */}
       <motion.main 
         className="container mx-auto px-4 py-20"
         initial={{ opacity: 0 }}
