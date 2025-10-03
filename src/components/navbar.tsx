@@ -4,6 +4,7 @@ import * as React from "react";
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
+import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { Menu, X, ChevronDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -49,12 +50,14 @@ export function Navbar() {
               transition={{ type: "spring", stiffness: 400, damping: 17 }}
             >
               <Link href="/" className="flex items-center space-x-2">
-                <div className="w-8 h-8 bg-gradient-to-br from-palette-primary-500 to-palette-accent-500 rounded-lg flex items-center justify-center">
-                  <span className="text-white font-bold text-lg">C</span>
-                </div>
-                <span className="text-xl font-bold bg-gradient-to-r from-palette-primary-600 to-palette-accent-600 bg-clip-text text-transparent">
-                  ColorWaves
-                </span>
+               
+                <Image
+                  src="/images/logo/ColorWaves_Logo Horizontal White.png"
+                  alt="ColorWaves"
+                  width={150}
+                  height={40}
+                  className="h-12 w-auto"
+                />
               </Link>
             </motion.div>
           </div>

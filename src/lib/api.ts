@@ -13,10 +13,16 @@ export const api = axios.create({
 // Request interceptor
 api.interceptors.request.use(
   (config) => {
-    // Add auth token if available
-    const token = localStorage.getItem('auth_token');
-    if (token) {
-      config.headers.Authorization = `Bearer ${token}`;
+    // Add auth token if available (for admin endpoints)
+    const authToken = localStorage.getItem('auth_token');
+    if (authToken) {
+      config.headers.Authorization = `Bearer ${authToken}`;
+    } else {
+      // Use static token for public endpoints
+      const staticToken = process.env.NEXT_PUBLIC_STATIC_API_TOKEN;
+      if (staticToken) {
+        config.headers.Authorization = `Bearer ${staticToken}`;
+      }
     }
     return config;
   },
@@ -56,6 +62,12 @@ export const apiEndpoints = {
     register: (userData: any) => api.post('/auth/register', userData),
     logout: () => api.post('/auth/logout'),
     refresh: () => api.post('/auth/refresh'),
+  },
+  partnershipRequests: {
+    create: (data: any) => api.post('/partnership-requests', data),
+  },
+  projectRequests: {
+    create: (data: any) => api.post('/project-requests', data),
   },
 };
 

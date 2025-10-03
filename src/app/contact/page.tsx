@@ -1,10 +1,12 @@
-"use client";
+import { Metadata } from "next";
+import { generateMetadata, seoConfigs } from "@/lib/seo";
+import ContactPageClient from "./contact-client";
 
-import { useState } from "react";
-import { motion } from "framer-motion";
-import { Mail, Phone, MapPin, Clock, Send } from "lucide-react";
-import { Button, Input, Textarea, Select } from "@/components/ui";
-import { toast } from "sonner";
+export const metadata: Metadata = generateMetadata(seoConfigs.contact);
+
+export default function ContactPage() {
+  return <ContactPageClient />;
+}
 
 const contactInfo = [
   {

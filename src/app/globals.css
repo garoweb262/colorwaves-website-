@@ -3,12 +3,16 @@
 :root {
   --background: oklch(25.7% 0.09 281.288);
   --foreground: #ffffff;
+  --font-inter: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', 'Arial', sans-serif;
+  --font-maven-pro: 'Maven Pro', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', 'Arial', sans-serif;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --font-sans: var(--font-inter);
+  --font-heading: var(--font-maven-pro);
+  --font-display: var(--font-maven-pro);
   --font-mono: ui-monospace, SFMono-Regular, "SF Mono", Consolas, "Liberation Mono", Menlo, monospace;
   
   /* Custom Color Palette */
@@ -62,6 +66,67 @@
   
   /* Navbar clip-path utilities */
   --clip-path-navbar: polygon(0 0, calc(100% - 8px) 0, 100% 50%, calc(100% - 8px) 100%, 0 100%);
+}
+
+/* Maven Pro Font Family */
+@font-face {
+  font-family: 'Maven Pro';
+  src: url('/fonts/maven-pro/MavenPro-Regular.woff2') format('woff2'),
+       url('/fonts/maven-pro/MavenPro-Regular.woff') format('woff'),
+       url('/fonts/maven-pro/MavenPro-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Maven Pro';
+  src: url('/fonts/maven-pro/MavenPro-Medium.woff2') format('woff2'),
+       url('/fonts/maven-pro/MavenPro-Medium.woff') format('woff'),
+       url('/fonts/maven-pro/MavenPro-Medium.ttf') format('truetype');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Maven Pro';
+  src: url('/fonts/maven-pro/MavenPro-SemiBold.woff2') format('woff2'),
+       url('/fonts/maven-pro/MavenPro-SemiBold.woff') format('woff'),
+       url('/fonts/maven-pro/MavenPro-SemiBold.ttf') format('truetype');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Maven Pro';
+  src: url('/fonts/maven-pro/MavenPro-Bold.woff2') format('woff2'),
+       url('/fonts/maven-pro/MavenPro-Bold.woff') format('woff'),
+       url('/fonts/maven-pro/MavenPro-Bold.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Maven Pro';
+  src: url('/fonts/maven-pro/MavenPro-ExtraBold.woff2') format('woff2'),
+       url('/fonts/maven-pro/MavenPro-ExtraBold.woff') format('woff'),
+       url('/fonts/maven-pro/MavenPro-ExtraBold.ttf') format('truetype');
+  font-weight: 800;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Maven Pro';
+  src: url('/fonts/maven-pro/MavenPro-Black.woff2') format('woff2'),
+       url('/fonts/maven-pro/MavenPro-Black.woff') format('woff'),
+       url('/fonts/maven-pro/MavenPro-Black.ttf') format('truetype');
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
 }
 
 @media (prefers-color-scheme: dark) {

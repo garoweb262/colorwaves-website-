@@ -1,12 +1,8 @@
-import { Metadata } from "next";
-import { generateMetadata, seoConfigs } from "@/lib/seo";
-import AboutPageClient from "./about-client";
+"use client";
 
-export const metadata: Metadata = generateMetadata(seoConfigs.about);
-
-export default function AboutPage() {
-  return <AboutPageClient />;
-}
+import { motion } from "framer-motion";
+import { Users, Target, Award, Globe } from "lucide-react";
+import { Button } from "@/components/ui/button";
 
 const stats = [
   { icon: Users, value: "500+", label: "Happy Clients" },
@@ -42,7 +38,7 @@ const team = [
   },
 ];
 
-export default function AboutPage() {
+export default function AboutPageClient() {
   return (
     <div className="min-h-screen bg-white dark:bg-slate-900">
       {/* Hero Section */}

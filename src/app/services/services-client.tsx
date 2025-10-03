@@ -1,12 +1,8 @@
-import { Metadata } from "next";
-import { generateMetadata, seoConfigs } from "@/lib/seo";
-import ServicesPageClient from "./services-client";
+"use client";
 
-export const metadata: Metadata = generateMetadata(seoConfigs.services);
-
-export default function ServicesPage() {
-  return <ServicesPageClient />;
-}
+import { motion } from "framer-motion";
+import { Settings, Code, Smartphone, Headphones } from "lucide-react";
+import { Button } from "@/components/ui/button";
 
 const services = [
   {
@@ -35,7 +31,7 @@ const services = [
   },
 ];
 
-export default function ServicesPage() {
+export default function ServicesPageClient() {
   return (
     <div className="min-h-screen bg-white dark:bg-slate-900">
       {/* Hero Section */}

@@ -1,8 +1,12 @@
-"use client";
+import { Metadata } from "next";
+import { generateMetadata, seoConfigs } from "@/lib/seo";
+import CareersPageClient from "./careers-client";
 
-import { motion } from "framer-motion";
-import { Briefcase, MapPin, Clock, Users } from "lucide-react";
-import { Button } from "@/components/ui/button";
+export const metadata: Metadata = generateMetadata(seoConfigs.careers);
+
+export default function CareersPage() {
+  return <CareersPageClient />;
+}
 
 const jobOpenings = [
   {

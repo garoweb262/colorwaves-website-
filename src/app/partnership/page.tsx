@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import { Handshake, Users, Target, Award } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { PartnershipRequestForm } from "@/components/partnership-request-form";
 
 const benefits = [
   {
@@ -100,26 +101,10 @@ export default function PartnershipPage() {
         </div>
       </section>
 
-      {/* CTA Section */}
-      <section className="py-20 bg-gradient-to-r from-blue-600 to-purple-600">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-          >
-            <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
-              Ready to Partner With Us?
-            </h2>
-            <p className="text-xl text-blue-100 mb-8 max-w-2xl mx-auto">
-              Join our partner program and start growing your business today. 
-              Let's build something great together.
-            </p>
-            <Button size="lg" variant="secondary">
-              Become a Partner
-            </Button>
-          </motion.div>
+      {/* Partnership Request Form Section */}
+      <section className="py-20 bg-slate-50 dark:bg-slate-900">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <PartnershipRequestForm />
         </div>
       </section>
     </div>

@@ -3,6 +3,7 @@
 import * as React from "react";
 import { motion } from "framer-motion";
 import Link from "next/link";
+import Image from "next/image";
 import { 
   Facebook, 
   Twitter, 
@@ -77,14 +78,13 @@ export function Footer() {
                 transition={{ duration: 0.6 }}
                 viewport={{ once: true }}
               >
-                <Link href="/" className="flex items-center space-x-2 mb-6">
-                  <div className="w-10 h-10 bg-gradient-to-br from-palette-primary-500 to-palette-accent-500 rounded-lg flex items-center justify-center">
-                    <span className="text-white font-bold text-xl">C</span>
-                  </div>
-                  <span className="text-2xl font-bold bg-gradient-to-r from-palette-primary-400 to-palette-accent-400 bg-clip-text text-transparent">
-                    ColorWaves
-                  </span>
-                </Link>
+                 <Image
+                  src="/images/logo/ColorWaves_Logo Horizontal White.png"
+                  alt="ColorWaves"
+                  width={150}
+                  height={40}
+                  className="h-12 w-auto"
+                />
                 <div className="space-y-2 text-white text-sm leading-relaxed">
                   <p>Our Secure Online Donation Platform</p>
                   <p>Allows You To Make Contributions Quickly</p>

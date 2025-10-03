@@ -1,8 +1,10 @@
 "use client";
 
+import { Metadata } from "next";
 import { motion } from "framer-motion";
 import { ExternalLink, Github } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { ProjectRequestForm } from "@/components/project-request-form";
 
 const projects = [
   {
@@ -111,26 +113,10 @@ export default function ProjectsPage() {
         </div>
       </section>
 
-      {/* CTA Section */}
-      <section className="py-20 bg-gradient-to-r from-blue-600 to-purple-600">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-          >
-            <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
-              Ready to Start Your Project?
-            </h2>
-            <p className="text-xl text-blue-100 mb-8 max-w-2xl mx-auto">
-              Let's work together to create something amazing. 
-              Contact us to discuss your project requirements.
-            </p>
-            <Button size="lg" variant="secondary">
-              Start Your Project
-            </Button>
-          </motion.div>
+      {/* Project Request Form Section */}
+      <section className="py-20 bg-slate-50 dark:bg-slate-900">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <ProjectRequestForm />
         </div>
       </section>
     </div>

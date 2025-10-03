@@ -9,8 +9,8 @@ import { Button } from "@/components/ui/button";
 const slides = [
   {
     id: 1,
-    title: "Transforming",
-    subtitle: "Your Visions",
+    title: "Transforming Your Visions",
+  
     description: "Into Reality.",
     topText: "One ColorWave® at a time",
     backgroundImage: "/images/hero-0.png",
@@ -19,8 +19,7 @@ const slides = [
   },
   {
     id: 2,
-    title: "Redefining",
-    subtitle: "Color,",
+    title: "Redefining Color,",
     description: "Transforming Spaces.",
     topText: "ColorWaves Excellence",
     backgroundImage: "/images/hero-1.png",
@@ -29,8 +28,8 @@ const slides = [
   },
   {
     id: 3,
-    title: "Bringing",
-    subtitle: "Spaces",
+    title: "Bringing Spaces",
+
     description: "To Life.",
     topText: "Creativity Meets Precision",
     backgroundImage: "/images/hero-2.png",
@@ -39,8 +38,7 @@ const slides = [
   },
   {
     id: 4,
-    title: "Innovation",
-    subtitle: "Through",
+    title: "Innovation Through",
     description: "Color.",
     topText: "Bold & Vibrant Results",
     backgroundImage: "/images/hero-3.png",
@@ -81,16 +79,70 @@ export function HeroSlider() {
 
   return (
     <section className="relative min-h-screen overflow-hidden">
-      {/* Brushy Header Effect */}
-      <div className="absolute top-0 left-0 w-full h-8 bg-white opacity-20" 
-           style={{
-             clipPath: "polygon(0 0, 100% 0, 100% 60%, 0 100%)",
-             background: "linear-gradient(45deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.3) 100%)"
-           }}>
+      {/* Diagonal Split Layout */}
+      <div className="relative h-screen flex">
+        {/* Left Side - Text Content */}
+        <div className="w-1/2 relative bg-white/10 backdrop-blur-md border-r border-white/20 flex items-center justify-center">
+          {/* Glassmorphism Overlay */}
+          <div className="absolute inset-0 bg-gradient-to-br from-white/20 via-white/10 to-white/5"></div>
+          
+          {/* Subtle Background Pattern */}
+          <div className="absolute inset-0 opacity-10">
+            <div className="w-full h-full" style={{
+              backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23000000' fill-opacity='0.1'%3E%3Ccircle cx='30' cy='30' r='2'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
+            }}></div>
+          </div>
+
+          {/* Content */}
+          <div className="relative z-10 w-full max-w-lg px-4 ">
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={currentSlide}
+                initial={{ opacity: 0, x: -50 }}
+                animate={{ opacity: 1, x: 0 }}
+                exit={{ opacity: 0, x: 50 }}
+                transition={{ duration: 0.5 }}
+              >
+                {/* Top Text with Icon */}
+                <div className="flex items-center space-x-3 mb-6">
+                  <div className="w-8 h-8 bg-palette-gold-500 rounded-full flex items-center justify-center">
+                    <Heart className="w-4 h-4 text-white" />
+                  </div>
+                  <span className="text-palette-gold-300 font-medium text-lg">
+                    {slides[currentSlide].topText}
+                  </span>
+                </div>
+
+                {/* Main Heading */}
+                <div className="mb-8">
+                  <h1 className="text-5xl lg:text-5xl font-bold text-white leading-tight drop-shadow-lg">
+                    {slides[currentSlide].title}<br />
+                    {slides[currentSlide].description}
+                  </h1>
+                </div>
+
+                {/* Action Button */}
+                <div className="mb-8">
+                  <Button 
+                    size="lg" 
+                    className="bg-palette-secondary-500 hover:bg-palette-gold-500 text-white px-8 py-4 text-lg font-semibold rounded-lg flex items-center space-x-2 transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-palette-gold-500/25"
+                  >
+                    <span>{slides[currentSlide].button1}</span>
+                    <ArrowRight className="w-5 h-5" />
+                  </Button>
+                </div>
+
+                
+              </motion.div>
+            </AnimatePresence>
+          </div>
+
+          {/* Diagonal Transition */}
+          <div className="absolute right-0 top-0 w-0 h-0 border-l-[100px] border-l-transparent border-t-[100vh] border-t-palette-primary-500"></div>
       </div>
 
-      {/* Full Width Background Image */}
-      <div className="relative h-screen">
+        {/* Right Side - Image */}
+        <div className="w-1/2 relative">
         <AnimatePresence mode="wait">
           <motion.div
             key={currentSlide}
@@ -106,61 +158,11 @@ export function HeroSlider() {
                 backgroundImage: `url(${slides[currentSlide].backgroundImage})`,
               }}
             >
-              {/* Dark Overlay for Text Readability */}
-              <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/40 to-transparent"></div>
-              
-              {/* Decorative Elements */}
-              <div className="absolute top-20 right-20 w-6 h-6 bg-palette-gold-500 rounded-full animate-bounce"></div>
-              <div className="absolute bottom-40 left-16 w-4 h-4 bg-palette-accent-500 rounded-full animate-bounce delay-500"></div>
-              <div className="absolute top-1/2 right-32 w-3 h-3 bg-palette-primary-500 rounded-full animate-bounce delay-1000"></div>
-            </div>
-          </motion.div>
-        </AnimatePresence>
-
-        {/* Content Overlay */}
-        <div className="relative z-10 h-full flex items-center justify-center">
-          <div className="w-full max-w-4xl mx-auto px-8 lg:px-16 text-center">
-              <AnimatePresence mode="wait">
-                <motion.div
-                  key={currentSlide}
-                  initial={{ opacity: 0, x: -50 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  exit={{ opacity: 0, x: 50 }}
-                  transition={{ duration: 0.5 }}
-                >
-                  {/* Top Text with Icon */}
-                  <div className="flex justify-center items-center space-x-3 mb-6">
-                    <div className="w-8 h-8 bg-palette-gold-500 rounded-full flex items-center justify-center">
-                      <Heart className="w-4 h-4 text-white" />
-                    </div>
-                    <span className="text-palette-gold-400 font-medium text-lg">
-                      {slides[currentSlide].topText}
-                    </span>
-                  </div>
-
-                  {/* Main Heading */}
-                  <div className="space-y-2">
-                    <h1 className="text-6xl lg:text-7xl font-bold text-white leading-tight">
-                      {slides[currentSlide].title} {slides[currentSlide].subtitle}
-                    </h1>
-                    <h2 className="text-6xl lg:text-7xl font-bold text-white leading-tight">
-                      {slides[currentSlide].description}
-                    </h2>
-                  </div>
-
-                  {/* Single Action Button */}
-                  <div className="pt-8 flex justify-center">
-                    <Button 
-                      size="lg" 
-                      className="bg-palette-secondary-500 hover:bg-palette-gold-500 text-white px-8 py-4 text-lg font-semibold rounded-lg flex items-center space-x-2 transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-palette-gold-500/25"
-                    >
-                      <span>{slides[currentSlide].button1}</span>
-                      <ArrowRight className="w-5 h-5" />
-                    </Button>
+                {/* Dark Overlay for better contrast */}
+                <div className="absolute inset-0 bg-black/20"></div>
                   </div>
                 </motion.div>
               </AnimatePresence>
-          </div>
         </div>
       </div>
 
