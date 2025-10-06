@@ -2,7 +2,6 @@
 
 import { motion } from "framer-motion";
 import { Handshake, Users, Target, Award } from "lucide-react";
-import { Button } from "@/components/ui/button";
 import { PartnershipRequestForm } from "@/components/partnership-request-form";
 
 const benefits = [

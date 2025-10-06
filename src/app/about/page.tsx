@@ -1,12 +1,8 @@
-import { Metadata } from "next";
-import { generateMetadata, seoConfigs } from "@/lib/seo";
-import AboutPageClient from "./about-client";
+"use client";
 
-export const metadata: Metadata = generateMetadata(seoConfigs.about);
-
-export default function AboutPage() {
-  return <AboutPageClient />;
-}
+import { motion } from "framer-motion";
+import { Users, Target, Award, Globe } from "lucide-react";
+import { Button } from "@/components/ui/button";
 
 const stats = [
   { icon: Users, value: "500+", label: "Happy Clients" },
@@ -216,7 +212,7 @@ export default function AboutPage() {
               Ready to Work With Us?
             </h2>
             <p className="text-xl text-blue-100 mb-8 max-w-2xl mx-auto">
-              Let's discuss how we can help transform your business with our 
+              Let&apos;s discuss how we can help transform your business with our 
               innovative solutions and expert team.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">

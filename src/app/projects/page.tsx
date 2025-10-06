@@ -1,6 +1,5 @@
 "use client";
 
-import { Metadata } from "next";
 import { motion } from "framer-motion";
 import { ExternalLink, Github } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -52,7 +51,7 @@ export default function ProjectsPage() {
               </span>
             </h1>
             <p className="text-xl text-slate-600 dark:text-slate-300 max-w-3xl mx-auto">
-              Explore our portfolio of successful projects and see how we've 
+              Explore our portfolio of successful projects and see how we&apos;ve 
               helped businesses achieve their goals through innovative solutions.
             </p>
           </motion.div>

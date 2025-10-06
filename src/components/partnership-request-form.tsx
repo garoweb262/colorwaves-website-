@@ -19,22 +19,22 @@ const partnershipTypes = [
 ];
 
 interface PartnershipRequestFormData {
-  fullName: string;
   companyName: string;
+  contactName: string;
   email: string;
-  phoneNumber: string;
+  phone: string;
   partnershipType: string;
-  message: string;
+  description: string;
 }
 
 export function PartnershipRequestForm() {
   const [formData, setFormData] = useState<PartnershipRequestFormData>({
-    fullName: "",
     companyName: "",
+    contactName: "",
     email: "",
-    phoneNumber: "",
+    phone: "",
     partnershipType: "",
-    message: "",
+    description: "",
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
 
@@ -50,12 +50,12 @@ export function PartnershipRequestForm() {
       });
       
       setFormData({
-        fullName: "",
         companyName: "",
+        contactName: "",
         email: "",
-        phoneNumber: "",
+        phone: "",
         partnershipType: "",
-        message: "",
+        description: "",
       });
     } catch (error) {
       console.error("Error submitting partnership request:", error);
@@ -94,9 +94,9 @@ export function PartnershipRequestForm() {
       <form onSubmit={handleSubmit} className="space-y-6">
         <div className="grid md:grid-cols-2 gap-6">
           <Input
-            label="Full Name"
-            name="fullName"
-            value={formData.fullName}
+            label="Contact Name"
+            name="contactName"
+            value={formData.contactName}
             onChange={handleChange}
             placeholder="Enter your full name"
             required
@@ -123,8 +123,8 @@ export function PartnershipRequestForm() {
           />
           <Input
             label="Phone Number"
-            name="phoneNumber"
-            value={formData.phoneNumber}
+            name="phone"
+            value={formData.phone}
             onChange={handleChange}
             placeholder="Enter your phone number"
             required
@@ -142,9 +142,9 @@ export function PartnershipRequestForm() {
         />
 
         <Textarea
-          label="Message"
-          name="message"
-          value={formData.message}
+          label="Description"
+          name="description"
+          value={formData.description}
           onChange={handleChange}
           placeholder="Tell us about your partnership proposal and how we can work together..."
           rows={6}

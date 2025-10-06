@@ -1,18 +1,19 @@
-import { Metadata } from "next";
-import { generateMetadata, seoConfigs } from "@/lib/seo";
-import ContactPageClient from "./contact-client";
+"use client";
 
-export const metadata: Metadata = generateMetadata(seoConfigs.contact);
-
-export default function ContactPage() {
-  return <ContactPageClient />;
-}
+import { useState } from "react";
+import { motion } from "framer-motion";
+import { Mail, Phone, MapPin, Clock, Send } from "lucide-react";
+import { toast } from "sonner";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
+import { Select } from "@/components/ui/select";
 
 const contactInfo = [
   {
     icon: Mail,
     title: "Email Us",
-    details: "contact@corporate.com",
+    details: "contact@colorwaves.com",
     description: "Send us an email anytime",
   },
   {
@@ -99,8 +100,8 @@ export default function ContactPage() {
               </span>
             </h1>
             <p className="text-xl text-slate-600 dark:text-slate-300 max-w-3xl mx-auto">
-              Have a question or want to discuss your project? We'd love to hear from you. 
-              Send us a message and we'll respond as soon as possible.
+              Have a question or want to discuss your project? We&apos;d love to hear from you. 
+              Send us a message and we&apos;ll respond as soon as possible.
             </p>
           </motion.div>
         </div>
@@ -155,7 +156,7 @@ export default function ContactPage() {
               Send Us a Message
             </h2>
             <p className="text-xl text-slate-600 dark:text-slate-300">
-              Fill out the form below and we'll get back to you as soon as possible.
+              Fill out the form below and we&apos;ll get back to you as soon as possible.
             </p>
           </motion.div>
 

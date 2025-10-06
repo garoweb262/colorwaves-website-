@@ -130,8 +130,8 @@ export default function FAQsPage() {
               Still Have Questions?
             </h2>
             <p className="text-xl text-blue-100 mb-8 max-w-2xl mx-auto">
-              Can't find what you're looking for? Our team is here to help. 
-              Get in touch and we'll answer any questions you have.
+              Can&apos;t find what you&apos;re looking for? Our team is here to help. 
+              Get in touch and we&apos;ll answer any questions you have.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <button className="bg-white text-blue-600 px-8 py-3 rounded-lg font-semibold hover:bg-blue-50 transition-colors">

@@ -12,10 +12,8 @@ import {
   Mail, 
   Phone, 
   MapPin,
-  ArrowUp,
-  Send
+  ArrowUp
 } from "lucide-react";
-import { Button } from "@/components/ui/button";
 
 const footerLinks = {
   quickLinks: [

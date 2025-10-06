@@ -18,19 +18,22 @@ const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(
     return (
       <div className="space-y-2">
         <div className="flex items-center space-x-2">
-          <motion.input
-            id={checkboxId}
-            type="checkbox"
-            className={cn(
-              "h-4 w-4 rounded border-slate-300 dark:border-slate-600 text-blue-600 focus:ring-blue-500 focus:ring-2 disabled:cursor-not-allowed disabled:opacity-50",
-              error && "border-red-500 focus:ring-red-500",
-              className
-            )}
-            ref={ref}
+          <motion.div
             whileTap={{ scale: 0.95 }}
             transition={{ type: "spring", stiffness: 400, damping: 17 }}
-            {...props}
-          />
+          >
+            <input
+              id={checkboxId}
+              type="checkbox"
+              className={cn(
+                "h-4 w-4 rounded border-slate-300 dark:border-slate-600 text-blue-600 focus:ring-blue-500 focus:ring-2 disabled:cursor-not-allowed disabled:opacity-50",
+                error && "border-red-500 focus:ring-red-500",
+                className
+              )}
+              ref={ref}
+              {...props}
+            />
+          </motion.div>
           {label && (
             <label 
               htmlFor={checkboxId}

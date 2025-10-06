@@ -2,6 +2,48 @@ import axios from 'axios';
 
 const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3001';
 
+// Type definitions
+interface CreateUserData {
+  email: string;
+  name: string;
+  password: string;
+  role?: string;
+}
+
+interface UpdateUserData {
+  email?: string;
+  name?: string;
+  role?: string;
+}
+
+interface RegisterData {
+  email: string;
+  name: string;
+  password: string;
+}
+
+interface PartnershipRequestData {
+  companyName: string;
+  contactName: string;
+  email: string;
+  phone: string;
+  partnershipType: string;
+  description: string;
+}
+
+interface ProjectRequestData {
+  clientName: string;
+  email: string;
+  phoneNumber: string;
+  companyName: string;
+  projectTitle: string;
+  projectDescription: string;
+  budget: string;
+  timeline: string;
+  services: string[];
+  website: string;
+}
+
 export const api = axios.create({
   baseURL: API_BASE_URL,
   timeout: 10000,
@@ -52,22 +94,22 @@ export const apiEndpoints = {
   users: {
     getAll: () => api.get('/users'),
     getById: (id: string) => api.get(`/users/${id}`),
-    create: (data: any) => api.post('/users', data),
-    update: (id: string, data: any) => api.put(`/users/${id}`, data),
+    create: (data: CreateUserData) => api.post('/users', data),
+    update: (id: string, data: UpdateUserData) => api.put(`/users/${id}`, data),
     delete: (id: string) => api.delete(`/users/${id}`),
   },
   auth: {
     login: (credentials: { email: string; password: string }) =>
       api.post('/auth/login', credentials),
-    register: (userData: any) => api.post('/auth/register', userData),
+    register: (userData: RegisterData) => api.post('/auth/register', userData),
     logout: () => api.post('/auth/logout'),
     refresh: () => api.post('/auth/refresh'),
   },
   partnershipRequests: {
-    create: (data: any) => api.post('/partnership-requests', data),
+    create: (data: PartnershipRequestData) => api.post('/partnership-requests', data),
   },
   projectRequests: {
-    create: (data: any) => api.post('/project-requests', data),
+    create: (data: ProjectRequestData) => api.post('/project-requests', data),
   },
 };
 

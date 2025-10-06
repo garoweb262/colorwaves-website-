@@ -212,7 +212,7 @@ export default function AboutPageClient() {
               Ready to Work With Us?
             </h2>
             <p className="text-xl text-blue-100 mb-8 max-w-2xl mx-auto">
-              Let's discuss how we can help transform your business with our 
+              Let&apos;s discuss how we can help transform your business with our 
               innovative solutions and expert team.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">

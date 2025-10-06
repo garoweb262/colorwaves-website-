@@ -1,12 +1,8 @@
-import { Metadata } from "next";
-import { generateMetadata, seoConfigs } from "@/lib/seo";
-import CareersPageClient from "./careers-client";
+"use client";
 
-export const metadata: Metadata = generateMetadata(seoConfigs.careers);
-
-export default function CareersPage() {
-  return <CareersPageClient />;
-}
+import { motion } from "framer-motion";
+import { MapPin, Clock } from "lucide-react";
+import { Button } from "@/components/ui/button";
 
 const jobOpenings = [
   {
@@ -58,8 +54,8 @@ export default function CareersPage() {
               </span>
             </h1>
             <p className="text-xl text-slate-600 dark:text-slate-300 max-w-3xl mx-auto">
-              Be part of a dynamic team that's shaping the future of technology. 
-              We're looking for passionate individuals to join our growing company.
+              Be part of a dynamic team that&apos;s shaping the future of technology. 
+              We&apos;re looking for passionate individuals to join our growing company.
             </p>
           </motion.div>
         </div>
@@ -137,11 +133,11 @@ export default function CareersPage() {
             viewport={{ once: true }}
           >
             <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
-              Don't See Your Role?
+              Don&apos;t See Your Role?
             </h2>
             <p className="text-xl text-blue-100 mb-8 max-w-2xl mx-auto">
-              We're always looking for talented individuals. Send us your resume 
-              and we'll keep you in mind for future opportunities.
+              We&apos;re always looking for talented individuals. Send us your resume 
+              and we&apos;ll keep you in mind for future opportunities.
             </p>
             <Button size="lg" variant="secondary">
               Send Resume

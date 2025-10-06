@@ -1,12 +1,8 @@
-import { Metadata } from "next";
-import { generateMetadata, seoConfigs } from "@/lib/seo";
-import ServicesPageClient from "./services-client";
+"use client";
 
-export const metadata: Metadata = generateMetadata(seoConfigs.services);
-
-export default function ServicesPage() {
-  return <ServicesPageClient />;
-}
+import { motion } from "framer-motion";
+import { Settings, Smartphone, Code, Headphones } from "lucide-react";
+import { Button } from "@/components/ui/button";
 
 const services = [
   {
@@ -168,7 +164,7 @@ export default function ServicesPage() {
               Ready to Get Started?
             </h2>
             <p className="text-xl text-blue-100 mb-8 max-w-2xl mx-auto">
-              Let's discuss your project and see how we can help you achieve your goals.
+              Let&apos;s discuss your project and see how we can help you achieve your goals.
             </p>
             <Button size="lg" variant="secondary">
               Start Your Project

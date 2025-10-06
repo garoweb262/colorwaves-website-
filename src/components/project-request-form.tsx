@@ -128,7 +128,7 @@ export function ProjectRequestForm() {
           Project Request Form
         </h3>
         <p className="text-slate-600 dark:text-slate-300">
-          Tell us about your project and we'll provide you with a detailed proposal
+          Tell us about your project and we&apos;ll provide you with a detailed proposal
         </p>
       </div>
 
