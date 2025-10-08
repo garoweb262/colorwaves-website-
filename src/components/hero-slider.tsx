@@ -5,17 +5,17 @@ import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Heart, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import Link from "next/link";
 
 const slides = [
   {
     id: 1,
     title: "Transforming Your Visions",
-  
     description: "Into Reality.",
     topText: "One ColorWave® at a time",
     backgroundImage: "/images/hero-0.png",
-    button1: "Discover More",
-    button2: "Get A Quote",
+    button1: { text: "Discover More", link: "/about" },
+    button2: { text: "Get A Quote", link: "/project-request" },
   },
   {
     id: 2,
@@ -23,18 +23,17 @@ const slides = [
     description: "Transforming Spaces.",
     topText: "ColorWaves Excellence",
     backgroundImage: "/images/hero-1.png",
-    button1: "Our Mission",
-    button2: "Contact Us",
+    button1: { text: "Our Mission", link: "/about" },
+    button2: { text: "Contact Us", link: "/contact" },
   },
   {
     id: 3,
     title: "Bringing Spaces",
-
     description: "To Life.",
     topText: "Creativity Meets Precision",
     backgroundImage: "/images/hero-2.png",
-    button1: "View Portfolio",
-    button2: "Start Project",
+    button1: { text: "View Portfolio", link: "/projects" },
+    button2: { text: "Start Project", link: "/project-request" },
   },
   {
     id: 4,
@@ -42,8 +41,8 @@ const slides = [
     description: "Color.",
     topText: "Bold & Vibrant Results",
     backgroundImage: "/images/hero-3.png",
-    button1: "Our Services",
-    button2: "Get Quote",
+    button1: { text: "Our Services", link: "/services" },
+    button2: { text: "Get Quote", link: "/contact" },
   },
 ];
 
@@ -104,15 +103,26 @@ export function HeroSlider() {
                   </h1>
                 </div>
 
-                {/* Action Button */}
-                <div className="mb-6 md:mb-8">
-                  <Button 
-                    size="lg" 
-                    className="bg-palette-secondary-500 hover:bg-palette-gold-500 text-white px-6 py-3 md:px-8 md:py-4 text-base md:text-lg font-semibold rounded-lg flex items-center space-x-2 transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-palette-gold-500/25 w-full sm:w-auto justify-center"
-                  >
-                    <span>{slides[currentSlide].button1}</span>
-                    <ArrowRight className="w-4 h-4 md:w-5 md:h-5" />
-                  </Button>
+                {/* Action Buttons */}
+                <div className="flex flex-col sm:flex-row gap-4 mb-6 md:mb-8">
+                  <Link href={slides[currentSlide].button1.link}>
+                    <Button 
+                      size="lg" 
+                      className="bg-palette-secondary-500 hover:bg-palette-gold-500 text-white px-6 py-3 md:px-8 md:py-4 text-base md:text-lg font-semibold rounded-lg flex items-center space-x-2 transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-palette-gold-500/25 w-full sm:w-auto justify-center"
+                    >
+                      <span>{slides[currentSlide].button1.text}</span>
+                      <ArrowRight className="w-4 h-4 md:w-5 md:h-5" />
+                    </Button>
+                  </Link>
+                  <Link href={slides[currentSlide].button2.link}>
+                    <Button 
+                      size="lg" 
+                      variant="outline"
+                      className="border-2 border-white/30 bg-white/10 hover:bg-white/20 text-white px-6 py-3 md:px-8 md:py-4 text-base md:text-lg font-semibold rounded-lg flex items-center space-x-2 transition-all duration-300 hover:scale-105 w-full sm:w-auto justify-center backdrop-blur-sm"
+                    >
+                      <span>{slides[currentSlide].button2.text}</span>
+                    </Button>
+                  </Link>
                 </div>
 
                 
