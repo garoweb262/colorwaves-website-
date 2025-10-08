@@ -10,31 +10,59 @@ import { Select } from "@/components/ui/select";
 import { apiEndpoints } from "@/lib/api";
 
 const partnershipTypes = [
+  { value: "Contractor Partnership", label: "Contractor Partnership" },
+  { value: "Supplier Partnership", label: "Supplier Partnership" },
+  { value: "Design Partnership", label: "Design Partnership" },
   { value: "Technology Partnership", label: "Technology Partnership" },
-  { value: "Business Development", label: "Business Development" },
   { value: "Marketing Partnership", label: "Marketing Partnership" },
   { value: "Strategic Alliance", label: "Strategic Alliance" },
-  { value: "Reseller Partnership", label: "Reseller Partnership" },
-  { value: "Consulting Partnership", label: "Consulting Partnership" },
+];
+
+const companySizes = [
+  { value: "1-10 employees", label: "1-10 employees" },
+  { value: "11-50 employees", label: "11-50 employees" },
+  { value: "51-100 employees", label: "51-100 employees" },
+  { value: "101-500 employees", label: "101-500 employees" },
+  { value: "500+ employees", label: "500+ employees" },
+];
+
+const industries = [
+  { value: "Construction", label: "Construction" },
+  { value: "Interior Design", label: "Interior Design" },
+  { value: "Architecture", label: "Architecture" },
+  { value: "Technology", label: "Technology" },
+  { value: "Manufacturing", label: "Manufacturing" },
+  { value: "Retail", label: "Retail" },
+  { value: "Hospitality", label: "Hospitality" },
+  { value: "Real Estate", label: "Real Estate" },
+  { value: "Other", label: "Other" },
 ];
 
 interface PartnershipRequestFormData {
+  fullName: string;
   companyName: string;
-  contactName: string;
+  contactPerson: string;
   email: string;
-  phone: string;
+  phoneNumber: string;
   partnershipType: string;
   description: string;
+  website: string;
+  companySize: string;
+  industry: string;
 }
 
 export function PartnershipRequestForm() {
   const [formData, setFormData] = useState<PartnershipRequestFormData>({
+    fullName: "",
     companyName: "",
-    contactName: "",
+    contactPerson: "",
     email: "",
-    phone: "",
+    phoneNumber: "",
     partnershipType: "",
     description: "",
+    website: "",
+    companySize: "",
+    industry: "",
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
 
@@ -43,19 +71,25 @@ export function PartnershipRequestForm() {
     setIsSubmitting(true);
 
     try {
-      await apiEndpoints.partnershipRequests.create(formData);
+      console.log("Submitting partnership payload:", formData);
+      
+      // await apiEndpoints.partnershipRequests.create(formData);
       
       toast.success("Partnership request submitted successfully!", {
         description: "We'll review your request and get back to you within 48 hours.",
       });
       
       setFormData({
+        fullName: "",
         companyName: "",
-        contactName: "",
+        contactPerson: "",
         email: "",
-        phone: "",
+        phoneNumber: "",
         partnershipType: "",
         description: "",
+        website: "",
+        companySize: "",
+        industry: "",
       });
     } catch (error) {
       console.error("Error submitting partnership request:", error);
@@ -94,9 +128,9 @@ export function PartnershipRequestForm() {
       <form onSubmit={handleSubmit} className="space-y-6">
         <div className="grid md:grid-cols-2 gap-6">
           <Input
-            label="Contact Name"
-            name="contactName"
-            value={formData.contactName}
+            label="Full Name"
+            name="fullName"
+            value={formData.fullName || ""}
             onChange={handleChange}
             placeholder="Enter your full name"
             required
@@ -104,7 +138,7 @@ export function PartnershipRequestForm() {
           <Input
             label="Company Name"
             name="companyName"
-            value={formData.companyName}
+            value={formData.companyName || ""}
             onChange={handleChange}
             placeholder="Enter your company name"
             required
@@ -113,38 +147,78 @@ export function PartnershipRequestForm() {
 
         <div className="grid md:grid-cols-2 gap-6">
           <Input
+            label="Contact Person"
+            name="contactPerson"
+            value={formData.contactPerson || ""}
+            onChange={handleChange}
+            placeholder="Enter contact person name"
+            required
+          />
+          <Input
             label="Email Address"
             name="email"
             type="email"
-            value={formData.email}
+            value={formData.email || ""}
             onChange={handleChange}
             placeholder="Enter your email"
             required
           />
+        </div>
+
+        <div className="grid md:grid-cols-2 gap-6">
           <Input
             label="Phone Number"
-            name="phone"
-            value={formData.phone}
+            name="phoneNumber"
+            value={formData.phoneNumber || ""}
             onChange={handleChange}
             placeholder="Enter your phone number"
+            required
+          />
+          <Input
+            label="Website (Optional)"
+            name="website"
+            type="url"
+            value={formData.website || ""}
+            onChange={handleChange}
+            placeholder="https://your-website.com"
+          />
+        </div>
+
+        <div className="grid md:grid-cols-2 gap-6">
+          <Select
+            label="Partnership Type"
+            name="partnershipType"
+            value={formData.partnershipType || ""}
+            onChange={handleChange}
+            placeholder="Select partnership type"
+            options={partnershipTypes}
+            required
+          />
+          <Select
+            label="Company Size"
+            name="companySize"
+            value={formData.companySize || ""}
+            onChange={handleChange}
+            placeholder="Select company size"
+            options={companySizes}
             required
           />
         </div>
 
         <Select
-          label="Partnership Type"
-          name="partnershipType"
-          value={formData.partnershipType}
+          label="Industry"
+          name="industry"
+          value={formData.industry || ""}
           onChange={handleChange}
-          placeholder="Select partnership type"
-          options={partnershipTypes}
+          placeholder="Select your industry"
+          options={industries}
           required
         />
 
         <Textarea
-          label="Description"
+          label="Partnership Description"
           name="description"
-          value={formData.description}
+          value={formData.description || ""}
           onChange={handleChange}
           placeholder="Tell us about your partnership proposal and how we can work together..."
           rows={6}

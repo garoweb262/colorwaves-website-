@@ -14,13 +14,13 @@ const navigation = [
   { name: "Products", href: "/products" },
   { name: "Projects", href: "/projects" },
   { name: "Careers", href: "/careers" },
+  { name: "Contact", href: "/contact" },
 ];
 
 const dropdownItems = [
   { name: "Partnership", href: "/partnership" },
   { name: "FAQs", href: "/faqs" },
-  { name: "Blog", href: "/blog" },
-  { name: "Gallery", href: "/gallery" },
+  { name: "Blog", href: "/blog" }
 ];
 
 export function Navbar() {
@@ -113,7 +113,7 @@ export function Navbar() {
 
           {/* Section 3: CTA Button */}
           <div className="hidden md:block flex-shrink-0">
-            <button className="navbar-cta-button">
+            <button onClick={() => window.location.href = "/project-request"} className="navbar-cta-button cursor-pointer">
               Get Quote
             </button>
           </div>
@@ -175,7 +175,7 @@ export function Navbar() {
               </div>
               
               <div className="pt-4">
-                <button className="navbar-cta-button w-full">
+                <button onClick={() => window.location.href = "/project-request"} className="navbar-cta-button w-full cursor-pointer">
                   Get Quote
                 </button>
               </div>

@@ -7,15 +7,16 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Select } from "@/components/ui/select";
+import { FileUpload } from "@/components/ui/file-upload";
 import { apiEndpoints } from "@/lib/api";
 
 const budgetRanges = [
-  { value: "Under $5,000", label: "Under $5,000" },
-  { value: "$5,000 - $10,000", label: "$5,000 - $10,000" },
-  { value: "$10,000 - $25,000", label: "$10,000 - $25,000" },
-  { value: "$25,000 - $50,000", label: "$25,000 - $50,000" },
-  { value: "$50,000 - $100,000", label: "$50,000 - $100,000" },
-  { value: "Over $100,000", label: "Over $100,000" },
+  { value: "under-5000", label: "Under ₦500,000" },
+  { value: "5000-10000", label: "₦500,000 - ₦1,000,000" },
+  { value: "10000-25000", label: "₦1,000,000 - ₦2,500,000" },
+  { value: "25000-50000", label: "₦2,500,000 - ₦5,000,000" },
+  { value: "50000-100000", label: "₦5,000,000 - ₦10,000,000" },
+  { value: "over-100000", label: "Over ₦10,000,000" },
 ];
 
 const timelineOptions = [
@@ -28,14 +29,14 @@ const timelineOptions = [
 ];
 
 const serviceOptions = [
-  { value: "Web Development", label: "Web Development" },
-  { value: "Mobile App Development", label: "Mobile App Development" },
-  { value: "UI/UX Design", label: "UI/UX Design" },
-  { value: "E-commerce Solutions", label: "E-commerce Solutions" },
-  { value: "Digital Marketing", label: "Digital Marketing" },
-  { value: "SEO Services", label: "SEO Services" },
-  { value: "Cloud Solutions", label: "Cloud Solutions" },
-  { value: "Consulting", label: "Consulting" },
+  { value: "Residential Painting", label: "Residential Painting" },
+  { value: "Commercial Painting", label: "Commercial Painting" },
+  { value: "Color Consulting", label: "Color Consulting" },
+  { value: "Specialty Finishes", label: "Specialty Finishes" },
+  { value: "Interior Design", label: "Interior Design" },
+  { value: "Renovation Projects", label: "Renovation Projects" },
+  { value: "Exterior Coating", label: "Exterior Coating" },
+  { value: "Decorative Finishes", label: "Decorative Finishes" },
 ];
 
 interface ProjectRequestFormData {
@@ -49,6 +50,7 @@ interface ProjectRequestFormData {
   timeline: string;
   services: string[];
   website: string;
+  images: File[];
 }
 
 export function ProjectRequestForm() {
@@ -63,6 +65,7 @@ export function ProjectRequestForm() {
     timeline: "",
     services: [],
     website: "",
+    images: [],
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
 
@@ -71,7 +74,23 @@ export function ProjectRequestForm() {
     setIsSubmitting(true);
 
     try {
-      await apiEndpoints.projectRequests.create(formData);
+      // Convert files to URLs (in a real app, you'd upload to a server first)
+      const imageUrls = await Promise.all(
+        formData.images.map(async (file) => {
+          // For demo purposes, create object URLs
+          // In production, upload to your server and get back URLs
+          return URL.createObjectURL(file);
+        })
+      );
+
+      const payload = {
+        ...formData,
+        images: imageUrls,
+      };
+
+      console.log("Submitting payload:", payload);
+      
+      // await apiEndpoints.projectRequests.create(payload);
       
       toast.success("Project request submitted successfully!", {
         description: "We'll review your requirements and get back to you within 24 hours.",
@@ -88,6 +107,7 @@ export function ProjectRequestForm() {
         timeline: "",
         services: [],
         website: "",
+        images: [],
       });
     } catch (error) {
       console.error("Error submitting project request:", error);
@@ -231,7 +251,7 @@ export function ProjectRequestForm() {
                   type="checkbox"
                   checked={formData.services.includes(service.value)}
                   onChange={() => handleServiceChange(service.value)}
-                  className="rounded border-gray-300 text-blue-600 focus:ring-blue-500"
+                  className="rounded border-gray-300 text-palette-gold-500 focus:ring-palette-gold-500"
                 />
                 <span className="text-sm text-slate-700 dark:text-slate-300">
                   {service.label}
@@ -240,6 +260,16 @@ export function ProjectRequestForm() {
             ))}
           </div>
         </div>
+
+        <FileUpload
+          label="Project Images (Optional)"
+          accept="image/*"
+          multiple={true}
+          maxFiles={10}
+          maxSize={10}
+          value={formData.images}
+          onChange={(files) => setFormData(prev => ({ ...prev, images: files }))}
+        />
 
         <div className="text-center">
           <Button

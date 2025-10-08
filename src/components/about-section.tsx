@@ -67,9 +67,9 @@ export function AboutSection() {
               whileTap={{ scale: 0.95 }}
               className="relative bg-palette-gold-500 hover:bg-palette-gold-600 text-indigo-950 px-8 py-4 text-lg font-semibold rounded-full transition-all duration-300 hover:shadow-lg hover:shadow-palette-gold-500/25"
             >
-              <span className="relative z-10">Learn More About Us</span>
+              <span className="relative z-10">Learn More</span>
               {/* Curved decorative line with spacing */}
-              <div className="absolute -bottom-4 left-1/2 transform -translate-x-1/2 w-16 h-1 bg-palette-gold-400 rounded-full opacity-60"></div>
+             
             </motion.button>
           </motion.div>
 
@@ -93,6 +93,55 @@ export function AboutSection() {
           </motion.div>
         </div>
 
+        {/* Mission & Vision Section */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12">
+          {/* Mission */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="relative group"
+          >
+            <div className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-6 sm:p-8 lg:p-10 hover:bg-white/10 transition-all duration-300 h-full">
+            
+              
+              <h3 className="text-2xl sm:text-3xl font-bold text-white mb-3 sm:mb-4">
+                Mission
+              </h3>
+              <div className="absolute left-1/2 transform  w-16 h-1 bg-palette-gold-400 rounded-full opacity-60"></div>
+              <p className="text-sm sm:text-base lg:text-lg text-gray-300 leading-relaxed">
+                At ColorWaves, we believe in the power of color to bring spaces to life. Our approach blends creativity with precision, delivering bold, vibrant, and transformative results.
+              </p>
+              
+              {/* Decorative element */}
+              <div className="absolute top-0 right-0 w-20 h-20 bg-palette-gold-500/5 rounded-full blur-2xl group-hover:bg-palette-gold-500/10 transition-all duration-300"></div>
+            </div>
+          </motion.div>
+
+          {/* Vision */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className="relative group"
+          >
+            <div className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-6 sm:p-8 lg:p-10 hover:bg-white/10 transition-all duration-300 h-full">
+              
+              
+              <h3 className="text-2xl sm:text-3xl font-bold text-white mb-3 sm:mb-4">
+                Vision
+              </h3>
+              <p className="text-sm sm:text-base lg:text-lg text-gray-300 leading-relaxed">
+                Driven by a passion for innovation and a commitment to excellence, ColorWaves is your partner in turning vision into reality, one color wave at a time.
+              </p>
+              
+              {/* Decorative element */}
+              <div className="absolute top-0 right-0 w-20 h-20 bg-palette-primary-500/5 rounded-full blur-2xl group-hover:bg-palette-primary-500/10 transition-all duration-300"></div>
+            </div>
+          </motion.div>
+        </div>
        
       </div>
     </section>

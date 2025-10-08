@@ -1,187 +1,210 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Calendar, User, ArrowRight, Search, Filter } from "lucide-react";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
+import { Calendar, User, Clock, ArrowRight } from "lucide-react";
+import Link from "next/link";
+import PageHeader from "@/components/PageHeader";
+import Image from "next/image";
 
+// Mock blog posts data
 const blogPosts = [
   {
-    id: 1,
-    title: "The Future of Web Development: Trends to Watch in 2024",
-    excerpt: "Explore the latest trends shaping the web development landscape, from AI integration to performance optimization.",
-    author: "John Doe",
-    date: "2024-01-15",
-    category: "Technology",
-    readTime: "5 min read",
-    image: "/api/placeholder/400/250",
-  },
-  {
-    id: 2,
-    title: "Building Scalable Applications with Modern Architecture",
-    excerpt: "Learn how to design and implement scalable applications using modern architectural patterns and best practices.",
-    author: "Jane Smith",
-    date: "2024-01-12",
-    category: "Development",
+    slug: "choosing-perfect-paint-colors-for-your-home",
+    title: "Choosing the Perfect Paint Colors for Your Home",
+    excerpt: "Discover expert tips and techniques for selecting paint colors that transform your living space into a beautiful, harmonious environment.",
+    author: "Fatima Ibrahim",
+    publishDate: "2024-01-15",
     readTime: "8 min read",
-    image: "/api/placeholder/400/250",
+    category: "Color Tips",
+    image: "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=600&h=400&fit=crop",
+    featured: true
   },
   {
-    id: 3,
-    title: "The Art of User Experience Design",
-    excerpt: "Discover the principles of creating exceptional user experiences that drive engagement and satisfaction.",
-    author: "Mike Johnson",
-    date: "2024-01-10",
-    category: "Design",
+    slug: "modern-painting-techniques-for-professionals",
+    title: "Modern Painting Techniques for Professional Results",
+    excerpt: "Learn advanced painting techniques that professional painters use to achieve flawless finishes and long-lasting results.",
+    author: "Ahmed Musa",
+    publishDate: "2024-01-10",
     readTime: "6 min read",
-    image: "/api/placeholder/400/250",
+    category: "Techniques",
+    image: "https://images.unsplash.com/photo-1581578731548-c6a0c3f2fcc0?w=600&h=400&fit=crop",
+    featured: false
   },
   {
-    id: 4,
-    title: "Cybersecurity Best Practices for Modern Businesses",
-    excerpt: "Essential cybersecurity strategies to protect your business from evolving threats and vulnerabilities.",
-    author: "Sarah Wilson",
-    date: "2024-01-08",
-    category: "Security",
+    slug: "interior-design-trends-2024",
+    title: "Interior Design Trends for 2024",
+    excerpt: "Explore the latest interior design trends that will dominate home decor and color schemes in 2024.",
+    author: "Grace Okoro",
+    publishDate: "2024-01-05",
+    readTime: "5 min read",
+    category: "Trends",
+    image: "https://images.unsplash.com/photo-1562259949-e8e7689d7828?w=600&h=400&fit=crop",
+    featured: false
+  },
+  {
+    slug: "eco-friendly-painting-solutions",
+    title: "Eco-Friendly Painting Solutions for Your Home",
+    excerpt: "Learn about sustainable painting options that are safe for your family and environmentally responsible.",
+    author: "Chukwudi Okafor",
+    publishDate: "2024-01-01",
     readTime: "7 min read",
-    image: "/api/placeholder/400/250",
-  },
-  {
-    id: 5,
-    title: "Cloud Computing: Migration Strategies and Benefits",
-    excerpt: "A comprehensive guide to cloud migration, including strategies, benefits, and common pitfalls to avoid.",
-    author: "David Brown",
-    date: "2024-01-05",
-    category: "Cloud",
-    readTime: "9 min read",
-    image: "/api/placeholder/400/250",
-  },
-  {
-    id: 6,
-    title: "Mobile-First Design: Creating Responsive Experiences",
-    excerpt: "Learn how to create mobile-first designs that provide optimal experiences across all devices.",
-    author: "Lisa Chen",
-    date: "2024-01-03",
-    category: "Design",
-    readTime: "6 min read",
-    image: "/api/placeholder/400/250",
-  },
+    category: "Sustainability",
+    image: "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=600&h=400&fit=crop",
+    featured: false
+  }
 ];
 
-const categories = ["All", "Technology", "Development", "Design", "Security", "Cloud"];
+const categories = ["All", "Color Tips", "Techniques", "Trends", "Sustainability"];
 
 export default function BlogPage() {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 to-slate-100 dark:from-slate-900 dark:to-slate-800">
-      {/* Hero Section */}
-      <section className="relative py-20 bg-gradient-to-br from-palette-primary-50 to-palette-secondary-50 dark:from-slate-800 dark:to-slate-900">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div
-            className="text-center"
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-          >
-            <h1 className="text-4xl md:text-6xl font-bold text-slate-900 dark:text-white mb-6">
-              Our
-              <span className="bg-gradient-to-r from-palette-primary-500 to-palette-accent-500 bg-clip-text text-transparent">
-                {" "}Blog
-              </span>
-            </h1>
-            <p className="text-xl text-slate-600 dark:text-slate-300 max-w-3xl mx-auto">
-              Stay updated with the latest insights, trends, and best practices in technology, 
-              development, and digital innovation.
-            </p>
-          </motion.div>
-        </div>
-      </section>
+    <div className="bg-indigo-950 min-h-screen">
+      <PageHeader
+        title="Our Blog"
+        subtitle="Expert Insights, Tips, and Trends in Painting and Color Design"
+        backgroundImage="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=1600&h=900&fit=crop"
+        gradientColor="from-palette-primary-500/80 to-palette-secondary-500/60"
+      />
 
-      {/* Search and Filter Section */}
-      <section className="py-8 bg-white dark:bg-slate-800 border-b border-slate-200 dark:border-slate-700">
+      {/* Categories Filter */}
+      <section className="py-12">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex flex-col md:flex-row gap-4 items-center justify-between">
-            <div className="relative flex-1 max-w-md">
-              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-slate-400 w-4 h-4" />
-              <Input
-                placeholder="Search articles..."
-                className="pl-10 bg-slate-50 dark:bg-slate-700 border-slate-200 dark:border-slate-600"
-              />
-            </div>
-            <div className="flex items-center gap-2">
-              <Filter className="text-slate-400 w-4 h-4" />
-              <span className="text-sm text-slate-600 dark:text-slate-300">Filter by:</span>
-              <div className="flex gap-2">
-                {categories.map((category) => (
-                  <Button
-                    key={category}
-                    variant={category === "All" ? "default" : "outline"}
-                    size="sm"
-                    className={category === "All" ? "bg-palette-primary-500 hover:bg-palette-primary-600" : ""}
-                  >
-                    {category}
-                  </Button>
-                ))}
-              </div>
-            </div>
+          <div className="flex flex-wrap justify-center gap-4">
+            {categories.map((category) => (
+              <button
+                key={category}
+                className="px-6 py-2 bg-white/5 border border-white/10 text-gray-300 rounded-full hover:bg-white/10 hover:text-white transition-colors"
+              >
+                {category}
+              </button>
+            ))}
           </div>
         </div>
       </section>
 
-      {/* Blog Posts Grid */}
+      {/* Featured Post */}
       <section className="py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl font-bold text-white mb-4">
+              Featured <span className="text-palette-gold-400">Article</span>
+            </h2>
+          </div>
+
+          {blogPosts.filter(post => post.featured).map((post) => (
+            <motion.div
+              key={post.slug}
+              className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl overflow-hidden hover:bg-white/10 transition-all duration-300"
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
+              viewport={{ once: true }}
+            >
+              <div className="grid lg:grid-cols-2 gap-8">
+                <div className="relative h-64 lg:h-full">
+                  <Image
+                    src={post.image}
+                    alt={post.title}
+                    fill
+                    className="object-cover"
+                  />
+                </div>
+                <div className="p-8">
+                  <div className="flex items-center gap-4 text-sm text-gray-300 mb-4">
+                    <span className="bg-palette-gold-500/20 border border-palette-gold-400/30 text-palette-gold-400 px-3 py-1 rounded-full text-sm font-semibold">
+                      {post.category}
+                    </span>
+                    <div className="flex items-center gap-1">
+                      <Calendar className="w-4 h-4" />
+                      <span>{new Date(post.publishDate).toLocaleDateString()}</span>
+                    </div>
+                    <div className="flex items-center gap-1">
+                      <Clock className="w-4 h-4" />
+                      <span>{post.readTime}</span>
+                    </div>
+                  </div>
+                  <h3 className="text-3xl font-bold text-white mb-4">
+                    {post.title}
+                  </h3>
+                  <p className="text-lg text-gray-300 mb-6 leading-relaxed">
+                    {post.excerpt}
+                  </p>
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center gap-2 text-gray-300">
+                      <User className="w-4 h-4" />
+                      <span>{post.author}</span>
+                    </div>
+                    <Link
+                      href={`/blog/${post.slug}`}
+                      className="inline-flex items-center gap-2 text-palette-gold-400 hover:text-palette-gold-300 transition-colors"
+                    >
+                      Read More
+                      <ArrowRight className="w-4 h-4" />
+                    </Link>
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+          ))}
+        </div>
+      </section>
+
+      {/* All Posts */}
+      <section className="py-16 bg-white/5">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl font-bold text-white mb-4">
+              All <span className="text-palette-gold-400">Articles</span>
+            </h2>
+          </div>
+
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {blogPosts.map((post, index) => (
               <motion.article
-                key={post.id}
-                className="bg-white dark:bg-slate-800 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden group"
+                key={post.slug}
+                className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl overflow-hidden hover:bg-white/10 transition-all duration-300 hover:-translate-y-2"
                 initial={{ opacity: 0, y: 30 }}
-                animate={{ opacity: 1, y: 0 }}
+                whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
-                whileHover={{ y: -5 }}
+                viewport={{ once: true }}
               >
-                <div className="relative overflow-hidden">
-                  <div className="w-full h-48 bg-gradient-to-br from-palette-primary-100 to-palette-accent-100 dark:from-slate-700 dark:to-slate-600 flex items-center justify-center">
-                    <span className="text-palette-primary-500 dark:text-palette-primary-400 font-semibold">
-                      {post.category}
-                    </span>
-                  </div>
-                  <div className="absolute top-4 left-4">
-                    <span className="bg-palette-primary-500 text-white px-3 py-1 rounded-full text-sm font-medium">
-                      {post.category}
-                    </span>
-                  </div>
+                <div className="relative h-48 overflow-hidden">
+                  <Image
+                    src={post.image}
+                    alt={post.title}
+                    fill
+                    className="object-cover hover:scale-105 transition-transform duration-300"
+                  />
                 </div>
-                
                 <div className="p-6">
-                  <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-3 group-hover:text-palette-primary-500 transition-colors">
+                  <div className="flex items-center gap-4 text-sm text-gray-300 mb-3">
+                    <span className="bg-palette-gold-500/20 border border-palette-gold-400/30 text-palette-gold-400 px-2 py-1 rounded-full text-xs font-semibold">
+                      {post.category}
+                    </span>
+                    <div className="flex items-center gap-1">
+                      <Calendar className="w-3 h-3" />
+                      <span>{new Date(post.publishDate).toLocaleDateString()}</span>
+                    </div>
+                  </div>
+                  <h3 className="text-xl font-bold text-white mb-3 line-clamp-2">
                     {post.title}
                   </h3>
-                  <p className="text-slate-600 dark:text-slate-300 mb-4 line-clamp-3">
+                  <p className="text-gray-300 mb-4 line-clamp-3">
                     {post.excerpt}
                   </p>
-                  
-                  <div className="flex items-center justify-between text-sm text-slate-500 dark:text-slate-400 mb-4">
-                    <div className="flex items-center gap-4">
-                      <div className="flex items-center gap-1">
-                        <User className="w-4 h-4" />
-                        <span>{post.author}</span>
-                      </div>
-                      <div className="flex items-center gap-1">
-                        <Calendar className="w-4 h-4" />
-                        <span>{new Date(post.date).toLocaleDateString()}</span>
-                      </div>
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center gap-2 text-gray-400 text-sm">
+                      <User className="w-3 h-3" />
+                      <span>{post.author}</span>
                     </div>
-                    <span>{post.readTime}</span>
+                    <Link
+                      href={`/blog/${post.slug}`}
+                      className="inline-flex items-center gap-1 text-palette-gold-400 hover:text-palette-gold-300 transition-colors text-sm"
+                    >
+                      Read More
+                      <ArrowRight className="w-3 h-3" />
+                    </Link>
                   </div>
-                  
-                  <Button 
-                    variant="outline" 
-                    className="w-full group-hover:bg-palette-primary-500 group-hover:text-white group-hover:border-palette-primary-500 transition-all"
-                  >
-                    Read More
-                    <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
-                  </Button>
                 </div>
               </motion.article>
             ))}
@@ -189,35 +212,31 @@ export default function BlogPage() {
         </div>
       </section>
 
-      {/* Newsletter Section */}
-      <section className="py-16 bg-gradient-to-r from-palette-primary-500 to-palette-accent-500">
+      {/* Newsletter CTA */}
+      <section className="py-16">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
+            className="bg-gradient-to-r from-palette-gold-500 to-palette-gold-600 rounded-3xl p-12"
           >
-            <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
-              Stay Updated
+            <h2 className="text-3xl font-bold text-indigo-950 mb-6">
+              Stay Updated with Our Latest Tips
             </h2>
-            <p className="text-xl text-blue-100 mb-8 max-w-2xl mx-auto">
-              Subscribe to our newsletter and never miss the latest insights, 
-              tutorials, and industry updates.
+            <p className="text-xl text-indigo-900 mb-8">
+              Subscribe to our newsletter for expert painting tips and design inspiration
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
-              <Input
+            <div className="flex flex-col sm:flex-row gap-4 justify-center max-w-md mx-auto">
+              <input
                 type="email"
                 placeholder="Enter your email"
-                className="flex-1 bg-white/10 border-white/20 text-white placeholder-white/70"
+                className="flex-1 px-4 py-3 rounded-lg text-indigo-950 placeholder-gray-600 focus:outline-none focus:ring-2 focus:ring-indigo-950"
               />
-              <Button 
-                size="lg" 
-                variant="secondary"
-                className="bg-white text-palette-primary-500 hover:bg-slate-100"
-              >
+              <button className="bg-indigo-950 text-white px-6 py-3 rounded-lg font-semibold hover:bg-indigo-900 transition-colors">
                 Subscribe
-              </Button>
+              </button>
             </div>
           </motion.div>
         </div>

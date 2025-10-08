@@ -2,32 +2,49 @@
 
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Plus, Minus } from "lucide-react";
+import { ChevronDown } from "lucide-react";
+import PageHeader from "@/components/PageHeader";
 
 const faqs = [
   {
-    question: "What services do you offer?",
-    answer: "We offer comprehensive web development, mobile app development, software consulting, and technical support services. Our team specializes in modern technologies like React, Node.js, and cloud solutions.",
+    question: "What areas do you serve in Nigeria?",
+    answer: "We primarily serve Kano and surrounding states, but we also handle large commercial projects across Nigeria. Contact us to discuss your project location and we'll let you know how we can help.",
   },
   {
-    question: "How long does a typical project take?",
-    answer: "Project timelines vary depending on complexity and scope. A simple website might take 2-4 weeks, while a complex web application could take 3-6 months. We provide detailed timelines during the planning phase.",
+    question: "How long does a typical painting project take?",
+    answer: "Project timelines vary based on size and scope. A standard room might take 1-2 days, while a full house interior could take 1-2 weeks. Commercial projects are assessed individually. We provide detailed timelines during consultation.",
   },
   {
-    question: "Do you provide ongoing support?",
-    answer: "Yes, we offer various support packages including 24/7 technical support, regular maintenance, updates, and monitoring services to ensure your project runs smoothly.",
+    question: "Do you provide free estimates?",
+    answer: "Yes! We offer free, no-obligation consultations and estimates for all projects. We'll assess your space, discuss your vision, recommend colors, and provide a detailed quote including materials and labor.",
   },
   {
-    question: "What technologies do you use?",
-    answer: "We use modern, industry-standard technologies including React, Next.js, Node.js, TypeScript, PostgreSQL, MongoDB, AWS, and many others. We stay up-to-date with the latest trends and best practices.",
+    question: "What types of paint do you use?",
+    answer: "We use only premium, high-quality paints from trusted brands. We offer options including low-VOC, eco-friendly paints, weather-resistant exterior coatings, and specialty finishes. All products are selected based on your specific needs and budget.",
   },
   {
-    question: "Can you work with our existing team?",
-    answer: "Absolutely! We often collaborate with in-house teams, providing expertise and support where needed. We can integrate seamlessly with your existing workflows and processes.",
+    question: "Can you help me choose colors?",
+    answer: "Absolutely! Our professional color consultants can help you select the perfect palette for your space. We consider factors like lighting, room size, purpose, and your personal style to create harmonious color schemes.",
   },
   {
-    question: "What's your pricing model?",
-    answer: "We offer flexible pricing models including fixed-price projects, hourly rates, and retainer agreements. Pricing depends on project scope, complexity, and timeline. Contact us for a detailed quote.",
+    question: "Do you move furniture?",
+    answer: "Yes, we can move furniture as part of our service. We'll protect all items with covering materials. For large or delicate pieces, we recommend clearing the space beforehand or hiring professional movers.",
+  },
+  {
+    question: "What's included in your painting service?",
+    answer: "Our comprehensive service includes surface preparation, priming, painting (2-3 coats as needed), cleanup, and final inspection. We protect floors and furniture, repair minor wall imperfections, and ensure a flawless finish.",
+  },
+  {
+    question: "Do you offer warranties?",
+    answer: "Yes! We stand behind our work with a comprehensive warranty. Most interior projects include a 2-year warranty on workmanship, while exterior projects are covered for 3-5 years depending on products used. Premium products may have extended manufacturer warranties.",
+  },
+  {
+    question: "How do I prepare my home for painting?",
+    answer: "We'll provide a detailed preparation checklist, but generally: clear small items, secure valuables, remove wall hangings, and ensure access to all areas. We handle the rest including moving furniture, covering floors, and surface prep.",
+  },
+  {
+    question: "What payment methods do you accept?",
+    answer: "We accept cash, bank transfers, and mobile payments. For larger projects, we typically request a 30% deposit to secure your dates and purchase materials, with the balance due upon completion.",
   },
 ];
 
@@ -39,59 +56,40 @@ export default function FAQsPage() {
   };
 
   return (
-    <div className="min-h-screen bg-white dark:bg-slate-900">
-      {/* Hero Section */}
-      <section className="relative py-20 bg-gradient-to-br from-blue-50 to-slate-100 dark:from-slate-800 dark:to-slate-900">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div
-            className="text-center"
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-          >
-            <h1 className="text-4xl md:text-6xl font-bold text-slate-900 dark:text-white mb-6">
-              Frequently Asked
-              <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
-                {" "}Questions
-              </span>
-            </h1>
-            <p className="text-xl text-slate-600 dark:text-slate-300 max-w-3xl mx-auto">
-              Find answers to common questions about our services, processes, 
-              and how we can help your business succeed.
-            </p>
-          </motion.div>
-        </div>
-      </section>
+    <div className="min-h-screen bg-indigo-950">
+      <PageHeader
+        title="Frequently Asked Questions"
+        subtitle="Find Answers to Common Questions About Our Services"
+        backgroundImage="https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=1600&h=900&fit=crop"
+        gradientColor="from-palette-primary-500/80 to-palette-secondary-500/60"
+      />
 
       {/* FAQs Section */}
-      <section className="py-20 bg-white dark:bg-slate-800">
+      <section className="py-20">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="space-y-4">
             {faqs.map((faq, index) => (
               <motion.div
                 key={index}
-                className="bg-slate-50 dark:bg-slate-700 rounded-xl overflow-hidden"
+                className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl overflow-hidden hover:bg-white/10 transition-all"
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
+                transition={{ duration: 0.6, delay: index * 0.05 }}
                 viewport={{ once: true }}
               >
                 <button
-                  className="w-full px-6 py-4 text-left flex items-center justify-between hover:bg-slate-100 dark:hover:bg-slate-600 transition-colors"
+                  className="w-full px-6 py-5 text-left flex items-center justify-between transition-colors"
                   onClick={() => toggleFAQ(index)}
                 >
-                  <h3 className="text-lg font-semibold text-slate-900 dark:text-white">
+                  <h3 className="text-lg font-semibold text-white pr-4">
                     {faq.question}
                   </h3>
                   <motion.div
                     animate={{ rotate: openIndex === index ? 180 : 0 }}
                     transition={{ duration: 0.3 }}
+                    className="flex-shrink-0"
                   >
-                    {openIndex === index ? (
-                      <Minus className="w-5 h-5 text-blue-600 dark:text-blue-400" />
-                    ) : (
-                      <Plus className="w-5 h-5 text-blue-600 dark:text-blue-400" />
-                    )}
+                    <ChevronDown className="w-5 h-5 text-palette-gold-400" />
                   </motion.div>
                 </button>
                 
@@ -103,8 +101,8 @@ export default function FAQsPage() {
                       exit={{ height: 0, opacity: 0 }}
                       transition={{ duration: 0.3 }}
                     >
-                      <div className="px-6 pb-4">
-                        <p className="text-slate-600 dark:text-slate-300 leading-relaxed">
+                      <div className="px-6 pb-5 border-t border-white/10 pt-4">
+                        <p className="text-gray-300 leading-relaxed">
                           {faq.answer}
                         </p>
                       </div>
@@ -118,28 +116,35 @@ export default function FAQsPage() {
       </section>
 
       {/* Contact CTA */}
-      <section className="py-20 bg-gradient-to-r from-blue-600 to-purple-600">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <section className="py-16">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
+            className="bg-gradient-to-r from-palette-gold-500 to-palette-gold-600 rounded-3xl p-12 text-center"
           >
-            <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
+            <h2 className="text-3xl md:text-4xl font-bold text-indigo-950 mb-4">
               Still Have Questions?
             </h2>
-            <p className="text-xl text-blue-100 mb-8 max-w-2xl mx-auto">
+            <p className="text-xl text-indigo-900 mb-8 max-w-2xl mx-auto">
               Can&apos;t find what you&apos;re looking for? Our team is here to help. 
               Get in touch and we&apos;ll answer any questions you have.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <button className="bg-white text-blue-600 px-8 py-3 rounded-lg font-semibold hover:bg-blue-50 transition-colors">
+              <a
+                href="/contact"
+                className="inline-block bg-indigo-950 text-white px-8 py-4 rounded-full font-semibold hover:bg-indigo-900 transition-colors"
+              >
                 Contact Us
-              </button>
-              <button className="border-2 border-white text-white px-8 py-3 rounded-lg font-semibold hover:bg-white hover:text-blue-600 transition-colors">
-                Schedule a Call
-              </button>
+              </a>
+              <a
+                href="tel:+2348033317338"
+                className="inline-block border-2 border-indigo-950 text-indigo-950 px-8 py-4 rounded-full font-semibold hover:bg-indigo-950 hover:text-white transition-colors"
+              >
+                Call Us Now
+              </a>
             </div>
           </motion.div>
         </div>

@@ -2,107 +2,78 @@
 
 import { motion } from "framer-motion";
 import { useState } from "react";
-import { Search, Filter, Grid, List, Download, Eye, Heart, Share2 } from "lucide-react";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
+import { Search, Filter, Eye } from "lucide-react";
+import PageHeader from "@/components/PageHeader";
 
 const galleryItems = [
   {
     id: 1,
-    title: "Modern Office Space",
-    category: "Interior",
-    description: "Contemporary office design with natural lighting and modern furniture.",
-    image: "/api/placeholder/400/300",
-    tags: ["office", "modern", "design"],
-    likes: 42,
-    downloads: 15,
+    title: "Modern Office Transformation",
+    category: "Commercial",
+    description: "Complete office renovation with contemporary color schemes",
+    image: "https://images.unsplash.com/photo-1497366216548-37526070297c?w=400&h=300&fit=crop",
   },
   {
     id: 2,
-    title: "Tech Conference 2024",
-    category: "Events",
-    description: "Annual technology conference showcasing the latest innovations.",
-    image: "/api/placeholder/400/300",
-    tags: ["conference", "technology", "innovation"],
-    likes: 38,
-    downloads: 22,
+    title: "Luxury Residential Interior",
+    category: "Residential",
+    description: "High-end home interior with premium finishes",
+    image: "https://images.unsplash.com/photo-1484101403633-562f891dc89a?w=400&h=300&fit=crop",
   },
   {
     id: 3,
-    title: "Team Collaboration",
-    category: "Workplace",
-    description: "Our team working together on innovative projects.",
-    image: "/api/placeholder/400/300",
-    tags: ["team", "collaboration", "workplace"],
-    likes: 56,
-    downloads: 18,
+    title: "Retail Space Makeover",
+    category: "Commercial",
+    description: "Vibrant retail store transformation",
+    image: "https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=400&h=300&fit=crop",
   },
   {
     id: 4,
-    title: "Product Launch",
-    category: "Products",
-    description: "Launching our latest product to the market.",
-    image: "/api/placeholder/400/300",
-    tags: ["product", "launch", "marketing"],
-    likes: 29,
-    downloads: 31,
+    title: "Exterior Building Refresh",
+    category: "Exterior",
+    description: "Weather-resistant exterior coating application",
+    image: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=400&h=300&fit=crop",
   },
   {
     id: 5,
-    title: "Client Meeting",
-    category: "Business",
-    description: "Strategic client meeting in our modern conference room.",
-    image: "/api/placeholder/400/300",
-    tags: ["client", "meeting", "business"],
-    likes: 33,
-    downloads: 12,
+    title: "Hotel Lobby Renovation",
+    category: "Hospitality",
+    description: "Elegant hotel lobby with custom finishes",
+    image: "https://images.unsplash.com/photo-1566073771259-6a8506099945?w=400&h=300&fit=crop",
   },
   {
     id: 6,
-    title: "Workshop Session",
-    category: "Education",
-    description: "Interactive workshop on digital transformation.",
-    image: "/api/placeholder/400/300",
-    tags: ["workshop", "education", "training"],
-    likes: 47,
-    downloads: 25,
+    title: "Residential Kitchen Upgrade",
+    category: "Residential",
+    description: "Modern kitchen transformation with bold colors",
+    image: "https://images.unsplash.com/photo-1556909212-d5b604d0c90d?w=400&h=300&fit=crop",
   },
   {
     id: 7,
-    title: "Award Ceremony",
-    category: "Awards",
-    description: "Receiving recognition for outstanding achievements.",
-    image: "/api/placeholder/400/300",
-    tags: ["award", "recognition", "achievement"],
-    likes: 61,
-    downloads: 19,
+    title: "Corporate Headquarters",
+    category: "Commercial",
+    description: "Professional corporate office painting",
+    image: "https://images.unsplash.com/photo-1497366811353-6870744d04b2?w=400&h=300&fit=crop",
   },
   {
     id: 8,
-    title: "Innovation Lab",
-    category: "Research",
-    description: "Our state-of-the-art research and development facility.",
-    image: "/api/placeholder/400/300",
-    tags: ["innovation", "research", "development"],
-    likes: 44,
-    downloads: 27,
+    title: "Restaurant Interior Design",
+    category: "Hospitality",
+    description: "Creative restaurant space with unique color palette",
+    image: "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=400&h=300&fit=crop",
   },
   {
     id: 9,
-    title: "Community Outreach",
-    category: "Social",
-    description: "Giving back to the community through various initiatives.",
-    image: "/api/placeholder/400/300",
-    tags: ["community", "outreach", "social"],
-    likes: 52,
-    downloads: 14,
+    title: "Luxury Villa Exterior",
+    category: "Exterior",
+    description: "Stunning villa exterior with protective coating",
+    image: "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=400&h=300&fit=crop",
   },
 ];
 
-const categories = ["All", "Interior", "Events", "Workplace", "Products", "Business", "Education", "Awards", "Research", "Social"];
+const categories = ["All", "Commercial", "Residential", "Exterior", "Hospitality"];
 
 export default function GalleryPage() {
-  const [viewMode, setViewMode] = useState<"grid" | "list">("grid");
   const [selectedCategory, setSelectedCategory] = useState("All");
 
   const filteredItems = selectedCategory === "All" 
@@ -110,73 +81,43 @@ export default function GalleryPage() {
     : galleryItems.filter(item => item.category === selectedCategory);
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 to-slate-100 dark:from-slate-900 dark:to-slate-800">
-      {/* Hero Section */}
-      <section className="relative py-20 bg-gradient-to-br from-palette-accent-50 to-palette-secondary-50 dark:from-slate-800 dark:to-slate-900">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div
-            className="text-center"
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-          >
-            <h1 className="text-4xl md:text-6xl font-bold text-slate-900 dark:text-white mb-6">
-              Our
-              <span className="bg-gradient-to-r from-palette-accent-500 to-palette-primary-500 bg-clip-text text-transparent">
-                {" "}Gallery
-              </span>
-            </h1>
-            <p className="text-xl text-slate-600 dark:text-slate-300 max-w-3xl mx-auto">
-              Explore our visual journey through projects, events, and moments that define our company culture and achievements.
-            </p>
-          </motion.div>
-        </div>
-      </section>
+    <div className="min-h-screen bg-indigo-950">
+      <PageHeader
+        title="Project Gallery"
+        subtitle="Explore Our Portfolio of Stunning Transformations"
+        backgroundImage="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=1600&h=900&fit=crop"
+        gradientColor="from-palette-primary-500/80 to-palette-secondary-500/60"
+      />
 
       {/* Controls Section */}
-      <section className="py-8 bg-white dark:bg-slate-800 border-b border-slate-200 dark:border-slate-700">
+      <section className="py-8 bg-white/5 border-b border-white/10">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col md:flex-row gap-4 items-center justify-between">
-            <div className="relative flex-1 max-w-md">
-              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-slate-400 w-4 h-4" />
-              <Input
-                placeholder="Search gallery..."
-                className="pl-10 bg-slate-50 dark:bg-slate-700 border-slate-200 dark:border-slate-600"
-              />
+            <div className="text-center md:text-left">
+              <p className="text-gray-300">
+                Showing <span className="text-palette-gold-400 font-semibold">{filteredItems.length}</span> projects
+              </p>
             </div>
             
-            <div className="flex items-center gap-4">
-              <div className="flex items-center gap-2">
-                <Filter className="text-slate-400 w-4 h-4" />
-                <span className="text-sm text-slate-600 dark:text-slate-300">Category:</span>
-                <select 
-                  value={selectedCategory}
-                  onChange={(e) => setSelectedCategory(e.target.value)}
-                  className="px-3 py-1 border border-slate-200 dark:border-slate-600 rounded-md bg-white dark:bg-slate-700 text-sm"
-                >
-                  {categories.map((category) => (
-                    <option key={category} value={category}>{category}</option>
-                  ))}
-                </select>
+            <div className="flex items-center gap-3 flex-wrap justify-center">
+              <div className="flex items-center gap-2 text-gray-300">
+                <Filter className="w-4 h-4" />
+                <span className="text-sm">Category:</span>
               </div>
-              
-              <div className="flex items-center gap-1 border border-slate-200 dark:border-slate-600 rounded-md p-1">
-                <Button
-                  variant={viewMode === "grid" ? "default" : "ghost"}
-                  size="sm"
-                  onClick={() => setViewMode("grid")}
-                  className={viewMode === "grid" ? "bg-palette-accent-500 hover:bg-palette-accent-600" : ""}
-                >
-                  <Grid className="w-4 h-4" />
-                </Button>
-                <Button
-                  variant={viewMode === "list" ? "default" : "ghost"}
-                  size="sm"
-                  onClick={() => setViewMode("list")}
-                  className={viewMode === "list" ? "bg-palette-accent-500 hover:bg-palette-accent-600" : ""}
-                >
-                  <List className="w-4 h-4" />
-                </Button>
+              <div className="flex gap-2 flex-wrap">
+                {categories.map((category) => (
+                  <button
+                    key={category}
+                    className={`px-4 py-2 rounded-full text-sm font-medium transition-all ${
+                      category === selectedCategory
+                        ? "bg-gradient-to-r from-palette-gold-500 to-palette-gold-600 text-indigo-950"
+                        : "bg-white/5 text-white hover:bg-white/10 border border-white/10"
+                    }`}
+                    onClick={() => setSelectedCategory(category)}
+                  >
+                    {category}
+                  </button>
+                ))}
               </div>
             </div>
           </div>
@@ -186,127 +127,63 @@ export default function GalleryPage() {
       {/* Gallery Grid */}
       <section className="py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          {viewMode === "grid" ? (
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-              {filteredItems.map((item, index) => (
-                <motion.div
-                  key={item.id}
-                  className="bg-white dark:bg-slate-800 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden group"
-                  initial={{ opacity: 0, y: 30 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, delay: index * 0.1 }}
-                  whileHover={{ y: -5 }}
-                >
-                  <div className="relative overflow-hidden">
-                    <div className="w-full h-48 bg-gradient-to-br from-palette-accent-100 to-palette-primary-100 dark:from-slate-700 dark:to-slate-600 flex items-center justify-center">
-                      <span className="text-palette-accent-500 dark:text-palette-accent-400 font-semibold">
-                        {item.category}
-                      </span>
-                    </div>
-                    <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-all duration-300 flex items-center justify-center opacity-0 group-hover:opacity-100">
-                      <div className="flex gap-2">
-                        <Button size="sm" variant="secondary" className="bg-white/90 hover:bg-white">
-                          <Eye className="w-4 h-4" />
-                        </Button>
-                        <Button size="sm" variant="secondary" className="bg-white/90 hover:bg-white">
-                          <Download className="w-4 h-4" />
-                        </Button>
-                      </div>
-                    </div>
-                  </div>
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {filteredItems.map((item, index) => (
+              <motion.div
+                key={item.id}
+                className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl shadow-lg hover:shadow-2xl hover:bg-white/10 transition-all duration-300 overflow-hidden group"
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: index * 0.1 }}
+                whileHover={{ y: -5 }}
+              >
+                <div className="relative overflow-hidden h-64">
+                  <img
+                    src={item.image}
+                    alt={item.title}
+                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
                   
-                  <div className="p-4">
-                    <h3 className="font-bold text-slate-900 dark:text-white mb-2 group-hover:text-palette-accent-500 transition-colors">
+                  {/* Category Badge */}
+                  <div className="absolute top-4 left-4">
+                    <span className="bg-palette-gold-500 text-indigo-950 px-3 py-1 rounded-full text-sm font-semibold">
+                      {item.category}
+                    </span>
+                  </div>
+
+                  {/* Hover Overlay */}
+                  <div className="absolute inset-0 bg-black/0 group-hover:bg-black/60 transition-all duration-300 flex items-center justify-center opacity-0 group-hover:opacity-100">
+                    <button className="bg-white text-indigo-950 p-3 rounded-full hover:bg-palette-gold-400 transition-colors">
+                      <Eye className="w-6 h-6" />
+                    </button>
+                  </div>
+
+                  {/* Title Overlay */}
+                  <div className="absolute bottom-0 left-0 right-0 p-6">
+                    <h3 className="font-bold text-white text-lg mb-2">
                       {item.title}
                     </h3>
-                    <p className="text-sm text-slate-600 dark:text-slate-300 mb-3 line-clamp-2">
+                    <p className="text-sm text-gray-300">
                       {item.description}
                     </p>
-                    
-                    <div className="flex items-center justify-between text-sm text-slate-500 dark:text-slate-400">
-                      <div className="flex items-center gap-3">
-                        <div className="flex items-center gap-1">
-                          <Heart className="w-4 h-4" />
-                          <span>{item.likes}</span>
-                        </div>
-                        <div className="flex items-center gap-1">
-                          <Download className="w-4 h-4" />
-                          <span>{item.downloads}</span>
-                        </div>
-                      </div>
-                      <Button size="sm" variant="ghost" className="p-1">
-                        <Share2 className="w-4 h-4" />
-                      </Button>
-                    </div>
                   </div>
-                </motion.div>
-              ))}
-            </div>
-          ) : (
-            <div className="space-y-4">
-              {filteredItems.map((item, index) => (
-                <motion.div
-                  key={item.id}
-                  className="bg-white dark:bg-slate-800 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden group"
-                  initial={{ opacity: 0, x: -30 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ duration: 0.6, delay: index * 0.1 }}
-                >
-                  <div className="flex">
-                    <div className="w-32 h-24 bg-gradient-to-br from-palette-accent-100 to-palette-primary-100 dark:from-slate-700 dark:to-slate-600 flex items-center justify-center flex-shrink-0">
-                      <span className="text-palette-accent-500 dark:text-palette-accent-400 font-semibold text-sm">
-                        {item.category}
-                      </span>
-                    </div>
-                    <div className="flex-1 p-4">
-                      <div className="flex items-start justify-between">
-                        <div className="flex-1">
-                          <h3 className="font-bold text-slate-900 dark:text-white mb-2 group-hover:text-palette-accent-500 transition-colors">
-                            {item.title}
-                          </h3>
-                          <p className="text-sm text-slate-600 dark:text-slate-300 mb-3">
-                            {item.description}
-                          </p>
-                          <div className="flex items-center gap-4 text-sm text-slate-500 dark:text-slate-400">
-                            <div className="flex items-center gap-1">
-                              <Heart className="w-4 h-4" />
-                              <span>{item.likes}</span>
-                            </div>
-                            <div className="flex items-center gap-1">
-                              <Download className="w-4 h-4" />
-                              <span>{item.downloads}</span>
-                            </div>
-                          </div>
-                        </div>
-                        <div className="flex gap-2 ml-4">
-                          <Button size="sm" variant="outline">
-                            <Eye className="w-4 h-4 mr-2" />
-                            View
-                          </Button>
-                          <Button size="sm" variant="outline">
-                            <Download className="w-4 h-4 mr-2" />
-                            Download
-                          </Button>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </motion.div>
-              ))}
-            </div>
-          )}
+                </div>
+              </motion.div>
+            ))}
+          </div>
         </div>
       </section>
 
       {/* Stats Section */}
-      <section className="py-16 bg-gradient-to-r from-palette-primary-500 to-palette-accent-500">
+      <section className="py-16 bg-white/5">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid md:grid-cols-4 gap-8 text-center">
             {[
-              { label: "Total Images", value: "500+" },
-              { label: "Categories", value: "10" },
-              { label: "Downloads", value: "2.5K+" },
-              { label: "Likes", value: "1.8K+" },
+              { label: "Projects Completed", value: "500+" },
+              { label: "Happy Clients", value: "350+" },
+              { label: "Colors Applied", value: "2000+" },
+              { label: "Square Meters Painted", value: "50K+" },
             ].map((stat, index) => (
               <motion.div
                 key={stat.label}
@@ -315,10 +192,10 @@ export default function GalleryPage() {
                 transition={{ duration: 0.6, delay: index * 0.1 }}
                 viewport={{ once: true }}
               >
-                <div className="text-3xl md:text-4xl font-bold text-white mb-2">
+                <div className="text-4xl md:text-5xl font-bold text-palette-gold-400 mb-2">
                   {stat.value}
                 </div>
-                <div className="text-blue-100">
+                <div className="text-gray-300">
                   {stat.label}
                 </div>
               </motion.div>

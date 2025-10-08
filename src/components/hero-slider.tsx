@@ -63,9 +63,9 @@ export function HeroSlider() {
   return (
     <section className="relative min-h-screen overflow-hidden">
       {/* Diagonal Split Layout */}
-      <div className="relative h-screen flex">
+      <div className="relative h-screen flex flex-col md:flex-row">
         {/* Left Side - Text Content */}
-        <div className="w-1/2 relative bg-white/10 backdrop-blur-md border-r border-white/20 flex items-center justify-center">
+        <div className="w-full md:w-1/2 relative bg-white/10 backdrop-blur-md md:border-r border-white/20 flex items-center justify-center min-h-[60vh] md:min-h-0 py-12 md:py-0">
           {/* Glassmorphism Overlay */}
           <div className="absolute inset-0 bg-gradient-to-br from-white/20 via-white/10 to-white/5"></div>
           
@@ -77,7 +77,7 @@ export function HeroSlider() {
           </div>
 
           {/* Content */}
-          <div className="relative z-10 w-full max-w-lg px-4 ">
+          <div className="relative z-10 w-full max-w-lg px-6 md:px-8 lg:px-4">
             <AnimatePresence mode="wait">
               <motion.div
                 key={currentSlide}
@@ -87,31 +87,31 @@ export function HeroSlider() {
                 transition={{ duration: 0.5 }}
               >
                 {/* Top Text with Icon */}
-                <div className="flex items-center space-x-3 mb-6">
-                  <div className="w-8 h-8 bg-palette-gold-500 rounded-full flex items-center justify-center">
-                    <Heart className="w-4 h-4 text-white" />
+                <div className="flex items-center space-x-2 md:space-x-3 mb-4 md:mb-6">
+                  <div className="w-7 h-7 md:w-8 md:h-8 bg-palette-gold-500 rounded-full flex items-center justify-center flex-shrink-0">
+                    <Heart className="w-3.5 h-3.5 md:w-4 md:h-4 text-white" />
                   </div>
-                  <span className="text-palette-gold-300 font-medium text-lg">
+                  <span className="text-palette-gold-300 font-medium text-sm md:text-base lg:text-lg">
                     {slides[currentSlide].topText}
                   </span>
                 </div>
 
                 {/* Main Heading */}
-                <div className="mb-8">
-                  <h1 className="text-5xl lg:text-5xl font-bold text-white leading-tight drop-shadow-lg">
+                <div className="mb-6 md:mb-8">
+                  <h1 className="text-3xl sm:text-4xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-white leading-tight drop-shadow-lg">
                     {slides[currentSlide].title}<br />
                     {slides[currentSlide].description}
                   </h1>
                 </div>
 
                 {/* Action Button */}
-                <div className="mb-8">
+                <div className="mb-6 md:mb-8">
                   <Button 
                     size="lg" 
-                    className="bg-palette-secondary-500 hover:bg-palette-gold-500 text-white px-8 py-4 text-lg font-semibold rounded-lg flex items-center space-x-2 transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-palette-gold-500/25"
+                    className="bg-palette-secondary-500 hover:bg-palette-gold-500 text-white px-6 py-3 md:px-8 md:py-4 text-base md:text-lg font-semibold rounded-lg flex items-center space-x-2 transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-palette-gold-500/25 w-full sm:w-auto justify-center"
                   >
                     <span>{slides[currentSlide].button1}</span>
-                    <ArrowRight className="w-5 h-5" />
+                    <ArrowRight className="w-4 h-4 md:w-5 md:h-5" />
                   </Button>
                 </div>
 
@@ -120,12 +120,12 @@ export function HeroSlider() {
             </AnimatePresence>
           </div>
 
-          {/* Diagonal Transition */}
-          <div className="absolute right-0 top-0 w-0 h-0 border-l-[100px] border-l-transparent border-t-[100vh] border-t-palette-primary-500"></div>
+          {/* Diagonal Transition - Hidden on mobile */}
+          <div className="hidden md:block absolute right-0 top-0 w-0 h-0 border-l-[100px] border-l-transparent border-t-[100vh] border-t-palette-primary-500"></div>
       </div>
 
         {/* Right Side - Image */}
-        <div className="w-1/2 relative">
+        <div className="w-full md:w-1/2 relative min-h-[40vh] md:min-h-0">
         <AnimatePresence mode="wait">
           <motion.div
             key={currentSlide}

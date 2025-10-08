@@ -28,7 +28,6 @@ const footerLinks = {
     { name: "Partnership", href: "/partnership" },
     { name: "FAQs", href: "/faqs" },
     { name: "Blog", href: "/blog" },
-    { name: "Gallery", href: "/gallery" },
     { name: "Contact", href: "/contact" },
   ],
 };
@@ -41,8 +40,8 @@ const socialLinks = [
 ];
 
 const contactInfo = {
-  address: "455 west orchard street kings mountain, nc 280967",
-  phone: "+088 (246) 642-27-10",
+  address: "54 Ahmadu Bello Way, Kano",
+  phone: "+234 803 331 7338",
   email: "example@email.com",
 };
 
@@ -66,10 +65,10 @@ export function Footer() {
 
       {/* Main Footer Content */}
       <div className="footer-info relative z-10">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12 lg:py-16">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-8 sm:gap-10 lg:gap-8">
             {/* Company Info */}
-            <div className="lg:col-span-1">
+            <div className="lg:col-span-2 text-center sm:text-left sm:col-span-2">
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -81,16 +80,35 @@ export function Footer() {
                   alt="ColorWaves"
                   width={150}
                   height={40}
-                  className="h-12 w-auto"
+                  className="h-10 sm:h-12 w-auto mx-auto sm:mx-0 mb-4"
                 />
-                <div className="space-y-2 text-white text-sm leading-relaxed">
-                  <p>Our Secure Online Donation Platform</p>
-                  <p>Allows You To Make Contributions Quickly</p>
-                  <p>And Safely. Choose From Various.</p>
+                <div className="space-y-1.5 sm:space-y-2 text-white text-xs sm:text-sm leading-relaxed">
+                  <p>Transforming your Visions into Reality, one ColorWave® at a time</p>
+                  
+                </div>
+                
+                {/* Newsletter Subscription */}
+                <div className="mt-4 sm:mt-6">
+                  <h4 className="text-sm sm:text-base font-semibold text-white mb-2 text-center sm:text-left">
+                    Subscribe to Our Newsletter
+                  </h4>
+                  <div className="flex gap-2">
+                    <input
+                      type="email"
+                      placeholder="Enter your email"
+                      className="flex-1 px-3 py-2 text-sm bg-white/10 border border-white/20 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-palette-gold-500 focus:border-transparent"
+                    />
+                    <button
+                      type="submit"
+                      className="px-4 py-2 bg-gradient-to-r from-palette-gold-500 to-palette-gold-600 hover:from-palette-gold-600 hover:to-palette-gold-700 text-indigo-950 font-semibold text-sm rounded-lg transition-all duration-300 hover:shadow-lg"
+                    >
+                      Subscribe
+                    </button>
+                  </div>
                 </div>
                 
                 {/* Social Media Icons */}
-                <div className="flex mt-6">
+                <div className="flex mt-4 sm:mt-6 gap-2 justify-center sm:justify-start">
                   {socialLinks.map((social) => {
                     const Icon = social.icon;
                     return (
@@ -103,7 +121,7 @@ export function Footer() {
                         whileHover={{ scale: 1.1, y: -2 }}
                         whileTap={{ scale: 0.95 }}
                       >
-                        <Icon className="w-5 h-5" />
+                        <Icon className="w-4 h-4 sm:w-5 sm:h-5" />
                         <span className="sr-only">{social.name}</span>
                       </motion.a>
                     );
@@ -113,20 +131,20 @@ export function Footer() {
             </div>
 
             {/* Quick Links */}
-            <div>
+            <div className="text-center sm:text-left">
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.1 }}
                 viewport={{ once: true }}
               >
-                <h3 className="footer-column-header text-lg font-semibold text-white">
+                <h3 className="footer-column-header text-base sm:text-lg font-semibold text-white mb-3 sm:mb-4">
                   Quick Links
                 </h3>
-                <ul>
+                <ul className="space-y-2">
                   {footerLinks.quickLinks.map((link) => (
                     <li key={link.name}>
-                      <Link href={link.href} className="footer-link text-white text-sm">
+                      <Link href={link.href} className="footer-link text-white text-xs sm:text-sm hover:text-palette-gold-300 transition-colors">
                         {link.name}
                       </Link>
                     </li>
@@ -136,20 +154,20 @@ export function Footer() {
             </div>
 
             {/* Our Services */}
-            <div>
+            <div className="text-center sm:text-left">
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.2 }}
                 viewport={{ once: true }}
               >
-                <h3 className="footer-column-header text-lg font-semibold text-white">
+                <h3 className="footer-column-header text-base sm:text-lg font-semibold text-white mb-3 sm:mb-4">
                   Our Services
                 </h3>
-                <ul>
+                <ul className="space-y-2">
                   {footerLinks.services.map((link) => (
                     <li key={link.name}>
-                      <Link href={link.href} className="footer-link text-white text-sm">
+                      <Link href={link.href} className="footer-link text-white text-xs sm:text-sm hover:text-palette-gold-300 transition-colors">
                         {link.name}
                       </Link>
                     </li>
@@ -159,28 +177,28 @@ export function Footer() {
             </div>
 
             {/* Get In Touch */}
-            <div>
+            <div className="text-center sm:text-left sm:col-span-2 lg:col-span-1">
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.3 }}
                 viewport={{ once: true }}
               >
-                <h3 className="footer-column-header text-lg font-semibold text-white">
+                <h3 className="footer-column-header text-base sm:text-lg font-semibold text-white mb-3 sm:mb-4">
                   Get In Touch
                 </h3>
-                <div className="space-y-4">
-                  <div className="footer-contact-item">
-                    <MapPin className="footer-contact-icon w-5 h-5" />
-                    <span className="text-white text-sm">{contactInfo.address}</span>
+                <div className="space-y-3 sm:space-y-4">
+                  <div className="footer-contact-item flex items-start gap-2 sm:gap-3 justify-center sm:justify-start">
+                    <MapPin className="footer-contact-icon w-4 h-4 sm:w-5 sm:h-5 flex-shrink-0 mt-0.5" />
+                    <span className="text-white text-xs sm:text-sm text-left">{contactInfo.address}</span>
                   </div>
-                  <div className="footer-contact-item">
-                    <Phone className="footer-contact-icon w-5 h-5" />
-                    <span className="text-white text-sm">{contactInfo.phone}</span>
+                  <div className="footer-contact-item flex items-center gap-2 sm:gap-3 justify-center sm:justify-start">
+                    <Phone className="footer-contact-icon w-4 h-4 sm:w-5 sm:h-5 flex-shrink-0" />
+                    <span className="text-white text-xs sm:text-sm">{contactInfo.phone}</span>
                   </div>
-                  <div className="footer-contact-item">
-                    <Mail className="footer-contact-icon w-5 h-5" />
-                    <span className="text-white text-sm">{contactInfo.email}</span>
+                  <div className="footer-contact-item flex items-center gap-2 sm:gap-3 justify-center sm:justify-start">
+                    <Mail className="footer-contact-icon w-4 h-4 sm:w-5 sm:h-5 flex-shrink-0" />
+                    <span className="text-white text-xs sm:text-sm">{contactInfo.email}</span>
                   </div>
                 </div>
               </motion.div>
@@ -192,14 +210,14 @@ export function Footer() {
       {/* Scroll to Top Button */}
       <motion.button
         onClick={scrollToTop}
-        className="fixed bottom-6 right-6 bg-gradient-to-r from-palette-gold-500 to-palette-gold-600 hover:from-palette-gold-600 hover:to-palette-gold-700 text-indigo-950 p-3 rounded-full shadow-lg z-50"
+        className="fixed bottom-4 right-4 sm:bottom-6 sm:right-6 bg-gradient-to-r from-palette-gold-500 to-palette-gold-600 hover:from-palette-gold-600 hover:to-palette-gold-700 text-indigo-950 p-2.5 sm:p-3 rounded-full shadow-lg z-50"
         initial={{ opacity: 0, scale: 0 }}
         animate={{ opacity: 1, scale: 1 }}
         whileHover={{ scale: 1.1 }}
         whileTap={{ scale: 0.95 }}
         transition={{ duration: 0.3 }}
       >
-        <ArrowUp className="w-5 h-5" />
+        <ArrowUp className="w-4 h-4 sm:w-5 sm:h-5" />
         <span className="sr-only">Scroll to top</span>
       </motion.button>
     </footer>
