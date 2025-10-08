@@ -4,6 +4,8 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import { Mail, Phone, MapPin, Clock, Send, Check } from "lucide-react";
 import PageHeader from "@/components/PageHeader";
+import { contactAPI } from "@/lib/api";
+import { toast } from "sonner";
 
 const contactInfo = [
   {
@@ -51,21 +53,34 @@ export default function ContactPage() {
     e.preventDefault();
     setIsSubmitting(true);
     
-    // Simulate API call
-    await new Promise(resolve => setTimeout(resolve, 2000));
-    
-    setIsSuccess(true);
-    setFormData({
-      name: "",
-      email: "",
-      phone: "",
-      subject: "",
-      message: "",
-    });
-    setIsSubmitting(false);
+    try {
+      await contactAPI.submitMessage({
+        fullName: formData.name,
+        email: formData.email,
+        phoneNumber: formData.phone,
+        subject: formData.subject,
+        message: formData.message,
+      });
+      
+      setIsSuccess(true);
+      toast.success("Message sent successfully! We'll get back to you soon.");
+      
+      setFormData({
+        name: "",
+        email: "",
+        phone: "",
+        subject: "",
+        message: "",
+      });
 
-    // Reset success message after 5 seconds
-    setTimeout(() => setIsSuccess(false), 5000);
+      // Reset success message after 5 seconds
+      setTimeout(() => setIsSuccess(false), 5000);
+    } catch (error) {
+      const err = error as Error;
+      toast.error(err.message || "Failed to send message. Please try again.");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {

@@ -7,7 +7,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Select } from "@/components/ui/select";
-import { apiEndpoints } from "@/lib/api";
+import { partnershipRequestsAPI } from "@/lib/api";
 
 const partnershipTypes = [
   { value: "Contractor Partnership", label: "Contractor Partnership" },
@@ -71,9 +71,7 @@ export function PartnershipRequestForm() {
     setIsSubmitting(true);
 
     try {
-      console.log("Submitting partnership payload:", formData);
-      
-      // await apiEndpoints.partnershipRequests.create(formData);
+      await partnershipRequestsAPI.create(formData);
       
       toast.success("Partnership request submitted successfully!", {
         description: "We'll review your request and get back to you within 48 hours.",
@@ -92,10 +90,8 @@ export function PartnershipRequestForm() {
         industry: "",
       });
     } catch (error) {
-      console.error("Error submitting partnership request:", error);
-      toast.error("Failed to submit partnership request", {
-        description: "Please try again or contact us directly.",
-      });
+      const err = error as Error;
+      toast.error(err.message || "Failed to submit partnership request. Please try again.");
     } finally {
       setIsSubmitting(false);
     }

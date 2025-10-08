@@ -1,6 +1,7 @@
 "use client";
 
 import * as React from "react";
+import { useState } from "react";
 import { motion } from "framer-motion";
 import Link from "next/link";
 import Image from "next/image";
@@ -14,6 +15,8 @@ import {
   MapPin,
   ArrowUp
 } from "lucide-react";
+import { newsletterAPI } from "@/lib/api";
+import { toast } from "sonner";
 
 const footerLinks = {
   quickLinks: [
@@ -46,8 +49,33 @@ const contactInfo = {
 };
 
 export function Footer() {
+  const [email, setEmail] = useState("");
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+
+  const handleNewsletterSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    
+    if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      toast.error("Please enter a valid email address");
+      return;
+    }
+
+    setIsSubmitting(true);
+    
+    try {
+      await newsletterAPI.subscribe(email);
+      toast.success("Successfully subscribed to our newsletter!");
+      setEmail("");
+    } catch (error) {
+      const err = error as Error;
+      toast.error(err.message || "Failed to subscribe. Please try again.");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -92,19 +120,24 @@ export function Footer() {
                   <h4 className="text-sm sm:text-base font-semibold text-white mb-2 text-center sm:text-left">
                     Subscribe to Our Newsletter
                   </h4>
-                  <div className="flex gap-2">
+                  <form onSubmit={handleNewsletterSubmit} className="flex gap-2">
                     <input
                       type="email"
                       placeholder="Enter your email"
-                      className="flex-1 px-3 py-2 text-sm bg-white/10 border border-white/20 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-palette-gold-500 focus:border-transparent"
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
+                      disabled={isSubmitting}
+                      className="flex-1 px-3 py-2 text-sm bg-white/10 border border-white/20 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-palette-gold-500 focus:border-transparent disabled:opacity-50 disabled:cursor-not-allowed"
+                      required
                     />
                     <button
                       type="submit"
-                      className="px-4 py-2 bg-gradient-to-r from-palette-gold-500 to-palette-gold-600 hover:from-palette-gold-600 hover:to-palette-gold-700 text-indigo-950 font-semibold text-sm rounded-lg transition-all duration-300 hover:shadow-lg"
+                      disabled={isSubmitting}
+                      className="px-4 py-2 bg-gradient-to-r from-palette-gold-500 to-palette-gold-600 hover:from-palette-gold-600 hover:to-palette-gold-700 text-indigo-950 font-semibold text-sm rounded-lg transition-all duration-300 hover:shadow-lg disabled:opacity-50 disabled:cursor-not-allowed"
                     >
-                      Subscribe
+                      {isSubmitting ? "..." : "Subscribe"}
                     </button>
-                  </div>
+                  </form>
                 </div>
                 
                 {/* Social Media Icons */}

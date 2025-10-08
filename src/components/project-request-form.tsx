@@ -8,7 +8,7 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Select } from "@/components/ui/select";
 import { FileUpload } from "@/components/ui/file-upload";
-import { apiEndpoints } from "@/lib/api";
+import { projectRequestsAPI, uploadAPI } from "@/lib/api";
 
 const budgetRanges = [
   { value: "under-5000", label: "Under ₦500,000" },
@@ -74,28 +74,65 @@ export function ProjectRequestForm() {
     setIsSubmitting(true);
 
     try {
-      // Convert files to URLs (in a real app, you'd upload to a server first)
-      const imageUrls = await Promise.all(
-        formData.images.map(async (file) => {
-          // For demo purposes, create object URLs
-          // In production, upload to your server and get back URLs
-          return URL.createObjectURL(file);
-        })
-      );
+      // Upload images first if any
+      let imageUrls: string[] = [];
+      if (formData.images && formData.images.length > 0) {
+        console.log("=== Starting image upload ===");
+        console.log("Number of files:", formData.images.length);
+        console.log("Files:", formData.images);
+        
+        toast.info(`Uploading ${formData.images.length} image(s)...`);
+        
+        try {
+          const uploadResult = await uploadAPI.uploadImages(formData.images, 'project-requests');
+          console.log("=== Upload successful ===");
+          console.log("Upload response:", uploadResult);
+          
+          if (uploadResult.success && uploadResult.data) {
+            imageUrls = uploadResult.data.map(file => file.fileUrl);
+            console.log("Image URLs:", imageUrls);
+            toast.success("Images uploaded successfully!");
+          } else {
+            throw new Error("Failed to upload images - invalid response");
+          }
+        } catch (uploadError) {
+          console.error("=== Image upload error ===", uploadError);
+          const err = uploadError as Error;
+          toast.error(err.message || "Image upload failed. Please try again.");
+          setIsSubmitting(false);
+          return; // Stop submission if upload fails
+        }
+      } else {
+        console.log("No images to upload");
+      }
 
+      // Prepare payload
       const payload = {
-        ...formData,
-        images: imageUrls,
+        fullName: formData.clientName,
+        email: formData.email,
+        phoneNumber: formData.phoneNumber,
+        companyName: formData.companyName,
+        projectTitle: formData.projectTitle,
+        projectDescription: formData.projectDescription,
+        budget: formData.budget,
+        timeline: formData.timeline,
+        servicesNeeded: formData.services,
+        imageUrls: imageUrls,
       };
 
-      console.log("Submitting payload:", payload);
-      
-      // await apiEndpoints.projectRequests.create(payload);
+      console.log("=== Submitting project request ===");
+      console.log("Payload:", payload);
+
+      // Submit project request
+      const result = await projectRequestsAPI.create(payload);
+      console.log("=== Project request successful ===");
+      console.log("Result:", result);
       
       toast.success("Project request submitted successfully!", {
         description: "We'll review your requirements and get back to you within 24 hours.",
       });
       
+      // Reset form
       setFormData({
         clientName: "",
         email: "",
@@ -110,10 +147,9 @@ export function ProjectRequestForm() {
         images: [],
       });
     } catch (error) {
-      console.error("Error submitting project request:", error);
-      toast.error("Failed to submit project request", {
-        description: "Please try again or contact us directly.",
-      });
+      console.error("=== Submission error ===", error);
+      const err = error as Error;
+      toast.error(err.message || "Failed to submit project request. Please try again.");
     } finally {
       setIsSubmitting(false);
     }
