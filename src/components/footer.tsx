@@ -164,17 +164,17 @@ export function Footer() {
             </div>
 
             {/* Quick Links */}
-            <div className="text-center sm:text-left">
+            <div className="text-center sm:text-left sm:col-span-2 lg:col-span-1">
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.1 }}
                 viewport={{ once: true }}
               >
-                <h3 className="footer-column-header text-base sm:text-lg font-semibold text-white mb-3 sm:mb-4 text-center sm:text-left">
+                <h3 className="footer-column-header text-base sm:text-lg font-semibold text-white mb-3 sm:mb-4 text-left">
                   Quick Links
                 </h3>
-                <ul className="space-y-2 grid grid-cols-1 md:grid-cols-3 lg:flex lg:flex-col items-center sm:items-start">
+                <ul className="space-y-3 sm:space-y-4 flex flex-col items-center sm:items-start">
                   {footerLinks.quickLinks.map((link) => (
                     <li key={link.name}>
                       <Link href={link.href} className="footer-link text-white text-xs sm:text-sm hover:text-palette-accent-400 transition-colors">
@@ -187,17 +187,17 @@ export function Footer() {
             </div>
 
             {/* Our Services */}
-            <div className="text-center sm:text-left">
+            <div className="text-center sm:text-left sm:col-span-2 lg:col-span-1">
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.2 }}
                 viewport={{ once: true }}
               >
-                <h3 className="footer-column-header text-base sm:text-lg font-semibold text-white mb-3 sm:mb-4 text-center sm:text-left">
+                <h3 className="footer-column-header text-base sm:text-lg font-semibold text-white mb-3 sm:mb-4 text-left">
                   Our Services
                 </h3>
-                <ul className="space-y-2 grid grid-cols-1 md:grid-cols-2 lg:flex lg:flex-col items-center sm:items-start">
+                <ul className="space-y-3 sm:space-y-4 flex flex-col items-center sm:items-start">
                   {footerLinks.services.map((link) => (
                     <li key={link.name}>
                       <Link href={link.href} className="footer-link text-white text-xs sm:text-sm hover:text-palette-accent-400 transition-colors">
@@ -217,7 +217,7 @@ export function Footer() {
                 transition={{ duration: 0.6, delay: 0.3 }}
                 viewport={{ once: true }}
               >
-                <h3 className="footer-column-header text-base sm:text-lg font-semibold text-white mb-3 sm:mb-4 text-center sm:text-left">
+                <h3 className="footer-column-header text-base sm:text-lg font-semibold text-white mb-3 sm:mb-4 text-left">
                   Get In Touch
                 </h3>
                 <div className="space-y-3 sm:space-y-4 flex flex-col items-center sm:items-start">
