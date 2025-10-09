@@ -48,12 +48,13 @@ export const metadata: Metadata = {
   },
 };
 
+
 function AboutIntro() {
   return (
     <section className="max-w-7xl mx-auto px-4 py-12 grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
       {/* Left: Text */}
       <div>
-        <span className="inline-block bg-palette-gold-500/10 border border-palette-gold-500 text-palette-gold-400 font-semibold px-4 py-1 rounded-full text-sm mb-4">About ColorWaves</span>
+        <span className="inline-block bg-palette-accent-500/10 border border-palette-accent-500 text-palette-white font-semibold px-4 py-1 rounded-full text-sm mb-4">About ColorWaves</span>
         <h1 className="text-4xl sm:text-5xl font-bold bg-gradient-to-r from-palette-gold-400 to-palette-gold-500 bg-clip-text text-transparent mb-6 leading-tight">Transforming Visions into Reality</h1>
         <p className="text-lg text-gray-300 mb-6">
           ColorWaves is Nigeria&apos;s premier color solutions and innovative design company. With a passion for excellence and a vision to transform spaces, we bring together expertise in color technology, creative design, and exceptional craftsmanship.
@@ -81,19 +82,19 @@ function AboutIntro() {
 
 export default function AboutPage() {
   return (
-    <div className="bg-indigo-950 min-h-screen">
+    <div className="bg-[#4B369D] min-h-screen">
       <PageHeader
         title="About Us"
         subtitle="Crafting Excellence in Color, Design, and Innovation."
         backgroundImage="https://images.unsplash.com/photo-1562259949-e8e7689d7828?q=80&w=2000"
         gradientColor="from-palette-primary-500/80 to-palette-secondary-500/60"
       />
-      <div className="bg-indigo-950">
+      <div className="bg-[#4B369D]">
         <AboutIntro />
         <OurStory />
         <WhyChoose />
       </div>
-      <div className=" bg-indigo-950">
+      <div className=" bg-[#4B369D]">
         <CoreValues />
         <Testimony />
         <Team />

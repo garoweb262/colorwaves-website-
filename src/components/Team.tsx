@@ -1,25 +1,50 @@
-import React from "react";
-import Image from "next/image";
+"use client";
 
-const teamMembers = [
-  {
-    name: "Ahmed Musa",
-    role: "CEO & Founder",
-    image: "/images/hero-2.png",
-  },
-  {
-    name: "Fatima Ibrahim",
-    role: "Chief Creative Officer",
-    image: "/images/hero-3.png",
-  },
-  {
-    name: "Chukwudi Okafor",
-    role: "Head of Operations",
-    image: "/images/hero-5.png",
-  },
-];
+import React, { useEffect, useState } from "react";
+import Image from "next/image";
+import { fetchJson, isEmptyArray } from "@/lib/api";
+
+interface TeamApiItem {
+  firstName?: string;
+  lastName?: string;
+  position?: string;
+  image?: string;
+}
+
+interface TeamMember {
+  name: string;
+  role: string;
+  image: string;
+}
 
 export default function Team() {
+  const [data, setData] = useState<TeamMember[] | null>(null);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    let mounted = true;
+    (async () => {
+      const { data, status } = await fetchJson<TeamApiItem[]>("/teams");
+      if (!mounted) return;
+      if (status === 404 || isEmptyArray(data)) {
+        setData([]);
+      } else {
+        const mapped: TeamMember[] = (data || []).map((m) => ({
+          name: [m.firstName, m.lastName].filter(Boolean).join(" ") || "Team Member",
+          role: m.position || "",
+          image: m.image || "/images/hero-1.png",
+        }));
+        setData(mapped);
+      }
+      setLoading(false);
+    })();
+    return () => {
+      mounted = false;
+    };
+  }, []);
+
+  const showSection = !loading && Array.isArray(data) && data.length > 0;
+
   return (
     <section className="max-w-7xl mx-auto px-4 py-16 bg-indigo-950">
       <div className="text-center mb-12">
@@ -30,29 +55,39 @@ export default function Team() {
           The creative minds behind ColorWaves&apos; success
         </p>
       </div>
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-        {teamMembers.map((member, index) => (
-          <div
-            key={index}
-            className="bg-white/5 backdrop-blur-sm rounded-2xl shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 border border-white/10"
-          >
-            <div className="relative h-64 bg-gradient-to-br from-palette-primary-500/20 to-palette-secondary-500/20">
-              <Image
-                src={member.image}
-                alt={member.name}
-                fill
-                className="object-cover"
-              />
+
+      {loading && (
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          {[0, 1, 2].map((i) => (
+            <div key={i} className="bg-white/5 border border-white/10 rounded-2xl overflow-hidden animate-pulse">
+              <div className="h-64 bg-white/10" />
+              <div className="p-6">
+                <div className="h-6 bg-white/10 rounded w-1/2 mb-3" />
+                <div className="h-4 bg-white/10 rounded w-1/3" />
+              </div>
             </div>
-            <div className="p-6 text-center">
-              <h3 className="text-xl font-bold text-palette-gold-400 mb-2">
-                {member.name}
-              </h3>
-              <p className="text-gray-300">{member.role}</p>
+          ))}
+        </div>
+      )}
+
+      {showSection && (
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          {data!.map((member, index) => (
+            <div
+              key={index}
+              className="bg-white/5 backdrop-blur-sm rounded-2xl shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 border border-white/10"
+            >
+              <div className="relative h-64 bg-gradient-to-br from-palette-primary-500/20 to-palette-secondary-500/20">
+                <Image src={member.image} alt={member.name || "Team member"} fill className="object-cover" />
+              </div>
+              <div className="p-6 text-center">
+                <h3 className="text-xl font-bold text-palette-gold-400 mb-2">{member.name}</h3>
+                <p className="text-gray-300">{member.role}</p>
+              </div>
             </div>
-          </div>
-        ))}
-      </div>
+          ))}
+        </div>
+      )}
     </section>
   );
 }

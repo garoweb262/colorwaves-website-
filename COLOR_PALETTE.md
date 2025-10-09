@@ -4,22 +4,22 @@ This document provides a comprehensive reference for the color palette used in t
 
 ## Primary Colors
 
-### Violet (Main Primary Color)
-- **Main**: `#70369D` - Used as the primary brand color
+### Dark Purple/Indigo (Main Primary Color)
+- **Main**: `#4B369D` - Used as the primary brand color and page backgrounds
 - **Shades**: Available from `palette-primary-50` to `palette-primary-900`
-- **Usage**: Primary buttons, links, brand elements, main CTAs
+- **Usage**: Page backgrounds, primary elements, brand foundation
 
-### Indigo (Secondary)
-- **Main**: `#4B369D` - Used as secondary brand color
-- **Shades**: Available from `palette-secondary-50` to `palette-secondary-900`
-- **Usage**: Secondary buttons, accents, supporting elements
+### Orange (Secondary/Premium)
+- **Main**: `#FFA500` - Used for premium features and special elements
+- **Shades**: Available from `palette-gold-50` to `palette-gold-900`
+- **Usage**: Premium features, special offers, luxury elements, highlights
 
 ## Accent Colors
 
-### Blue
-- **Main**: `#487DE7` - Royal blue for accents
+### Green (Actions)
+- **Main**: `#79C214` - Lime green for actions and accents
 - **Shades**: Available from `palette-accent-50` to `palette-accent-900`
-- **Usage**: Information elements, links, highlights
+- **Usage**: Action buttons, links, highlights, success states
 
 ### Green (Success)
 - **Main**: `#79C214` - Lime green for success states
@@ -43,10 +43,6 @@ This document provides a comprehensive reference for the color palette used in t
 - **Shades**: Available from `palette-coral-50` to `palette-coral-900`
 - **Usage**: Special highlights, decorative elements
 
-### Gold
-- **Main**: `#FFD700` - Bright gold
-- **Shades**: Available from `palette-gold-50` to `palette-gold-900`
-- **Usage**: Premium features, special offers, luxury elements
 
 ### Lime
 - **Main**: `#A2D63A` - Vivid lime green
@@ -114,11 +110,12 @@ All colors have been tested for accessibility compliance:
 
 ## Design Guidelines
 
-1. **Primary Usage**: Use violet (`#70369D`) for main brand elements and primary actions
-2. **Secondary Usage**: Use indigo (`#4B369D`) for secondary actions and supporting elements
-3. **Accent Usage**: Use blue (`#487DE7`) for information and highlights
+1. **Primary Usage**: Use dark purple/indigo (`#4B369D`) for page backgrounds and main brand elements
+2. **Action Usage**: Use green (`#79C214`) for all buttons, actions, and interactive elements
+3. **Premium Usage**: Use orange (`#FFA500`) for premium features, special offers, and highlights
 4. **State Colors**: Use green for success, yellow for warnings, red for errors
 5. **Consistency**: Maintain consistent color usage across all pages and components
+6. **Color Hierarchy**: Dark Purple (background) → Green (actions) → Orange (premium/special)
 
 ## Implementation Notes
 

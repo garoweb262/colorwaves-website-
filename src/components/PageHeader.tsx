@@ -18,13 +18,16 @@ export default function PageHeader({
     <section className="relative w-full h-[60vh] min-h-[400px] flex items-center justify-center overflow-hidden">
       {/* Background Image */}
       <div className="absolute inset-0 z-0">
-        <Image
-          src={backgroundImage}
-          alt="Page background"
-          fill
-          className="object-cover"
-          priority
-        />
+        <div className="relative w-full h-full">
+          <Image
+            src={backgroundImage}
+            alt="Page background"
+            fill
+            sizes="100vw"
+            className="object-cover"
+            priority
+          />
+        </div>
       </div>
       
       {/* Gradient Overlay */}

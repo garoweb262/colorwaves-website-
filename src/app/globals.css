@@ -1,7 +1,7 @@
 @import "tailwindcss";
 
 :root {
-  --background: oklch(25.7% 0.09 281.288);
+  --background: #4B369D;
   --foreground: #ffffff;
   --font-inter: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', 'Arial', sans-serif;
   --font-maven-pro: 'Maven Pro', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', 'Arial', sans-serif;
@@ -15,54 +15,54 @@
   --font-display: var(--font-maven-pro);
   --font-mono: ui-monospace, SFMono-Regular, "SF Mono", Consolas, "Liberation Mono", Menlo, monospace;
   
-  /* Custom Color Palette */
-  --color-palette-primary-50: #F3E8FF;
-  --color-palette-primary-100: #E9D5FF;
-  --color-palette-primary-200: #D8B4FE;
-  --color-palette-primary-300: #C084FC;
-  --color-palette-primary-400: #A855F7;
-  --color-palette-primary-500: #70369D;
-  --color-palette-primary-600: #7C3AED;
-  --color-palette-primary-700: #6D28D9;
-  --color-palette-primary-800: #5B21B6;
-  --color-palette-primary-900: #4C1D95;
+  /* Custom Color Palette - Dark Purple (Indigo) */
+  --color-palette-primary-50: #F0F4FF;
+  --color-palette-primary-100: #E0E7FF;
+  --color-palette-primary-200: #C7D2FE;
+  --color-palette-primary-300: #A5B4FC;
+  --color-palette-primary-400: #818CF8;
+  --color-palette-primary-500: #4B369D;
+  --color-palette-primary-600: #4B369D;
+  --color-palette-primary-700: #3A2A7A;
+  --color-palette-primary-800: #2E1F5C;
+  --color-palette-primary-900: #231A3E;
   
-  --color-palette-secondary-50: #EEF2FF;
+  --color-palette-secondary-50: #F0F4FF;
   --color-palette-secondary-100: #E0E7FF;
   --color-palette-secondary-200: #C7D2FE;
   --color-palette-secondary-300: #A5B4FC;
   --color-palette-secondary-400: #818CF8;
   --color-palette-secondary-500: #4B369D;
-  --color-palette-secondary-600: #4F46E5;
-  --color-palette-secondary-700: #4338CA;
-  --color-palette-secondary-800: #3730A3;
-  --color-palette-secondary-900: #312E81;
+  --color-palette-secondary-600: #4B369D;
+  --color-palette-secondary-700: #3A2A7A;
+  --color-palette-secondary-800: #2E1F5C;
+  --color-palette-secondary-900: #231A3E;
   
-  --color-palette-accent-50: #EFF6FF;
-  --color-palette-accent-100: #DBEAFE;
-  --color-palette-accent-200: #BFDBFE;
-  --color-palette-accent-300: #93C5FD;
-  --color-palette-accent-400: #60A5FA;
-  --color-palette-accent-500: #487DE7;
-  --color-palette-accent-600: #2563EB;
-  --color-palette-accent-700: #1D4ED8;
-  --color-palette-accent-800: #1E40AF;
-  --color-palette-accent-900: #1E3A8A;
+  --color-palette-accent-50: #F0FDF4;
+  --color-palette-accent-100: #DCFCE7;
+  --color-palette-accent-200: #BBF7D0;
+  --color-palette-accent-300: #86EFAC;
+  --color-palette-accent-400: #4ADE80;
+  --color-palette-accent-500: #79C214;
+  --color-palette-accent-600: #79C214;
+  --color-palette-accent-700: #15803D;
+  --color-palette-accent-800: #166534;
+  --color-palette-accent-900: #14532D;
   
   /* Indigo-950 Color */
-  --color-indigo-950: oklch(25.7% 0.09 281.288);
+  --color-indigo-950: #4B369D;
   
-  /* Gold Color Palette */
-  --color-palette-gold-50: #FFFBEB;
-  --color-palette-gold-100: #FEF3C7;
-  --color-palette-gold-200: #FDE68A;
-  --color-palette-gold-300: #FCD34D;
-  --color-palette-gold-400: #FBBF24;
-  --color-palette-gold-500: #FFD700;
-  --color-palette-gold-600: #D97706;
-  --color-palette-gold-700: #B45309;
-  --color-palette-gold-800: #92400E;
-  --color-palette-gold-900: #78350F;
+  /* Orange Color Palette (replacing Gold) */
+  --color-palette-gold-50: #FFF7ED;
+  --color-palette-gold-100: #FFEDD5;
+  --color-palette-gold-200: #FED7AA;
+  --color-palette-gold-300: #FDBA74;
+  --color-palette-gold-400: #FB923C;
+  --color-palette-gold-500: #FFA500;
+  --color-palette-gold-600: #EA580C;
+  --color-palette-gold-700: #C2410C;
+  --color-palette-gold-800: #9A3412;
+  --color-palette-gold-900: #7C2D12;
   
   /* Navbar clip-path utilities */
   --clip-path-navbar: polygon(0 0, calc(100% - 8px) 0, 100% 50%, calc(100% - 8px) 100%, 0 100%);
@@ -131,7 +131,7 @@
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: oklch(25.7% 0.09 281.288);
+    --background: #4B369D;
     --foreground: #ffffff;
   }
 }
@@ -155,16 +155,16 @@ body {
 }
 
 .navbar-item:hover {
-  color: var(--color-indigo-800);
+  color: var(--color-palette-secondary-700);
 }
 
 /* Glassmorphism navbar styles */
 .navbar-glass {
-  background: rgba(75, 54, 157, 0.1);
+  background: rgba(75, 54, 157, 0.8);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
 }
 
 .navbar-menu-container {
@@ -175,10 +175,10 @@ body {
 }
 
 .navbar-cta-button {
-  background: linear-gradient(135deg, var(--color-palette-gold-500), var(--color-palette-gold-600));
+  background: linear-gradient(135deg, var(--color-palette-accent-500), var(--color-palette-accent-600));
   border-radius: 16px;
   padding: 12px 24px;
-  color: var(--color-indigo-950);
+  color: var(--color-white);
   font-weight: 600;
   transition: all 0.2s ease;
   box-shadow: 0 4px 12px rgba(255, 215, 0, 0.2);
@@ -256,6 +256,7 @@ body {
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
+
 /* Footer info section */
 .footer-info {
   background: rgba(75, 54, 157, 0.05);
@@ -318,7 +319,7 @@ body {
 .footer-contact-icon {
   margin-right: 0.75rem;
   margin-top: 0.125rem;
-  color: var(--color-palette-gold-500);
+  color: var(--color-palette-accent-400);
   flex-shrink: 0;
 }
 
@@ -336,7 +337,7 @@ body {
 }
 
 .footer-social-icon:hover {
-  background: var(--color-palette-gold-500);
+  background: var(--color-palette-accent-500);
   transform: translateY(-2px);
   box-shadow: 0 4px 12px rgba(255, 215, 0, 0.3);
 }

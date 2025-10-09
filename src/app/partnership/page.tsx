@@ -58,7 +58,7 @@ const partnerTypes = [
 
 export default function PartnershipPage() {
   return (
-    <div className="min-h-screen bg-indigo-950">
+    <div className="min-h-screen bg-[#4B369D]">
       <PageHeader
         title="Partnership Program"
         subtitle="Grow Your Business with ColorWaves"
@@ -111,8 +111,8 @@ export default function PartnershipPage() {
                   viewport={{ once: true }}
                   whileHover={{ y: -5 }}
                 >
-                  <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-br from-palette-gold-500 to-palette-gold-600 rounded-xl mb-4">
-                    <Icon className="w-8 h-8 text-indigo-950" />
+                  <div className="inline-flex items-center justify-center w-16 h-16 bg-palette-accent-500 rounded-xl mb-4">
+                    <Icon className="w-8 h-8 text-white" />
                   </div>
                   <h3 className="text-xl font-bold text-white mb-3">
                     {benefit.title}
@@ -158,7 +158,7 @@ export default function PartnershipPage() {
                 <ul className="space-y-3">
                   {type.features.map((feature, idx) => (
                     <li key={idx} className="flex items-center gap-2 text-gray-300">
-                      <div className="w-2 h-2 bg-palette-gold-400 rounded-full"></div>
+                      <div className="w-2 h-2 bg-palette-accent-500 rounded-full"></div>
                       <span>{feature}</span>
                     </li>
                   ))}

@@ -1,10 +1,11 @@
+import React from "react";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Image from "next/image";
-import { motion } from "framer-motion";
 import { MapPin, Calendar, ExternalLink, ArrowLeft } from "lucide-react";
 import Link from "next/link";
 import PageHeader from "@/components/PageHeader";
+import { fetchJson } from "@/lib/api";
 
 // Mock data - in a real app, this would come from a CMS or database
 const projects = [
@@ -79,14 +80,42 @@ const projects = [
 ];
 
 interface ProjectDetailsPageProps {
-  params: {
+  params: Promise<{
     slug: string;
-  };
+  }>;
 }
 
+type ProjectBySlugApi = {
+  title: string;
+  slug: string;
+  description: string;
+  imageUrls?: string[];
+  technologies?: string[];
+  startDate?: string;
+  endDate?: string;
+  client?: string;
+};
 
-export default function ProjectDetailsPage({ params }: ProjectDetailsPageProps) {
-  const project = projects.find((p) => p.slug === params.slug);
+
+export default async function ProjectDetailsPage({ params }: ProjectDetailsPageProps) {
+  const { slug } = await params;
+  const { data, status } = await fetchJson<ProjectBySlugApi>(`/projects/public/slug/${slug}`);
+  if (status === 404 || !data) {
+    notFound();
+  }
+  const project = {
+    title: data.title,
+    description: data.description,
+    image: data.imageUrls?.[0] || "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=1200&h=600&fit=crop",
+    gallery: data.imageUrls || [],
+    location: data.client,
+    date: data.startDate ? new Date(data.startDate).getFullYear().toString() : undefined,
+    endDate: data.endDate ? new Date(data.endDate).getFullYear().toString() : undefined,
+    category: data.technologies?.[0],
+    scope: data.technologies || [],
+    slug: data.slug,
+    isActive: data.isActive,
+  };
 
   if (!project) {
     notFound();
@@ -120,13 +149,7 @@ export default function ProjectDetailsPage({ params }: ProjectDetailsPageProps) 
           <div className="grid lg:grid-cols-3 gap-12">
             {/* Main Content */}
             <div className="lg:col-span-2">
-              <motion.div
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6 }}
-                viewport={{ once: true }}
-                className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-8 mb-8"
-              >
+              <div className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-8 mb-8">
                 <div className="flex flex-wrap items-center gap-4 mb-6 text-sm text-gray-300">
                   <div className="flex items-center gap-2">
                     <MapPin className="w-4 h-4 text-palette-gold-400" />
@@ -160,22 +183,18 @@ export default function ProjectDetailsPage({ params }: ProjectDetailsPageProps) 
                   </div>
                 </div>
 
-                <div className="pt-6 border-t border-white/10">
-                  <h3 className="text-xl font-bold text-white mb-4">Results</h3>
-                  <p className="text-gray-300 leading-relaxed">
-                    {project.result}
-                  </p>
-                </div>
-              </motion.div>
+                {project.endDate && (
+                  <div className="pt-6 border-t border-white/10">
+                    <h3 className="text-xl font-bold text-white mb-4">Project Completion</h3>
+                    <p className="text-gray-300 leading-relaxed">
+                      Completed in {project.endDate}
+                    </p>
+                  </div>
+                )}
+              </div>
 
               {/* Project Gallery */}
-              <motion.div
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.2 }}
-                viewport={{ once: true }}
-                className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-8 mb-8"
-              >
+              <div className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-8 mb-8">
                 <h3 className="text-2xl font-bold text-white mb-6">Project Gallery</h3>
                 <div className="grid md:grid-cols-2 gap-6">
                   {project.gallery.map((image, idx) => (
@@ -189,90 +208,44 @@ export default function ProjectDetailsPage({ params }: ProjectDetailsPageProps) 
                     </div>
                   ))}
                 </div>
-              </motion.div>
+              </div>
 
-              {/* Challenges & Solutions */}
-              <motion.div
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.4 }}
-                viewport={{ once: true }}
-                className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-8"
-              >
-                <div className="grid md:grid-cols-2 gap-8">
-                  <div>
-                    <h3 className="text-xl font-bold text-white mb-4">Challenges</h3>
-                    <ul className="space-y-3">
-                      {project.challenges.map((challenge, idx) => (
-                        <li key={idx} className="flex items-start gap-2 text-gray-300">
-                          <div className="w-2 h-2 bg-red-400 rounded-full mt-2 flex-shrink-0"></div>
-                          <span>{challenge}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                  <div>
-                    <h3 className="text-xl font-bold text-white mb-4">Solutions</h3>
-                    <ul className="space-y-3">
-                      {project.solutions.map((solution, idx) => (
-                        <li key={idx} className="flex items-start gap-2 text-gray-300">
-                          <div className="w-2 h-2 bg-green-400 rounded-full mt-2 flex-shrink-0"></div>
-                          <span>{solution}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                </div>
-              </motion.div>
             </div>
 
             {/* Sidebar */}
             <div className="lg:col-span-1">
-              <motion.div
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.1 }}
-                viewport={{ once: true }}
-                className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-8 mb-8"
-              >
+              <div className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-8 mb-8">
                 <h3 className="text-xl font-bold text-white mb-6">Project Details</h3>
                 <div className="space-y-4">
                   <div className="flex justify-between items-center">
-                    <span className="text-gray-300">Duration</span>
-                    <span className="text-white font-semibold">{project.duration}</span>
+                    <span className="text-gray-300">Client</span>
+                    <span className="text-white font-semibold">{project.location}</span>
                   </div>
                   <div className="flex justify-between items-center">
-                    <span className="text-gray-300">Budget</span>
-                    <span className="text-white font-semibold">{project.budget}</span>
+                    <span className="text-gray-300">Start Date</span>
+                    <span className="text-white font-semibold">{project.date}</span>
                   </div>
+                  {project.endDate && (
+                    <div className="flex justify-between items-center">
+                      <span className="text-gray-300">End Date</span>
+                      <span className="text-white font-semibold">{project.endDate}</span>
+                    </div>
+                  )}
                   <div className="flex justify-between items-center">
-                    <span className="text-gray-300">Team Size</span>
-                    <span className="text-white font-semibold">{project.team}</span>
+                    <span className="text-gray-300">Status</span>
+                    <span className={`font-semibold ${project.isActive ? 'text-green-400' : 'text-gray-400'}`}>
+                      {project.isActive ? 'Active' : 'Completed'}
+                    </span>
                   </div>
-                  <div className="flex justify-between items-center">
-                    <span className="text-gray-300">Category</span>
-                    <span className="text-palette-gold-400 font-semibold">{project.category}</span>
-                  </div>
+                  {project.category && (
+                    <div className="flex justify-between items-center">
+                      <span className="text-gray-300">Category</span>
+                      <span className="text-palette-gold-400 font-semibold">{project.category}</span>
+                    </div>
+                  )}
                 </div>
-              </motion.div>
+              </div>
 
-              {/* Testimonial */}
-              <motion.div
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.3 }}
-                viewport={{ once: true }}
-                className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-8"
-              >
-                <h3 className="text-xl font-bold text-white mb-4">Client Testimonial</h3>
-                <blockquote className="text-gray-300 italic mb-4">
-                  {project.testimonial.quote}
-                </blockquote>
-                <div>
-                  <p className="text-white font-semibold">{project.testimonial.author}</p>
-                  <p className="text-gray-400 text-sm">{project.testimonial.position}</p>
-                </div>
-              </motion.div>
             </div>
           </div>
         </div>
@@ -281,13 +254,7 @@ export default function ProjectDetailsPage({ params }: ProjectDetailsPageProps) 
       {/* CTA Section */}
       <section className="py-16">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-            className="bg-gradient-to-r from-palette-gold-500 to-palette-gold-600 rounded-3xl p-12"
-          >
+          <div className="bg-gradient-to-r from-palette-gold-500 to-palette-gold-600 rounded-3xl p-12">
             <h2 className="text-3xl font-bold text-indigo-950 mb-6">
               Ready to Start Your Project?
             </h2>
@@ -310,7 +277,7 @@ export default function ProjectDetailsPage({ params }: ProjectDetailsPageProps) 
                 <ExternalLink className="w-5 h-5" />
               </Link>
             </div>
-          </motion.div>
+          </div>
         </div>
       </section>
     </div>

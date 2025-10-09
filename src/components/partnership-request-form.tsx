@@ -106,17 +106,17 @@ export function PartnershipRequestForm() {
 
   return (
     <motion.div
-      className="max-w-2xl mx-auto bg-white dark:bg-slate-800 rounded-2xl shadow-xl p-8"
+      className="max-w-2xl mx-auto bg-palette-accent-500/10 backdrop-blur-lg border border-palette-accent-500/20 rounded-2xl shadow-xl p-8"
       initial={{ opacity: 0, y: 30 }}
       whileInView={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.8 }}
       viewport={{ once: true }}
     >
       <div className="text-center mb-8">
-        <h3 className="text-2xl font-bold text-slate-900 dark:text-white mb-2">
+        <h3 className="text-2xl font-bold text-white mb-2">
           Partnership Request Form
         </h3>
-        <p className="text-slate-600 dark:text-slate-300">
+        <p className="text-gray-300">
           Fill out the form below to submit your partnership request
         </p>
       </div>

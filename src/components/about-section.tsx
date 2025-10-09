@@ -2,6 +2,7 @@
 
 import * as React from "react";
 import { motion } from "framer-motion";
+import Link from "next/link";
 
 export function AboutSection() {
   return (
@@ -65,11 +66,12 @@ export function AboutSection() {
             <motion.button
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="relative bg-palette-gold-500 hover:bg-palette-gold-600 text-indigo-950 px-8 py-4 text-lg font-semibold rounded-full transition-all duration-300 hover:shadow-lg hover:shadow-palette-gold-500/25"
+              className="relative bg-palette-accent-500 hover:bg-palette-accent-600 text-white px-8 py-4 text-lg font-semibold rounded-full transition-all duration-300 hover:shadow-lg hover:shadow-palette-accent-500/25"
             >
+              <Link href="/about">
               <span className="relative z-10">Learn More</span>
-              {/* Curved decorative line with spacing */}
              
+              </Link>
             </motion.button>
           </motion.div>
 
@@ -106,11 +108,10 @@ export function AboutSection() {
             <div className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-6 sm:p-8 lg:p-10 hover:bg-white/10 transition-all duration-300 h-full">
             
               
-              <h3 className="text-2xl sm:text-3xl font-bold text-white mb-3 sm:mb-4">
+              <h3 className="text-2xl sm:text-3xl font-bold text-palette-gold-400 mb-3 sm:mb-4">
                 Mission
               </h3>
-              <div className="absolute left-1/2 transform  w-16 h-1 bg-palette-gold-400 rounded-full opacity-60"></div>
-              <p className="text-sm sm:text-base lg:text-lg text-gray-300 leading-relaxed">
+             <p className="text-sm sm:text-base lg:text-lg text-gray-300 leading-relaxed">
                 At ColorWaves, we believe in the power of color to bring spaces to life. Our approach blends creativity with precision, delivering bold, vibrant, and transformative results.
               </p>
               
@@ -130,7 +131,7 @@ export function AboutSection() {
             <div className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-6 sm:p-8 lg:p-10 hover:bg-white/10 transition-all duration-300 h-full">
               
               
-              <h3 className="text-2xl sm:text-3xl font-bold text-white mb-3 sm:mb-4">
+              <h3 className="text-2xl sm:text-3xl font-bold text-palette-gold-400 mb-3 sm:mb-4">
                 Vision
               </h3>
               <p className="text-sm sm:text-base lg:text-lg text-gray-300 leading-relaxed">

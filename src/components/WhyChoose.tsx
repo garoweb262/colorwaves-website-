@@ -53,8 +53,8 @@ export default function WhyChoose() {
               key={index}
               className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-8 hover:bg-white/10 transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl"
             >
-              <div className="w-14 h-14 bg-gradient-to-br from-palette-gold-500 to-palette-gold-600 rounded-xl flex items-center justify-center mb-4">
-                <Icon className="w-7 h-7 text-indigo-950" />
+              <div className="w-14 h-14 bg-gradient-to-br from-palette-accent-500 to-palette-accent-600 rounded-xl flex items-center justify-center mb-4">
+                <Icon className="w-7 h-7 text-white" />
               </div>
               <h3 className="text-xl font-bold text-white mb-3">
                 {feature.title}

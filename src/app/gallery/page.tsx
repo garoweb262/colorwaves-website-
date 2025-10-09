@@ -81,7 +81,7 @@ export default function GalleryPage() {
     : galleryItems.filter(item => item.category === selectedCategory);
 
   return (
-    <div className="min-h-screen bg-indigo-950">
+    <div className="min-h-screen bg-[#4B369D]">
       <PageHeader
         title="Project Gallery"
         subtitle="Explore Our Portfolio of Stunning Transformations"

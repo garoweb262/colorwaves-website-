@@ -74,7 +74,7 @@ export default function ProductCard({
             <ul className="space-y-2">
               {features.slice(0, 4).map((feature, idx) => (
                 <li key={idx} className="flex items-center space-x-2">
-                  <div className="w-1.5 h-1.5 bg-palette-gold-400 rounded-full"></div>
+                  <div className="w-1.5 h-1.5 bg-palette-accent-400 rounded-full"></div>
                   <span className="text-sm text-gray-300">{feature}</span>
                 </li>
               ))}
@@ -109,7 +109,7 @@ export default function ProductCard({
           )}
           <Link
             href={`/products/${slug}`}
-            className="inline-flex items-center gap-2 text-palette-gold-400 hover:text-palette-gold-300 transition-colors"
+            className="inline-flex items-center gap-2 text-palette-accent-400 hover:text-palette-accent-300 transition-colors"
           >
             {showDetails ? "View Full Details" : "View Details"}
             <ArrowRight className="w-4 h-4" />

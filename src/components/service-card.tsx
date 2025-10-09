@@ -52,7 +52,7 @@ export default function ServiceCard({
           <ul className="space-y-2 mb-6">
             {features.map((feature, featureIndex) => (
               <li key={featureIndex} className="flex items-center space-x-2">
-                <div className="w-2 h-2 bg-palette-gold-400 rounded-full"></div>
+                <div className="w-2 h-2 bg-palette-accent-400 rounded-full"></div>
                 <span className="text-gray-300">{feature}</span>
               </li>
             ))}
@@ -61,7 +61,7 @@ export default function ServiceCard({
 
         <Link
           href={`/services/${slug}`}
-          className="inline-flex items-center gap-2 text-palette-gold-400 hover:text-palette-gold-300 transition-colors"
+          className="inline-flex items-center gap-2 text-palette-accent-400 hover:text-palette-accent-300 transition-colors"
         >
           Learn More
           <ArrowRight className="w-4 h-4" />

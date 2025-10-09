@@ -79,7 +79,7 @@ export function Footer() {
   };
 
   return (
-    <footer className="relative bg-indigo-950 text-white overflow-hidden">
+    <footer className="relative bg-[#4B369D] text-white overflow-hidden">
       {/* Animated Background Shapes */}
       <div className="absolute inset-0 pointer-events-none">
         <div className="footer-shape"></div>
@@ -120,20 +120,20 @@ export function Footer() {
                   <h4 className="text-sm sm:text-base font-semibold text-white mb-2 text-center sm:text-left">
                     Subscribe to Our Newsletter
                   </h4>
-                  <form onSubmit={handleNewsletterSubmit} className="flex gap-2">
+                  <form onSubmit={handleNewsletterSubmit} className="flex gap-2 max-w-md mx-auto sm:mx-0">
                     <input
                       type="email"
                       placeholder="Enter your email"
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
                       disabled={isSubmitting}
-                      className="flex-1 px-3 py-2 text-sm bg-white/10 border border-white/20 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-palette-gold-500 focus:border-transparent disabled:opacity-50 disabled:cursor-not-allowed"
+                      className="flex-1 px-3 py-2 text-sm bg-white/10 border border-white/20 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-palette-accent-500 focus:border-transparent disabled:opacity-50 disabled:cursor-not-allowed"
                       required
                     />
                     <button
                       type="submit"
                       disabled={isSubmitting}
-                      className="px-4 py-2 bg-gradient-to-r from-palette-gold-500 to-palette-gold-600 hover:from-palette-gold-600 hover:to-palette-gold-700 text-indigo-950 font-semibold text-sm rounded-lg transition-all duration-300 hover:shadow-lg disabled:opacity-50 disabled:cursor-not-allowed"
+                      className="px-4 py-2 bg-gradient-to-r from-palette-accent-500 to-palette-accent-600 hover:from-palette-accent-600 hover:to-palette-accent-700 text-white font-semibold text-sm rounded-lg transition-all duration-300 hover:shadow-lg disabled:opacity-50 disabled:cursor-not-allowed"
                     >
                       {isSubmitting ? "..." : "Subscribe"}
                     </button>
@@ -171,13 +171,13 @@ export function Footer() {
                 transition={{ duration: 0.6, delay: 0.1 }}
                 viewport={{ once: true }}
               >
-                <h3 className="footer-column-header text-base sm:text-lg font-semibold text-white mb-3 sm:mb-4">
+                <h3 className="footer-column-header text-base sm:text-lg font-semibold text-white mb-3 sm:mb-4 text-center sm:text-left">
                   Quick Links
                 </h3>
-                <ul className="space-y-2">
+                <ul className="space-y-2 grid grid-cols-1 md:grid-cols-3 lg:flex lg:flex-col items-center sm:items-start">
                   {footerLinks.quickLinks.map((link) => (
                     <li key={link.name}>
-                      <Link href={link.href} className="footer-link text-white text-xs sm:text-sm hover:text-palette-gold-300 transition-colors">
+                      <Link href={link.href} className="footer-link text-white text-xs sm:text-sm hover:text-palette-accent-400 transition-colors">
                         {link.name}
                       </Link>
                     </li>
@@ -194,13 +194,13 @@ export function Footer() {
                 transition={{ duration: 0.6, delay: 0.2 }}
                 viewport={{ once: true }}
               >
-                <h3 className="footer-column-header text-base sm:text-lg font-semibold text-white mb-3 sm:mb-4">
+                <h3 className="footer-column-header text-base sm:text-lg font-semibold text-white mb-3 sm:mb-4 text-center sm:text-left">
                   Our Services
                 </h3>
-                <ul className="space-y-2">
+                <ul className="space-y-2 grid grid-cols-1 md:grid-cols-2 lg:flex lg:flex-col items-center sm:items-start">
                   {footerLinks.services.map((link) => (
                     <li key={link.name}>
-                      <Link href={link.href} className="footer-link text-white text-xs sm:text-sm hover:text-palette-gold-300 transition-colors">
+                      <Link href={link.href} className="footer-link text-white text-xs sm:text-sm hover:text-palette-accent-400 transition-colors">
                         {link.name}
                       </Link>
                     </li>
@@ -217,21 +217,21 @@ export function Footer() {
                 transition={{ duration: 0.6, delay: 0.3 }}
                 viewport={{ once: true }}
               >
-                <h3 className="footer-column-header text-base sm:text-lg font-semibold text-white mb-3 sm:mb-4">
+                <h3 className="footer-column-header text-base sm:text-lg font-semibold text-white mb-3 sm:mb-4 text-center sm:text-left">
                   Get In Touch
                 </h3>
-                <div className="space-y-3 sm:space-y-4">
+                <div className="space-y-3 sm:space-y-4 flex flex-col items-center sm:items-start">
                   <div className="footer-contact-item flex items-start gap-2 sm:gap-3 justify-center sm:justify-start">
                     <MapPin className="footer-contact-icon w-4 h-4 sm:w-5 sm:h-5 flex-shrink-0 mt-0.5" />
-                    <span className="text-white text-xs sm:text-sm text-left">{contactInfo.address}</span>
+                    <span className="text-white text-xs sm:text-sm text-center sm:text-left">{contactInfo.address}</span>
                   </div>
                   <div className="footer-contact-item flex items-center gap-2 sm:gap-3 justify-center sm:justify-start">
                     <Phone className="footer-contact-icon w-4 h-4 sm:w-5 sm:h-5 flex-shrink-0" />
-                    <span className="text-white text-xs sm:text-sm">{contactInfo.phone}</span>
+                    <span className="text-white text-xs sm:text-sm text-center sm:text-left">{contactInfo.phone}</span>
                   </div>
                   <div className="footer-contact-item flex items-center gap-2 sm:gap-3 justify-center sm:justify-start">
-                    <Mail className="footer-contact-icon w-4 h-4 sm:w-5 sm:h-5 flex-shrink-0" />
-                    <span className="text-white text-xs sm:text-sm">{contactInfo.email}</span>
+                    <Mail className="footer-contact-icon  w-4 h-4 sm:w-5 sm:h-5 flex-shrink-0" />
+                    <span className="text-white text-xs sm:text-sm text-center sm:text-left">{contactInfo.email}</span>
                   </div>
                 </div>
               </motion.div>
@@ -243,7 +243,7 @@ export function Footer() {
       {/* Scroll to Top Button */}
       <motion.button
         onClick={scrollToTop}
-        className="fixed bottom-4 right-4 sm:bottom-6 sm:right-6 bg-gradient-to-r from-palette-gold-500 to-palette-gold-600 hover:from-palette-gold-600 hover:to-palette-gold-700 text-indigo-950 p-2.5 sm:p-3 rounded-full shadow-lg z-50"
+        className="fixed bottom-4 right-4 sm:bottom-6 sm:right-6 bg-gradient-to-r from-palette-accent-500 to-palette-accent-600 hover:from-palette-accent-600 hover:to-palette-accent-700 text-white p-2.5 sm:p-3 rounded-full shadow-lg z-50"
         initial={{ opacity: 0, scale: 0 }}
         animate={{ opacity: 1, scale: 1 }}
         whileHover={{ scale: 1.1 }}

@@ -20,7 +20,7 @@ const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
         {label && (
           <label 
             htmlFor={textareaId}
-            className="text-sm font-medium text-slate-700 dark:text-slate-300"
+            className="text-sm font-medium text-white"
           >
             {label}
           </label>
@@ -32,7 +32,7 @@ const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
           <textarea
             id={textareaId}
             className={cn(
-              "flex min-h-[80px] w-full rounded-md border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-800 px-3 py-2 text-sm ring-offset-white dark:ring-offset-slate-900 placeholder:text-slate-500 dark:placeholder:text-slate-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50",
+              "flex min-h-[80px] w-full rounded-md border border-palette-accent-500/30 bg-palette-accent-500/10 backdrop-blur-sm px-3 py-2 text-sm text-white placeholder:text-gray-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-palette-accent-500 focus-visible:border-palette-accent-500 disabled:cursor-not-allowed disabled:opacity-50",
               error && "border-red-500 focus-visible:ring-red-500",
               className
             )}
@@ -41,10 +41,10 @@ const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
           />
         </motion.div>
         {error && (
-          <p className="text-sm text-red-600 dark:text-red-400">{error}</p>
+          <p className="text-sm text-red-400">{error}</p>
         )}
         {helperText && !error && (
-          <p className="text-sm text-slate-500 dark:text-slate-400">{helperText}</p>
+          <p className="text-sm text-gray-300">{helperText}</p>
         )}
       </div>
     );

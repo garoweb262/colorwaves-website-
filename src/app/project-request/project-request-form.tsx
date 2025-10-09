@@ -178,7 +178,7 @@ export default function ProjectRequestForm() {
   };
 
   return (
-    <div className="bg-indigo-950 min-h-screen">
+    <div className="bg-[#4B369D] min-h-screen">
       <PageHeader
         title="Request a Project"
         subtitle="Tell us about your vision and we'll bring it to life"
@@ -189,7 +189,7 @@ export default function ProjectRequestForm() {
       <section className="py-20">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
-            className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl shadow-xl p-8"
+            className="bg-palette-accent-500/10 backdrop-blur-lg border border-palette-accent-500/20 rounded-2xl shadow-xl p-8"
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
@@ -328,7 +328,7 @@ export default function ProjectRequestForm() {
                   type="submit"
                   size="lg"
                   disabled={isSubmitting || isUploadingImages}
-                  className="w-full md:w-auto bg-gradient-to-r from-palette-gold-500 to-palette-gold-600 hover:from-palette-gold-600 hover:to-palette-gold-700 text-indigo-950 font-semibold px-8 py-3 rounded-lg transition-all duration-300 hover:shadow-lg"
+                  className="w-full md:w-auto bg-gradient-to-r from-palette-accent-500 to-palette-accent-600 hover:from-palette-accent-600 hover:to-palette-accent-700 text-white font-semibold px-8 py-3 rounded-lg transition-all duration-300 hover:shadow-lg"
                 >
                   {isUploadingImages 
                     ? "Uploading Images..." 

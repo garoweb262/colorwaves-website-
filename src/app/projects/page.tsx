@@ -5,75 +5,29 @@ import { Award, ExternalLink, ArrowRight, MapPin, Calendar } from "lucide-react"
 import PageHeader from "@/components/PageHeader";
 import Link from "next/link";
 import ProjectCard from "@/components/project-card";
+import React, { useEffect, useState } from "react";
+import { fetchJson, isEmptyArray } from "@/lib/api";
 
-const projects = [
-  {
-    slug: "grand-hotel-kano-renovation",
-    title: "Grand Hotel Kano Renovation",
-    description: "Complete interior and exterior transformation of a 200-room luxury hotel",
-    location: "Kano, Nigeria",
-    date: "2024",
-    category: "Hospitality",
-    image: "https://images.unsplash.com/photo-1566073771259-6a8506099945?w=600&h=400&fit=crop",
-    scope: ["Interior Painting", "Exterior Coating", "Decorative Finishes", "Color Consultation"],
-    result: "Transformed the hotel's aesthetics, resulting in a 40% increase in bookings",
-  },
-  {
-    slug: "techhub-office-complex",
-    title: "TechHub Office Complex",
-    description: "Modern corporate office space with innovative color schemes and finishes",
-    location: "Abuja, Nigeria",
-    date: "2024",
-    category: "Commercial",
-    image: "https://images.unsplash.com/photo-1497366216548-37526070297c?w=600&h=400&fit=crop",
-    scope: ["Office Interiors", "Meeting Rooms", "Common Areas", "Brand Integration"],
-    result: "Created an inspiring workspace that improved employee satisfaction by 35%",
-  },
-  {
-    slug: "luxury-villa-estate",
-    title: "Luxury Villa Estate",
-    description: "High-end residential project featuring 20 luxury villas with custom finishes",
-    location: "Lagos, Nigeria",
-    date: "2023",
-    category: "Residential",
-    image: "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=600&h=400&fit=crop",
-    scope: ["Interior Design", "Exterior Painting", "Specialty Finishes", "Landscape Integration"],
-    result: "Delivered premium finishes that exceeded client expectations and timeline",
-  },
-  {
-    slug: "shopping-mall-facade-refresh",
-    title: "Shopping Mall Facade Refresh",
-    description: "Complete exterior renovation of a major shopping center",
-    location: "Port Harcourt, Nigeria",
-    date: "2023",
-    category: "Commercial",
-    image: "https://images.unsplash.com/photo-1607082349566-187342175e2f?w=600&h=400&fit=crop",
-    scope: ["Exterior Coating", "Weather Protection", "Brand Colors", "Safety Compliance"],
-    result: "Enhanced curb appeal and weather protection with 10-year warranty coating",
-  },
-  {
-    slug: "heritage-building-restoration",
-    title: "Heritage Building Restoration",
-    description: "Careful restoration of a historic building maintaining original character",
-    location: "Kano, Nigeria",
-    date: "2023",
-    category: "Heritage",
-    image: "https://images.unsplash.com/photo-1513694203232-719a280e022f?w=600&h=400&fit=crop",
-    scope: ["Historic Preservation", "Color Matching", "Surface Restoration", "Documentation"],
-    result: "Successfully preserved cultural heritage while meeting modern standards",
-  },
-  {
-    slug: "modern-restaurant-chain",
-    title: "Modern Restaurant Chain",
-    description: "Standardized branding and finishes across 15 restaurant locations",
-    location: "Multiple Locations",
-    date: "2023",
-    category: "Hospitality",
-    image: "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=600&h=400&fit=crop",
-    scope: ["Brand Consistency", "Fast Turnaround", "Minimal Disruption", "Quality Control"],
-    result: "Completed all locations on schedule with consistent brand application",
-  },
-];
+interface ProjectApiItem {
+  slug: string;
+  title: string;
+  description: string;
+  imageUrls?: string[];
+  startDate?: string;
+  endDate?: string;
+}
+
+interface ProjectItem {
+  slug: string;
+  title: string;
+  description: string;
+  location?: string;
+  date?: string;
+  category?: string;
+  image: string;
+  scope?: string[];
+  result?: string;
+}
 
 const stats = [
   { label: "Projects Completed", value: "500+", icon: Award },
@@ -83,8 +37,36 @@ const stats = [
 ];
 
 export default function ProjectsPage() {
+  const [projects, setProjects] = useState<ProjectItem[] | null>(null);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    let mounted = true;
+    (async () => {
+      const { data, status } = await fetchJson<ProjectApiItem[]>("/projects/public");
+      if (!mounted) return;
+      if (status === 404 || isEmptyArray(data)) setProjects([]);
+      else {
+        const mapped: ProjectItem[] = (data || []).map((p) => ({
+          slug: p.slug,
+          title: p.title,
+          description: p.description,
+          image: p.imageUrls?.[0] || "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=1600&h=900&fit=crop",
+          date: p.startDate ? new Date(p.startDate).getFullYear().toString() : undefined,
+        }));
+        setProjects(mapped);
+      }
+      setLoading(false);
+    })();
+    return () => {
+      mounted = false;
+    };
+  }, []);
+
+  const showGrid = !loading && Array.isArray(projects) && projects.length > 0;
+
   return (
-    <div className="min-h-screen bg-indigo-950">
+    <div className="min-h-screen bg-[#4B369D]">
       <PageHeader
         title="Our Projects"
         subtitle="Showcasing Excellence in Every Transformation"
@@ -133,24 +115,39 @@ export default function ProjectsPage() {
             </p>
           </div>
 
-          <div className="grid lg:grid-cols-2 gap-8">
-            {projects.map((project, index) => (
-              <ProjectCard
-                key={project.slug}
-                slug={project.slug}
-                title={project.title}
-                description={project.description}
-                location={project.location}
-                date={project.date}
-                category={project.category}
-                image={project.image}
-                scope={project.scope}
-                result={project.result}
-                index={index}
-                showDetails={true}
-              />
-            ))}
-          </div>
+          {loading && (
+            <div className="grid lg:grid-cols-2 gap-8">
+              {Array.from({ length: 6 }).map((_, i) => (
+                <div key={i} className="bg-white/5 border border-white/10 rounded-2xl overflow-hidden animate-pulse">
+                  <div className="h-56 bg-white/10" />
+                  <div className="p-6">
+                    <div className="h-5 bg-white/10 rounded w-7/12 mb-3" />
+                    <div className="h-4 bg-white/10 rounded w-10/12" />
+                  </div>
+                </div>
+              ))}
+            </div>
+          )}
+          {showGrid && (
+            <div className="grid lg:grid-cols-2 gap-8">
+              {projects!.map((project, index) => (
+                <ProjectCard
+                  key={project.slug}
+                  slug={project.slug}
+                  title={project.title}
+                  description={project.description}
+                  location={project.location}
+                  date={project.date}
+                  category={project.category}
+                  image={project.image}
+                  scope={project.scope}
+                  result={project.result}
+                  index={index}
+                  showDetails={true}
+                />
+              ))}
+            </div>
+          )}
         </div>
       </section>
 
@@ -173,14 +170,14 @@ export default function ProjectsPage() {
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link
                 href="/project-request"
-                className="inline-flex items-center gap-2 bg-indigo-950 text-white px-8 py-4 rounded-full font-semibold hover:bg-indigo-900 transition-colors"
+                className="inline-flex items-center gap-2 bg-palette-accent-500 text-white px-8 py-4 rounded-full font-semibold hover:bg-palette-accent-600 transition-colors"
               >
                 Request a Project
                 <ArrowRight className="w-5 h-5" />
               </Link>
               <Link
                 href="/contact"
-                className="inline-flex items-center gap-2 bg-white/20 text-indigo-950 px-8 py-4 rounded-full font-semibold hover:bg-white/30 transition-colors"
+                className="inline-flex items-center gap-2 bg-palette-accent-500/20 text-white px-8 py-4 rounded-full font-semibold hover:bg-palette-accent-500/30 transition-colors"
               >
                 Contact Us Directly
                 <ExternalLink className="w-5 h-5" />

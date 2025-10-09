@@ -91,7 +91,7 @@ export default function ContactPage() {
   };
 
   return (
-    <div className="bg-indigo-950 min-h-screen">
+    <div className="bg-[#4B369D] min-h-screen">
       <PageHeader
         title="Get In Touch"
         subtitle="Let's Transform Your Space Together"
@@ -258,7 +258,7 @@ export default function ContactPage() {
                   <button
                     type="submit"
                     disabled={isSubmitting}
-                    className="w-full bg-gradient-to-r from-palette-gold-500 to-palette-gold-600 text-indigo-950 px-8 py-4 rounded-full font-semibold hover:from-palette-gold-600 hover:to-palette-gold-700 transition-all duration-300 flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
+                    className="w-full bg-gradient-to-r from-palette-accent-500 to-palette-accent-600 text-white px-8 py-4 rounded-full font-semibold hover:from-palette-accent-600 hover:to-palette-accent-700 transition-all duration-300 flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
                   >
                     <Send className="w-5 h-5" />
                     {isSubmitting ? "Sending..." : "Send Message"}

@@ -133,7 +133,7 @@ const benefits = [
 
 export default function CareersPage() {
   return (
-    <div className="min-h-screen bg-indigo-950">
+    <div className="min-h-screen bg-[#4B369D]">
       <PageHeader
         title="Join Our Team"
         subtitle="Build Your Career in Color Innovation"
@@ -245,11 +245,11 @@ export default function CareersPage() {
                 </p>
                 
                 <div className="mb-6">
-                  <h4 className="text-sm font-semibold text-palette-gold-400 mb-3">Requirements:</h4>
+                  <h4 className="text-sm font-semibold text-palette-accent-500 mb-3">Requirements:</h4>
                   <ul className="space-y-1">
                     {program.requirements.map((req, idx) => (
                       <li key={idx} className="text-gray-300 text-sm flex items-center gap-2">
-                        <div className="w-1.5 h-1.5 bg-palette-gold-400 rounded-full"></div>
+                        <div className="w-1.5 h-1.5 bg-palette-accent-500 rounded-full"></div>
                         {req}
                       </li>
                     ))}
@@ -257,11 +257,11 @@ export default function CareersPage() {
                 </div>
 
                 <div>
-                  <h4 className="text-sm font-semibold text-palette-gold-400 mb-3">Benefits:</h4>
+                  <h4 className="text-sm font-semibold text-palette-accent-500 mb-3">Benefits:</h4>
                   <ul className="space-y-1">
                     {program.benefits.map((benefit, idx) => (
                       <li key={idx} className="text-gray-300 text-sm flex items-center gap-2">
-                        <div className="w-1.5 h-1.5 bg-palette-gold-400 rounded-full"></div>
+                        <div className="w-1.5 h-1.5 bg-palette-accent-500 rounded-full"></div>
                         {benefit}
                       </li>
                     ))}
@@ -305,16 +305,16 @@ export default function CareersPage() {
                 </p>
                 
                 <div className="mb-6">
-                  <h4 className="text-sm font-semibold text-palette-gold-400 mb-2">Time Commitment:</h4>
+                  <h4 className="text-sm font-semibold text-palette-accent-500 mb-2">Time Commitment:</h4>
                   <p className="text-gray-300 text-sm">{opportunity.commitment}</p>
                 </div>
 
                 <div>
-                  <h4 className="text-sm font-semibold text-palette-gold-400 mb-3">Benefits:</h4>
+                  <h4 className="text-sm font-semibold text-palette-accent-500 mb-3">Benefits:</h4>
                   <ul className="space-y-1">
                     {opportunity.benefits.map((benefit, idx) => (
                       <li key={idx} className="text-gray-300 text-sm flex items-center gap-2">
-                        <div className="w-1.5 h-1.5 bg-palette-gold-400 rounded-full"></div>
+                        <div className="w-1.5 h-1.5 bg-palette-accent-500 rounded-full"></div>
                         {benefit}
                       </li>
                     ))}
@@ -346,7 +346,7 @@ export default function CareersPage() {
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <a
                 href="/contact"
-                className="inline-flex items-center gap-2 bg-indigo-950 text-white px-8 py-4 rounded-full font-semibold hover:bg-indigo-900 transition-colors"
+                className="inline-flex items-center gap-2 bg-palette-accent-500 text-white px-8 py-4 rounded-full font-semibold hover:bg-palette-accent-600 transition-colors"
               >
                 Send Your Resume
                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -355,7 +355,7 @@ export default function CareersPage() {
               </a>
               <a
                 href="/project-request"
-                className="inline-flex items-center gap-2 bg-white/20 text-indigo-950 px-8 py-4 rounded-full font-semibold hover:bg-white/30 transition-colors"
+                className="inline-flex items-center gap-2 bg-palette-accent-500/20 text-white px-8 py-4 rounded-full font-semibold hover:bg-palette-accent-500/30 transition-colors"
               >
                 Request Information
                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">

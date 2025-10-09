@@ -3,69 +3,27 @@
 import { motion } from "framer-motion";
 import PageHeader from "@/components/PageHeader";
 import ProductCard from "@/components/product-card";
+import React, { useEffect, useState } from "react";
+import { fetchJson, isEmptyArray } from "@/lib/api";
 
-const products = [
-  {
-    slug: "premium-emulsion-paint",
-    image: "/images/products/emulsion.jpg",
-    name: "Premium Emulsion Paint",
-    description: "High-quality, low-VOC emulsion paint for beautiful, long-lasting interior finishes",
-    category: "Interior",
-    features: ["Low Odor", "Easy Application", "Washable Surface", "Mold Resistant"],
-    colors: ["Over 2000 Colors", "Custom Matching Available"],
-    coverage: "35-40 m²/gallon",
-  },
-  {
-    slug: "matte-emulsion",
-    image: "/images/products/matteemulsion.jpg",
-    name: "Matte Emulsion",
-    description: "Elegant matte finish emulsion for sophisticated interior aesthetics",
-    category: "Interior",
-    features: ["Non-Reflective Finish", "Hide Imperfections", "Smooth Coverage", "Premium Quality"],
-    colors: ["Modern Neutrals", "Designer Shades"],
-    coverage: "30-35 m²/gallon",
-  },
-  {
-    slug: "luxewave-satin",
-    image: "/images/products/luxewavesatin.jpg",
-    name: "LuxeWave Satin",
-    description: "Luxurious satin finish paint with a subtle sheen for elegant spaces",
-    category: "Premium",
-    features: ["Silky Finish", "Durable", "Stain Resistant", "Easy to Clean"],
-    colors: ["Luxury Collection", "Custom Tinting"],
-    coverage: "32-38 m²/gallon",
-  },
-  {
-    slug: "texwave-coat",
-    image: "/images/products/texwavecoat.jpg",
-    name: "TexWave Coat",
-    description: "Textured coating for unique decorative finishes and architectural appeal",
-    category: "Specialty",
-    features: ["3D Texture Effects", "Weatherproof", "Crack Coverage", "Long-Lasting"],
-    colors: ["Textured Finishes", "Custom Patterns"],
-    coverage: "20-25 m²/gallon",
-  },
-  {
-    slug: "artisan-trowel-finish",
-    image: "/images/products/artisantrowel.jpg",
-    name: "Artisan Trowel Finish",
-    description: "Premium decorative trowel finish for artistic and designer applications",
-    category: "Specialty",
-    features: ["Hand-Applied Texture", "Unique Patterns", "Premium Quality", "Artistic Appeal"],
-    colors: ["Artisan Collection", "Custom Designs"],
-    coverage: "18-22 m²/gallon",
-  },
-  {
-    slug: "levelmax-screed",
-    image: "/images/products/levelmaxscreed.jpg",
-    name: "LevelMax Screed",
-    description: "Professional-grade self-leveling screed for perfect floor preparation",
-    category: "Industrial",
-    features: ["Self-Leveling", "High Strength", "Fast Setting", "Crack Resistant"],
-    colors: ["Standard Gray", "Custom Tints"],
-    coverage: "15-20 m²/bag",
-  },
-];
+interface ProductApiItem {
+  slug?: string; // backend list may not include slug; if missing, derive later
+  name: string;
+  description: string;
+  imageUrls?: string[];
+  category?: string;
+}
+
+interface ProductItem {
+  slug: string;
+  image: string;
+  name: string;
+  description: string;
+  category: string;
+  features?: string[];
+  colors?: string[];
+  coverage?: string;
+}
 
 const benefits = [
   {
@@ -87,8 +45,36 @@ const benefits = [
 ];
 
 export default function ProductsClient() {
+  const [products, setProducts] = useState<ProductItem[] | null>(null);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    let mounted = true;
+    (async () => {
+      const { data, status } = await fetchJson<ProductApiItem[]>("/products/public");
+      if (!mounted) return;
+      if (status === 404 || isEmptyArray(data)) setProducts([]);
+      else {
+        const mapped: ProductItem[] = (data || []).map((p, idx) => ({
+          slug: p.slug || `product-${idx}`,
+          name: p.name,
+          description: p.description,
+          image: p.imageUrls?.[0] || "/images/products/emulsion.jpg",
+          category: p.category || "",
+        }));
+        setProducts(mapped);
+      }
+      setLoading(false);
+    })();
+    return () => {
+      mounted = false;
+    };
+  }, []);
+
+  const showGrid = !loading && Array.isArray(products) && products.length > 0;
+
   return (
-    <div className="bg-indigo-950 min-h-screen">
+    <div className="bg-[#4B369D] min-h-screen">
       <PageHeader
         title="Our Products"
         subtitle="Premium Paints and Coatings for Every Project"
@@ -108,23 +94,38 @@ export default function ProductsClient() {
             </p>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {products.map((product, index) => (
-              <ProductCard
-                key={product.slug}
-                slug={product.slug}
-                name={product.name}
-                description={product.description}
-                image={product.image}
-                category={product.category}
-                features={product.features}
-                colors={product.colors}
-                coverage={product.coverage}
-                index={index}
-                showDetails={true}
-              />
-            ))}
-          </div>
+          {loading && (
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {Array.from({ length: 6 }).map((_, i) => (
+                <div key={i} className="bg-white/5 border border-white/10 rounded-2xl overflow-hidden animate-pulse">
+                  <div className="h-48 bg-white/10" />
+                  <div className="p-6">
+                    <div className="h-5 bg-white/10 rounded w-7/12 mb-3" />
+                    <div className="h-4 bg-white/10 rounded w-10/12" />
+                  </div>
+                </div>
+              ))}
+            </div>
+          )}
+          {showGrid && (
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {products!.map((product, index) => (
+                <ProductCard
+                  key={product.slug}
+                  slug={product.slug}
+                  name={product.name}
+                  description={product.description}
+                  image={product.image}
+                  category={product.category}
+                  features={product.features}
+                  colors={product.colors}
+                  coverage={product.coverage}
+                  index={index}
+                  showDetails={true}
+                />
+              ))}
+            </div>
+          )}
         </div>
       </section>
 
@@ -180,7 +181,7 @@ export default function ProductsClient() {
             </p>
             <a
               href="/contact"
-              className="inline-block bg-indigo-950 text-white px-8 py-4 rounded-full font-semibold hover:bg-indigo-900 transition-colors"
+              className="inline-block bg-palette-accent-500 text-white px-8 py-4 rounded-full font-semibold hover:bg-palette-accent-600 transition-colors"
             >
               Get Expert Advice
             </a>

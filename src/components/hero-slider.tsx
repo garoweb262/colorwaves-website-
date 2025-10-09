@@ -87,10 +87,10 @@ export function HeroSlider() {
               >
                 {/* Top Text with Icon */}
                 <div className="flex items-center space-x-2 md:space-x-3 mb-4 md:mb-6">
-                  <div className="w-7 h-7 md:w-8 md:h-8 bg-palette-gold-500 rounded-full flex items-center justify-center flex-shrink-0">
+                  <div className="w-7 h-7 md:w-8 md:h-8 bg-palette-accent-500 rounded-full flex items-center justify-center flex-shrink-0">
                     <Heart className="w-3.5 h-3.5 md:w-4 md:h-4 text-white" />
                   </div>
-                  <span className="text-palette-gold-300 font-medium text-sm md:text-base lg:text-lg">
+                  <span className="text-palette-gold-400 font-medium text-sm md:text-base lg:text-lg">
                     {slides[currentSlide].topText}
                   </span>
                 </div>
@@ -108,7 +108,7 @@ export function HeroSlider() {
                   <Link href={slides[currentSlide].button1.link}>
                     <Button 
                       size="lg" 
-                      className="bg-palette-secondary-500 hover:bg-palette-gold-500 text-white px-6 py-3 md:px-8 md:py-4 text-base md:text-lg font-semibold rounded-lg flex items-center space-x-2 transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-palette-gold-500/25 w-full sm:w-auto justify-center"
+                      className="bg-palette-accent-500 hover:bg-palette-accent-600 text-white px-6 py-3 md:px-8 md:py-4 text-base md:text-lg font-semibold rounded-lg flex items-center space-x-2 transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-palette-accent-500/25 w-full sm:w-auto justify-center"
                     >
                       <span>{slides[currentSlide].button1.text}</span>
                       <ArrowRight className="w-4 h-4 md:w-5 md:h-5" />
@@ -118,7 +118,7 @@ export function HeroSlider() {
                     <Button 
                       size="lg" 
                       variant="outline"
-                      className="border-2 border-white/30 bg-white/10 hover:bg-white/20 text-white px-6 py-3 md:px-8 md:py-4 text-base md:text-lg font-semibold rounded-lg flex items-center space-x-2 transition-all duration-300 hover:scale-105 w-full sm:w-auto justify-center backdrop-blur-sm"
+                      className="border-2 border-white/30 bg-transparent hover:bg-transparent text-white px-6 py-3 md:px-8 md:py-4 text-base md:text-lg font-semibold rounded-lg flex items-center space-x-2 transition-all duration-300 hover:scale-105 w-full sm:w-auto justify-center backdrop-blur-sm"
                     >
                       <span>{slides[currentSlide].button2.text}</span>
                     </Button>
@@ -131,7 +131,7 @@ export function HeroSlider() {
           </div>
 
           {/* Diagonal Transition - Hidden on mobile */}
-          <div className="hidden md:block absolute right-0 top-0 w-0 h-0 border-l-[100px] border-l-transparent border-t-[100vh] border-t-palette-primary-500"></div>
+          <div className="hidden md:block absolute right-0 top-0 w-0 h-0 border-l-[100px] border-l-transparent border-t-[100vh] border-t-[#4B369D]"></div>
       </div>
 
         {/* Right Side - Image */}

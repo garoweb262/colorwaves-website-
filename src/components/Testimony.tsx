@@ -1,31 +1,57 @@
 "use client";
 
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { Quote } from "lucide-react";
+import { fetchJson, isEmptyArray } from "@/lib/api";
 
-const testimonials = [
-  {
-    name: "Aisha Mohammed",
-    role: "Homeowner, Kano",
-    content: "ColorWaves transformed our home beyond our expectations. Their attention to detail and color expertise brought our vision to life. The team was professional, punctual, and the results are simply stunning!",
-    rating: 5,
-  },
-  {
-    name: "David Okonkwo",
-    role: "CEO, Tech Hub Nigeria",
-    content: "We hired ColorWaves for our office renovation and couldn't be happier. They understood our brand identity and created a workspace that inspires creativity. Highly recommended for commercial projects!",
-    rating: 5,
-  },
-  {
-    name: "Sarah Ibrahim",
-    role: "Interior Designer, Lagos",
-    content: "As a designer, I'm particular about quality. ColorWaves exceeded all my expectations. Their innovative approach to color consulting and flawless execution make them my go-to partner for all painting projects.",
-    rating: 5,
-  },
-];
+interface TestimonyApiItem {
+  clientName: string;
+  clientPosition?: string;
+  clientCompany?: string;
+  content: string;
+  rating?: number;
+  clientImage?: string;
+}
+
+interface TestimonyItem {
+  name: string;
+  role?: string;
+  content: string;
+  rating?: number;
+  image?: string;
+}
 
 export default function Testimony() {
+  const [data, setData] = useState<TestimonyItem[] | null>(null);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    let mounted = true;
+    (async () => {
+      const { data, status } = await fetchJson<TestimonyApiItem[]>("/testimonies");
+      if (!mounted) return;
+      if (status === 404 || isEmptyArray(data)) setData([]);
+      else {
+        const items = (data ?? []) as TestimonyApiItem[];
+        const mapped: TestimonyItem[] = items.map((t) => ({
+          name: t.clientName,
+          role: [t.clientPosition, t.clientCompany].filter(Boolean).join(" · "),
+          content: t.content,
+          rating: t.rating,
+          image: t.clientImage,
+        }));
+        setData(mapped);
+      }
+      setLoading(false);
+    })();
+    return () => {
+      mounted = false;
+    };
+  }, []);
+
+  const showSection = !loading && Array.isArray(data) && data.length > 0;
+
   return (
     <section className="max-w-7xl mx-auto px-4 py-16">
       <div className="text-center mb-12">
@@ -37,8 +63,22 @@ export default function Testimony() {
         </p>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-        {testimonials.map((testimonial, index) => (
+      {loading && (
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          {[0, 1, 2].map((i) => (
+            <div key={i} className="bg-white/5 border border-white/10 rounded-2xl p-8 animate-pulse">
+              <div className="w-12 h-12 bg-white/10 rounded-full mb-6" />
+              <div className="h-4 bg-white/10 rounded w-10/12 mb-2" />
+              <div className="h-4 bg-white/10 rounded w-9/12 mb-2" />
+              <div className="h-4 bg-white/10 rounded w-8/12" />
+            </div>
+          ))}
+        </div>
+      )}
+
+      {showSection && (
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        {data!.map((testimonial, index) => (
           <motion.div
             key={index}
             initial={{ opacity: 0, y: 30 }}
@@ -49,12 +89,13 @@ export default function Testimony() {
           >
             {/* Quote Icon */}
             <div className="absolute -top-4 left-8">
-              <div className="w-12 h-12 bg-gradient-to-br from-palette-gold-500 to-palette-gold-600 rounded-full flex items-center justify-center">
-                <Quote className="w-6 h-6 text-indigo-950" />
+              <div className="w-12 h-12 bg-gradient-to-br from-palette-accent-500 to-palette-accent-600 rounded-full flex items-center justify-center">
+                <Quote className="w-6 h-6 text-white" />
               </div>
             </div>
 
             {/* Stars */}
+            {testimonial.rating && (
             <div className="flex gap-1 mb-4 mt-4">
               {[...Array(testimonial.rating)].map((_, i) => (
                 <svg
@@ -67,6 +108,7 @@ export default function Testimony() {
                 </svg>
               ))}
             </div>
+            )}
 
             {/* Content */}
             <p className="text-gray-300 mb-6 leading-relaxed italic">
@@ -78,13 +120,14 @@ export default function Testimony() {
               <h4 className="text-white font-bold text-lg">
                 {testimonial.name}
               </h4>
-              <p className="text-palette-gold-400 text-sm">
-                {testimonial.role}
-              </p>
+              {testimonial.role && (
+                <p className="text-palette-accent-400 text-sm">{testimonial.role}</p>
+              )}
             </div>
           </motion.div>
         ))}
       </div>
+      )}
     </section>
   );
 }

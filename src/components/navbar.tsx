@@ -1,7 +1,7 @@
 "use client";
 
 import * as React from "react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
 import Image from "next/image";
@@ -26,13 +26,28 @@ const dropdownItems = [
 export function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
 
   const toggleMenu = () => setIsOpen(!isOpen);
   const closeMenu = () => setIsOpen(false);
 
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollTop = window.scrollY;
+      setIsScrolled(scrollTop > 50);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
   return (
     <motion.nav
-      className="navbar-glass sticky top-0 z-50"
+      className={`navbar-glass sticky top-0 z-50 transition-all duration-300 ${
+        isScrolled 
+          ? 'bg-indigo-950/95 backdrop-blur-xl border-b border-white/30 shadow-2xl' 
+          : 'bg-indigo-950/80 backdrop-blur-lg border-b border-white/20'
+      }`}
       initial={{ y: -100 }}
       animate={{ y: 0 }}
       transition={{ duration: 0.6 }}
@@ -59,7 +74,7 @@ export function Navbar() {
           </div>
 
           {/* Section 2: Navigation Menu */}
-          <div className="hidden md:block flex-shrink-0">
+          <div className="hidden lg:block flex-shrink-0">
             <div className="navbar-menu-container">
               <div className="flex items-center space-x-1">
                 {navigation.map((item) => (
@@ -111,9 +126,71 @@ export function Navbar() {
             </div>
           </div>
 
+          {/* Medium Screen Navigation */}
+          <div className="hidden md:block lg:hidden flex-shrink-0">
+            <div className="navbar-menu-container">
+              <div className="flex items-center space-x-0.5">
+                {navigation.slice(0, 4).map((item) => (
+                  <Link
+                    key={item.name}
+                    href={item.href}
+                    className="navbar-item px-2 py-2 text-xs font-medium relative z-10"
+                  >
+                    {item.name}
+                  </Link>
+                ))}
+                
+                {/* Dropdown for remaining items */}
+                <div className="relative">
+                  <button
+                    className="navbar-item flex items-center space-x-1 px-2 py-2 text-xs font-medium relative z-10"
+                    onMouseEnter={() => setIsDropdownOpen(true)}
+                    onMouseLeave={() => setIsDropdownOpen(false)}
+                  >
+                    <span>More</span>
+                    <ChevronDown className="w-3 h-3" />
+                  </button>
+                  
+                  <AnimatePresence>
+                    {isDropdownOpen && (
+                      <motion.div
+                        className="absolute right-0 mt-2 w-40 bg-indigo-900 rounded-md shadow-lg py-1 z-50 border border-indigo-800"
+                        initial={{ opacity: 0, y: -10 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, y: -10 }}
+                        transition={{ duration: 0.2 }}
+                        onMouseEnter={() => setIsDropdownOpen(true)}
+                        onMouseLeave={() => setIsDropdownOpen(false)}
+                      >
+                        {navigation.slice(4).map((item) => (
+                          <Link
+                            key={item.name}
+                            href={item.href}
+                            className="block px-3 py-2 text-xs text-white hover:bg-indigo-800 transition-all duration-200"
+                          >
+                            {item.name}
+                          </Link>
+                        ))}
+                        {dropdownItems.map((item) => (
+                          <Link
+                            key={item.name}
+                            href={item.href}
+                            className="block px-3 py-2 text-xs text-white hover:bg-indigo-800 transition-all duration-200"
+                          >
+                            {item.name}
+                          </Link>
+                        ))}
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </div>
+              </div>
+            </div>
+          </div>
+
           {/* Section 3: CTA Button */}
           <div className="hidden md:block flex-shrink-0">
-            <button onClick={() => window.location.href = "/project-request"} className="navbar-cta-button cursor-pointer">
+            <button onClick={() => window.location.href = "/project-request"} className="navbar-cta-button cursor-pointer text-xs lg:text-sm px-3 py-2 lg:px-4 lg:py-2">
               Get Quote
             </button>
           </div>
@@ -140,7 +217,7 @@ export function Navbar() {
       <AnimatePresence>
         {isOpen && (
           <motion.div
-            className="md:hidden bg-indigo-950/95 backdrop-blur-sm border-t border-indigo-800"
+            className="md:hidden bg-indigo-950/95 backdrop-blur-xl border-t border-white/20"
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}

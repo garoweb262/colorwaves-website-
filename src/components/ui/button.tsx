@@ -24,9 +24,9 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
           className={cn(
             "inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50",
             {
-              "bg-blue-600 text-white hover:bg-blue-700 dark:bg-blue-500 dark:hover:bg-blue-600": variant === "default",
+              "bg-palette-accent-500 text-white hover:bg-palette-accent-600 dark:bg-palette-accent-500 dark:hover:bg-palette-accent-600": variant === "default",
               "bg-red-600 text-white hover:bg-red-700 dark:bg-red-500 dark:hover:bg-red-600": variant === "destructive",
-              "border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-800 hover:bg-slate-50 dark:hover:bg-slate-700 hover:text-slate-900 dark:hover:text-slate-100": variant === "outline",
+              "border border-palette-accent-500 dark:border-palette-accent-600 bg-transparent dark:bg-transparent hover:bg-palette-accent-500 dark:hover:bg-palette-accent-600 hover:text-palette-accent-900 dark:hover:text-palette-accent-100": variant === "outline",
               "bg-slate-100 text-slate-900 hover:bg-slate-200 dark:bg-slate-800 dark:text-slate-100 dark:hover:bg-slate-700": variant === "secondary",
               "hover:bg-slate-100 hover:text-slate-900 dark:hover:bg-slate-800 dark:hover:text-slate-100": variant === "ghost",
               "text-blue-600 underline-offset-4 hover:underline dark:text-blue-400": variant === "link",

@@ -23,7 +23,7 @@ const Select = React.forwardRef<HTMLSelectElement, SelectProps>(
         {label && (
           <label 
             htmlFor={selectId}
-            className="text-sm font-medium text-slate-700 dark:text-slate-300"
+            className="text-sm font-medium text-white"
           >
             {label}
           </label>
@@ -36,7 +36,7 @@ const Select = React.forwardRef<HTMLSelectElement, SelectProps>(
             <select
               id={selectId}
               className={cn(
-                "flex h-10 w-full appearance-none rounded-md border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-800 px-3 py-2 text-sm ring-offset-white dark:ring-offset-slate-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50",
+                "flex h-10 w-full appearance-none rounded-md border border-palette-accent-500/30 bg-palette-accent-500/10 backdrop-blur-sm px-3 py-2 text-sm text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-palette-accent-500 focus-visible:border-palette-accent-500 disabled:cursor-not-allowed disabled:opacity-50",
                 error && "border-red-500 focus-visible:ring-red-500",
                 className
               )}
@@ -55,13 +55,13 @@ const Select = React.forwardRef<HTMLSelectElement, SelectProps>(
               ))}
             </select>
           </motion.div>
-          <ChevronDown className="absolute right-3 top-1/2 h-4 w-4 -translate-y-1/2 text-slate-500 pointer-events-none" />
+          <ChevronDown className="absolute right-3 top-1/2 h-4 w-4 -translate-y-1/2 text-gray-400 pointer-events-none" />
         </div>
         {error && (
-          <p className="text-sm text-red-600 dark:text-red-400">{error}</p>
+          <p className="text-sm text-red-400">{error}</p>
         )}
         {helperText && !error && (
-          <p className="text-sm text-slate-500 dark:text-slate-400">{helperText}</p>
+          <p className="text-sm text-gray-300">{helperText}</p>
         )}
       </div>
     );

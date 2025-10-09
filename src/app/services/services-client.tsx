@@ -4,51 +4,23 @@ import { motion } from "framer-motion";
 import PageHeader from "@/components/PageHeader";
 import ServiceCard from "@/components/service-card";
 import Link from "next/link";
+import React, { useEffect, useState } from "react";
+import { fetchJson, isEmptyArray } from "@/lib/api";
 
-const services = [
-  {
-    slug: "residential-painting",
-    image: "https://images.unsplash.com/photo-1581578731548-c6a0c3f2fcc0?w=400&h=300&fit=crop",
-    title: "Residential Painting",
-    description: "Transform your home with our expert residential painting services. We bring color and life to every room.",
-    features: ["Interior Painting", "Exterior Painting", "Wall Texturing", "Custom Finishes"],
-  },
-  {
-    slug: "commercial-painting",
-    image: "https://images.unsplash.com/photo-1497366216548-37526070297c?w=400&h=300&fit=crop",
-    title: "Commercial Painting",
-    description: "Professional painting solutions for offices, retail spaces, and commercial buildings.",
-    features: ["Office Painting", "Retail Spaces", "Industrial Facilities", "Property Management"],
-  },
-  {
-    slug: "color-consulting",
-    image: "https://images.unsplash.com/photo-1525909002-1b05e0c869d8?w=400&h=300&fit=crop",
-    title: "Color Consulting",
-    description: "Expert color consultation to help you choose the perfect palette for your space.",
-    features: ["Color Psychology", "Trend Analysis", "Custom Palettes", "Sample Testing"],
-  },
-  {
-    slug: "specialty-finishes",
-    image: "https://images.unsplash.com/photo-1572969176403-0d6e50b9ee5a?w=400&h=300&fit=crop",
-    title: "Specialty Finishes",
-    description: "Unique decorative finishes that add character and sophistication to any space.",
-    features: ["Venetian Plaster", "Metallic Finishes", "Faux Finishes", "Murals & Art"],
-  },
-  {
-    slug: "interior-design",
-    image: "https://images.unsplash.com/photo-1556909212-d5b604d0c90d?w=400&h=300&fit=crop",
-    title: "Interior Design",
-    description: "Complete interior design services that blend color, texture, and style seamlessly.",
-    features: ["Space Planning", "Color Schemes", "Material Selection", "Project Management"],
-  },
-  {
-    slug: "renovation-projects",
-    image: "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=400&h=300&fit=crop",
-    title: "Renovation Projects",
-    description: "Full-service renovation solutions that breathe new life into your property.",
-    features: ["Complete Renovations", "Restoration Work", "Modern Updates", "Historic Preservation"],
-  },
-];
+interface ServiceApiItem {
+  slug: string;
+  name: string;
+  description: string;
+  imageUrl?: string;
+}
+
+interface ServiceItem {
+  slug: string;
+  image: string;
+  title: string;
+  description: string;
+  features?: string[];
+}
 
 const processSteps = [
   { step: "01", title: "Consultation", description: "Understanding your vision and requirements" },
@@ -60,8 +32,36 @@ const processSteps = [
 ];
 
 export default function ServicesClient() {
+  const [services, setServices] = useState<ServiceItem[] | null>(null);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    let mounted = true;
+    (async () => {
+      const { data, status } = await fetchJson<ServiceApiItem[]>("/services/public");
+      if (!mounted) return;
+      if (status === 404 || isEmptyArray(data)) setServices([]);
+      else {
+        const mapped: ServiceItem[] = (data || []).map((s) => ({
+          slug: s.slug,
+          title: s.name,
+          description: s.description,
+          image: s.imageUrl || "/images/hero-1.png",
+          features: [],
+        }));
+        setServices(mapped);
+      }
+      setLoading(false);
+    })();
+    return () => {
+      mounted = false;
+    };
+  }, []);
+
+  const showGrid = !loading && Array.isArray(services) && services.length > 0;
+
   return (
-    <div className="bg-indigo-950 min-h-screen">
+    <div className="bg-[#4B369D] min-h-screen">
       <PageHeader
         title="Our Services"
         subtitle="Comprehensive Color Solutions for Every Space"
@@ -81,20 +81,35 @@ export default function ServicesClient() {
             </p>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {services.map((service, index) => (
-              <ServiceCard
-                key={service.slug}
-                slug={service.slug}
-                title={service.title}
-                description={service.description}
-                image={service.image}
-                features={service.features}
-                index={index}
-                showFeatures={true}
-              />
-            ))}
-          </div>
+          {loading && (
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {Array.from({ length: 6 }).map((_, i) => (
+                <div key={i} className="bg-white/5 border border-white/10 rounded-2xl overflow-hidden animate-pulse">
+                  <div className="h-40 bg-white/10" />
+                  <div className="p-6">
+                    <div className="h-5 bg-white/10 rounded w-7/12 mb-3" />
+                    <div className="h-4 bg-white/10 rounded w-10/12" />
+                  </div>
+                </div>
+              ))}
+            </div>
+          )}
+          {showGrid && (
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {services!.map((service, index) => (
+                <ServiceCard
+                  key={service.slug}
+                  slug={service.slug}
+                  title={service.title}
+                  description={service.description}
+                  image={service.image}
+                  features={service.features}
+                  index={index}
+                  showFeatures={true}
+                />
+              ))}
+            </div>
+          )}
         </div>
       </section>
 
@@ -160,7 +175,7 @@ export default function ServicesClient() {
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <a
                 href="/project-request"
-                className="inline-flex items-center gap-2 bg-indigo-950 text-white px-8 py-4 rounded-full font-semibold hover:bg-indigo-900 transition-colors"
+                className="inline-flex items-center gap-2 bg-palette-accent-500 text-white px-8 py-4 rounded-full font-semibold hover:bg-palette-accent-600 transition-colors"
               >
                 Request a Project
                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -169,7 +184,7 @@ export default function ServicesClient() {
               </a>
               <a
                 href="/contact"
-                className="inline-flex items-center gap-2 bg-white/20 text-indigo-950 px-8 py-4 rounded-full font-semibold hover:bg-white/30 transition-colors"
+                className="inline-flex items-center gap-2 bg-palette-accent-500/20 text-white px-8 py-4 rounded-full font-semibold hover:bg-white/30 transition-colors"
               >
                 Contact Us
                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">

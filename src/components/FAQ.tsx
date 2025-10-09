@@ -1,38 +1,34 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { ChevronDown } from "lucide-react";
+import { fetchJson, isEmptyArray } from "@/lib/api";
 
-const faqs = [
-  {
-    question: "What services does ColorWaves offer?",
-    answer:
-      "We provide comprehensive color solutions including professional painting, color consulting, interior design, architectural coatings, and space transformation services for both residential and commercial projects.",
-  },
-  {
-    question: "Where is ColorWaves located?",
-    answer:
-      "We are headquartered at 54 Ahmadu Bello Way, Kano, Nigeria. We serve clients across Nigeria and beyond.",
-  },
-  {
-    question: "What makes ColorWaves different from other painting companies?",
-    answer:
-      "ColorWaves combines artistic creativity with technical expertise. We don't just paint - we transform spaces using innovative color technology, expert craftsmanship, and personalized design solutions tailored to each client's vision.",
-  },
-  {
-    question: "How long does a typical project take?",
-    answer:
-      "Project timelines vary based on scope and complexity. Small residential projects may take 3-5 days, while larger commercial projects can take several weeks. We provide detailed timelines during consultation.",
-  },
-  {
-    question: "Do you offer color consultation services?",
-    answer:
-      "Yes! Our expert colorists provide professional color consultation to help you choose the perfect palette for your space, considering lighting, mood, and design aesthetics.",
-  },
-];
+interface FaqItem {
+  question: string;
+  answer: string;
+}
 
 export default function FAQ() {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
+  const [data, setData] = useState<FaqItem[] | null>(null);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    let mounted = true;
+    (async () => {
+      const { data, status } = await fetchJson<FaqItem[]>("/faqs");
+      if (!mounted) return;
+      if (status === 404 || isEmptyArray(data)) setData([]);
+      else setData(data || []);
+      setLoading(false);
+    })();
+    return () => {
+      mounted = false;
+    };
+  }, []);
+
+  const showSection = !loading && Array.isArray(data) && data.length > 0;
 
   return (
     <section className="max-w-4xl mx-auto px-4 py-16 bg-indigo-950">
@@ -44,11 +40,24 @@ export default function FAQ() {
           Get answers to common questions about ColorWaves
         </p>
       </div>
+      {loading && (
+        <div className="space-y-4">
+          {[0,1,2,3].map((i) => (
+            <div key={i} className="bg-white/5 border border-white/10 rounded-xl overflow-hidden animate-pulse">
+              <div className="w-full px-6 py-4">
+                <div className="h-5 bg-white/10 rounded w-8/12 mb-2" />
+                <div className="h-4 bg-white/10 rounded w-10/12" />
+              </div>
+            </div>
+          ))}
+        </div>
+      )}
+      {showSection && (
       <div className="space-y-4">
-        {faqs.map((faq, index) => (
+        {data!.map((faq, index) => (
           <div
             key={index}
-            className="bg-white/5 backdrop-blur-sm rounded-xl shadow-md overflow-hidden border border-white/10 hover:border-palette-gold-500/30 transition-all"
+            className="bg-white/5 backdrop-blur-sm rounded-xl shadow-md overflow-hidden border border-white/10 hover:border-palette-accent-500/30 transition-all"
           >
             <button
               onClick={() => setOpenIndex(openIndex === index ? null : index)}
@@ -58,7 +67,7 @@ export default function FAQ() {
                 {faq.question}
               </span>
               <ChevronDown
-                className={`w-5 h-5 text-palette-gold-500 transition-transform flex-shrink-0 ${
+                className={`w-5 h-5 text-palette-accent-500 transition-transform flex-shrink-0 ${
                   openIndex === index ? "rotate-180" : ""
                 }`}
               />
@@ -71,6 +80,7 @@ export default function FAQ() {
           </div>
         ))}
       </div>
+      )}
     </section>
   );
 }
