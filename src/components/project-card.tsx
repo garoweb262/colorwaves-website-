@@ -107,7 +107,7 @@ export default function ProjectCard({
 
         <Link
           href={`/projects/${slug}`}
-          className="inline-flex items-center gap-2 text-palette-gold-400 hover:text-palette-gold-300 transition-colors"
+          className="inline-flex items-center gap-2 text-palette-accent-400 hover:text-palette-accent-300 transition-colors"
         >
           {showDetails ? "View Project Details" : "View Details"}
           <ArrowRight className="w-4 h-4" />

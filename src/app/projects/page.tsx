@@ -47,7 +47,7 @@ export default function ProjectsPage() {
       if (!mounted) return;
       if (status === 404 || isEmptyArray(data)) setProjects([]);
       else {
-        const mapped: ProjectItem[] = (data || []).map((p) => ({
+        const mapped: ProjectItem[] = (data || []).map((p: ProjectApiItem) => ({
           slug: p.slug,
           title: p.title,
           description: p.description,
@@ -138,7 +138,7 @@ export default function ProjectsPage() {
                   description={project.description}
                   location={project.location}
                   date={project.date}
-                  category={project.category}
+                  category={project.category || "Project"}
                   image={project.image}
                   scope={project.scope}
                   result={project.result}

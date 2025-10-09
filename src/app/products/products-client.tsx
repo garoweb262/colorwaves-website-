@@ -55,7 +55,7 @@ export default function ProductsClient() {
       if (!mounted) return;
       if (status === 404 || isEmptyArray(data)) setProducts([]);
       else {
-        const mapped: ProductItem[] = (data || []).map((p, idx) => ({
+        const mapped: ProductItem[] = (data || []).map((p: ProductApiItem, idx) => ({
           slug: p.slug || `product-${idx}`,
           name: p.name,
           description: p.description,

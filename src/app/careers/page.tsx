@@ -1,7 +1,6 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { MapPin, Clock, Briefcase } from "lucide-react";
 import PageHeader from "@/components/PageHeader";
 
 // Job openings - commented out as requested

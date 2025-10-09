@@ -5,7 +5,6 @@ import PageHeader from "@/components/PageHeader";
 import { useState, useEffect } from "react";
 import { blogAPI, Blog, newsletterAPI } from "@/lib/api";
 import { toast } from "sonner";
-import { BlogCategoriesFilter } from "@/components/BlogCategoriesFilter";
 import { BlogList } from "@/components/BlogList";
 
 interface BlogPageState {

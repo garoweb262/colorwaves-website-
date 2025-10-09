@@ -1,10 +1,9 @@
 "use client";
 
 import React from "react";
-import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { motion } from "framer-motion";
-import { Calendar, User, Clock, ArrowLeft, Share2 } from "lucide-react";
+import { Calendar, User, ArrowLeft, Share2 } from "lucide-react";
 import Link from "next/link";
 import PageHeader from "@/components/PageHeader";
 import { blogAPI, Blog, newsletterAPI } from "@/lib/api";

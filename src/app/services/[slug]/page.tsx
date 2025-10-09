@@ -38,7 +38,7 @@ export default function ServiceDetailsPage({ params }: ServiceDetailsPageProps) 
         }
         
         setData(serviceData);
-      } catch (err) {
+      } catch {
         setError(true);
       } finally {
         setLoading(false);

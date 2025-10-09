@@ -72,6 +72,7 @@ export function FeaturedProjects() {
                 title={project.title}
                 description={project.description}
                 image={project.imageUrls?.[0] || "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=600&h=400&fit=crop"}
+                category="Featured"
                 index={index}
               />
             ))}

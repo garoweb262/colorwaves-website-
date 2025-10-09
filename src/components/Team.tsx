@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
-import { fetchJson, isEmptyArray } from "@/lib/api";
+import { fetchJson } from "@/lib/api";
 
 interface TeamApiItem {
   firstName?: string;
@@ -26,15 +26,18 @@ export default function Team() {
     (async () => {
       const { data, status } = await fetchJson<TeamApiItem[]>("/teams");
       if (!mounted) return;
-      if (status === 404 || isEmptyArray(data)) {
+      
+      if (status === 404 || !data || (Array.isArray(data) && data.length === 0)) {
         setData([]);
-      } else {
-        const mapped: TeamMember[] = (data || []).map((m) => ({
+      } else if (Array.isArray(data)) {
+        const mapped: TeamMember[] = data.map((m) => ({
           name: [m.firstName, m.lastName].filter(Boolean).join(" ") || "Team Member",
           role: m.position || "",
           image: m.image || "/images/hero-1.png",
         }));
         setData(mapped);
+      } else {
+        setData([]);
       }
       setLoading(false);
     })();

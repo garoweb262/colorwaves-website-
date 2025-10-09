@@ -3,9 +3,8 @@
 import { motion } from "framer-motion";
 import PageHeader from "@/components/PageHeader";
 import ServiceCard from "@/components/service-card";
-import Link from "next/link";
 import React, { useEffect, useState } from "react";
-import { fetchJson, isEmptyArray } from "@/lib/api";
+import { fetchJson } from "@/lib/api";
 
 interface ServiceApiItem {
   slug: string;
@@ -40,9 +39,11 @@ export default function ServicesClient() {
     (async () => {
       const { data, status } = await fetchJson<ServiceApiItem[]>("/services/public");
       if (!mounted) return;
-      if (status === 404 || isEmptyArray(data)) setServices([]);
-      else {
-        const mapped: ServiceItem[] = (data || []).map((s) => ({
+      
+      if (status === 404 || !data || (Array.isArray(data) && data.length === 0)) {
+        setServices([]);
+      } else if (Array.isArray(data)) {
+        const mapped: ServiceItem[] = data.map((s) => ({
           slug: s.slug,
           title: s.name,
           description: s.description,
@@ -50,6 +51,8 @@ export default function ServicesClient() {
           features: [],
         }));
         setServices(mapped);
+      } else {
+        setServices([]);
       }
       setLoading(false);
     })();

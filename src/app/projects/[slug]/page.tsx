@@ -1,5 +1,4 @@
 import React from "react";
-import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Image from "next/image";
 import { MapPin, Calendar, ExternalLink, ArrowLeft } from "lucide-react";
@@ -8,76 +7,7 @@ import PageHeader from "@/components/PageHeader";
 import { fetchJson } from "@/lib/api";
 
 // Mock data - in a real app, this would come from a CMS or database
-const projects = [
-  {
-    slug: "grand-hotel-kano-renovation",
-    title: "Grand Hotel Kano Renovation",
-    description: "Complete interior and exterior transformation of a 200-room luxury hotel",
-    location: "Kano, Nigeria",
-    date: "2024",
-    category: "Hospitality",
-    image: "https://images.unsplash.com/photo-1566073771259-6a8506099945?w=1200&h=600&fit=crop",
-    gallery: [
-      "https://images.unsplash.com/photo-1566073771259-6a8506099945?w=800&h=600&fit=crop",
-      "https://images.unsplash.com/photo-1497366216548-37526070297c?w=800&h=600&fit=crop",
-      "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=800&h=600&fit=crop",
-    ],
-    scope: ["Interior Painting", "Exterior Coating", "Decorative Finishes", "Color Consultation"],
-    result: "Transformed the hotel's aesthetics, resulting in a 40% increase in bookings",
-    duration: "3 months",
-    budget: "₦15,000,000",
-    team: "12 professionals",
-    challenges: [
-      "Working around hotel operations without disrupting guests",
-      "Coordinating with multiple contractors and suppliers",
-      "Maintaining luxury standards while staying within budget"
-    ],
-    solutions: [
-      "Implemented phased approach with minimal guest disruption",
-      "Established clear communication protocols with all stakeholders",
-      "Used premium materials and techniques to ensure lasting quality"
-    ],
-    testimonial: {
-      quote: "ColorWaves transformed our hotel beyond our expectations. The attention to detail and professionalism was outstanding.",
-      author: "Ahmed Ibrahim",
-      position: "General Manager, Grand Hotel Kano"
-    }
-  },
-  {
-    slug: "techhub-office-complex",
-    title: "TechHub Office Complex",
-    description: "Modern corporate office space with innovative color schemes and finishes",
-    location: "Abuja, Nigeria",
-    date: "2024",
-    category: "Commercial",
-    image: "https://images.unsplash.com/photo-1497366216548-37526070297c?w=1200&h=600&fit=crop",
-    gallery: [
-      "https://images.unsplash.com/photo-1497366216548-37526070297c?w=800&h=600&fit=crop",
-      "https://images.unsplash.com/photo-1566073771259-6a8506099945?w=800&h=600&fit=crop",
-      "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=800&h=600&fit=crop",
-    ],
-    scope: ["Office Interiors", "Meeting Rooms", "Common Areas", "Brand Integration"],
-    result: "Created an inspiring workspace that improved employee satisfaction by 35%",
-    duration: "2 months",
-    budget: "₦8,500,000",
-    team: "8 professionals",
-    challenges: [
-      "Creating a modern tech aesthetic while maintaining professionalism",
-      "Working within tight deadlines for office opening",
-      "Coordinating with IT infrastructure installation"
-    ],
-    solutions: [
-      "Developed custom color palette reflecting tech innovation",
-      "Implemented efficient project management with daily progress updates",
-      "Collaborated closely with IT team for seamless integration"
-    ],
-    testimonial: {
-      quote: "The office transformation exceeded our expectations. Our team loves the new environment.",
-      author: "Sarah Johnson",
-      position: "CEO, TechHub Nigeria"
-    }
-  }
-];
+// const projects = []; // Commented out unused projects array
 
 interface ProjectDetailsPageProps {
   params: Promise<{
@@ -114,7 +44,6 @@ export default async function ProjectDetailsPage({ params }: ProjectDetailsPageP
     category: data.technologies?.[0],
     scope: data.technologies || [],
     slug: data.slug,
-    isActive: data.isActive,
   };
 
   if (!project) {
@@ -231,12 +160,6 @@ export default async function ProjectDetailsPage({ params }: ProjectDetailsPageP
                       <span className="text-white font-semibold">{project.endDate}</span>
                     </div>
                   )}
-                  <div className="flex justify-between items-center">
-                    <span className="text-gray-300">Status</span>
-                    <span className={`font-semibold ${project.isActive ? 'text-green-400' : 'text-gray-400'}`}>
-                      {project.isActive ? 'Active' : 'Completed'}
-                    </span>
-                  </div>
                   {project.category && (
                     <div className="flex justify-between items-center">
                       <span className="text-gray-300">Category</span>

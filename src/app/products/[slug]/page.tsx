@@ -41,7 +41,7 @@ export default function ProductDetailsPage({ params }: ProductDetailsPageProps) 
         }
         
         setData(productData);
-      } catch (err) {
+      } catch {
         setError(true);
       } finally {
         setLoading(false);
