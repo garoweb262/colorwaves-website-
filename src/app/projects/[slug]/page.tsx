@@ -24,6 +24,7 @@ type ProjectBySlugApi = {
   startDate?: string;
   endDate?: string;
   client?: string;
+  videoUrl?: string;
 };
 
 
@@ -44,6 +45,7 @@ export default async function ProjectDetailsPage({ params }: ProjectDetailsPageP
     category: data.technologies?.[0],
     scope: data.technologies || [],
     slug: data.slug,
+    videoUrl: data.videoUrl,
   };
 
   if (!project) {
@@ -121,6 +123,22 @@ export default async function ProjectDetailsPage({ params }: ProjectDetailsPageP
                   </div>
                 )}
               </div>
+
+              {/* Project Video */}
+              {project.videoUrl && (
+                <div className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-8 mb-8">
+                  <h3 className="text-2xl font-bold text-white mb-6">Project Video</h3>
+                  <div className="relative w-full h-0 pb-[56.25%] rounded-xl overflow-hidden">
+                    <iframe
+                      src={project.videoUrl.replace('watch?v=', 'embed/')}
+                      title={`${project.title} - Project Video`}
+                      className="absolute top-0 left-0 w-full h-full"
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                      allowFullScreen
+                    />
+                  </div>
+                </div>
+              )}
 
               {/* Project Gallery */}
               <div className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-8 mb-8">

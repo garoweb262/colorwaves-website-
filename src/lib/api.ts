@@ -338,6 +338,30 @@ export const blogAPI = {
   },
 };
 
+// Partners API (Public with Static Token)
+export const partnersAPI = {
+  // Get all active partners
+  getAll: async (): Promise<{ success: boolean; data: Partner[] }> => {
+    try {
+      const response = await api.get('/partners');
+      return { success: true, data: response.data };
+    } catch (error) {
+      const err = error as { response?: { data?: { message?: string } } };
+      throw new Error(err.response?.data?.message || 'Failed to fetch partners');
+    }
+  },
+};
+
+// Partner Type Definition
+export interface Partner {
+  _id: string;
+  name: string;
+  status: 'active' | 'inactive';
+  imageUrl?: string;
+  createdAt: string;
+  updatedAt: string;
+}
+
 // Blog Type Definition
 export interface Blog {
   _id: string;
@@ -355,6 +379,7 @@ export interface Blog {
   updatedAt: string;
   __v: number;
   imageUrl: string;
+  videoUrl?: string;
 }
 
 // Export the axios instance for custom requests

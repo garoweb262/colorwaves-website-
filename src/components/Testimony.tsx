@@ -116,13 +116,31 @@ export default function Testimony() {
             </p>
 
             {/* Author */}
-            <div>
-              <h4 className="text-white font-bold text-lg">
-                {testimonial.name}
-              </h4>
-              {testimonial.role && (
-                <p className="text-palette-accent-400 text-sm">{testimonial.role}</p>
+            <div className="flex items-center gap-4">
+              {testimonial.image ? (
+                <div className="w-12 h-12 rounded-full overflow-hidden flex-shrink-0">
+                  <img
+                    src={testimonial.image}
+                    alt={testimonial.name}
+                    className="w-full h-full object-cover"
+                    loading="lazy"
+                  />
+                </div>
+              ) : (
+                <div className="w-12 h-12 bg-gradient-to-br from-palette-accent-500 to-palette-accent-600 rounded-full flex items-center justify-center flex-shrink-0">
+                  <span className="text-white font-bold text-sm">
+                    {testimonial.name.split(' ').map(n => n[0]).join('').toUpperCase()}
+                  </span>
+                </div>
               )}
+              <div>
+                <h4 className="text-white font-bold text-lg">
+                  {testimonial.name}
+                </h4>
+                {testimonial.role && (
+                  <p className="text-palette-accent-400 text-sm">{testimonial.role}</p>
+                )}
+              </div>
             </div>
           </motion.div>
         ))}

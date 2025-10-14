@@ -155,6 +155,22 @@ export default function BlogDetailsPage({ params }: BlogDetailsPageProps) {
                   dangerouslySetInnerHTML={{ __html: post.content }}
                 />
 
+                {/* Video Section */}
+                {post.videoUrl && (
+                  <div className="mt-8 pt-8 border-t border-white/10">
+                    <h3 className="text-xl font-bold text-white mb-6">Related Video</h3>
+                    <div className="relative w-full h-0 pb-[56.25%] rounded-xl overflow-hidden">
+                      <iframe
+                        src={post.videoUrl.replace('watch?v=', 'embed/')}
+                        title={`${post.title} - Video`}
+                        className="absolute top-0 left-0 w-full h-full"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowFullScreen
+                      />
+                    </div>
+                  </div>
+                )}
+
                 {/* Tags */}
                 {post.tags.length > 0 && (
                   <div className="mt-8 pt-8 border-t border-white/10">

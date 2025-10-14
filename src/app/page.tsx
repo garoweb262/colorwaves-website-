@@ -1,6 +1,7 @@
 "use client";
 
 import { HeroSlider } from "@/components/hero-slider";
+import { PartnersSection } from "@/components/partners-section";
 import { AboutSection } from "@/components/about-section";
 import { FeaturedProjects } from "@/components/sections/featured-projects";
 import { FeaturedServices } from "@/components/sections/featured-services";
@@ -13,6 +14,9 @@ export default function Home() {
     <div className="bg-[#4B369D]">
       {/* Hero Slider */}
       <HeroSlider />
+
+      {/* Partners Section */}
+      <PartnersSection />
 
       {/* About Section */}
       <AboutSection />
