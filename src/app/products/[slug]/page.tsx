@@ -53,7 +53,7 @@ export default function ProductDetailsPage({ params }: ProductDetailsPageProps) 
 
   if (loading) {
     return (
-      <div className="bg-indigo-950 min-h-screen flex items-center justify-center">
+      <div className="bg-[#210021] min-h-screen flex items-center justify-center">
         <div className="text-white text-xl">Loading...</div>
       </div>
     );

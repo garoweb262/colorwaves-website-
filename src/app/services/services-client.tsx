@@ -64,7 +64,7 @@ export default function ServicesClient() {
   const showGrid = !loading && Array.isArray(services) && services.length > 0;
 
   return (
-    <div className="bg-[#4B369D] min-h-screen">
+    <div className="bg-[#210021] min-h-screen">
       <PageHeader
         title="Our Services"
         subtitle="Comprehensive Color Solutions for Every Space"

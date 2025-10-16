@@ -82,19 +82,19 @@ function AboutIntro() {
 
 export default function AboutPage() {
   return (
-    <div className="bg-[#4B369D] min-h-screen">
+    <div className="bg-[#210021] min-h-screen">
       <PageHeader
         title="About Us"
         subtitle="Crafting Excellence in Color, Design, and Innovation."
         backgroundImage="https://images.unsplash.com/photo-1562259949-e8e7689d7828?q=80&w=2000"
         gradientColor="from-palette-primary-500/80 to-palette-secondary-500/60"
       />
-      <div className="bg-[#4B369D]">
+      <div className="bg-[#210021]">
         <AboutIntro />
         <OurStory />
         <WhyChoose />
       </div>
-      <div className=" bg-[#4B369D]">
+      <div className=" bg-[#210021]">
         <CoreValues />
         <Testimony />
         <Team />

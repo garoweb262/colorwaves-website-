@@ -178,7 +178,7 @@ export default function ProjectRequestForm() {
   };
 
   return (
-    <div className="bg-[#4B369D] min-h-screen">
+    <div className="bg-[#210021] min-h-screen">
       <PageHeader
         title="Request a Project"
         subtitle="Tell us about your vision and we'll bring it to life"

@@ -151,7 +151,7 @@ export default function AboutPageClient() {
       </section>
 
       {/* Team Section */}
-      <section className="py-20 bg-white dark:bg-slate-800">
+      <section className="py-20 bg-[#210021]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             className="text-center mb-16"

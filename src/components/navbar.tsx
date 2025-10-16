@@ -45,8 +45,8 @@ export function Navbar() {
     <motion.nav
       className={`navbar-glass sticky top-0 z-50 transition-all duration-300 ${
         isScrolled 
-          ? 'bg-[#5F4B8B]/95 backdrop-blur-xl border-b border-white/30 shadow-2xl' 
-          : 'bg-[#5F4B8B]/80 backdrop-blur-lg border-b border-white/20'
+          ? 'bg-[#210021] backdrop-blur-xl border-b border-white/30 shadow-2xl' 
+          : 'bg-[#210021] backdrop-blur-lg border-b border-white/20'
       }`}
       initial={{ y: -100 }}
       animate={{ y: 0 }}
@@ -101,7 +101,7 @@ export function Navbar() {
                   <AnimatePresence>
                     {isDropdownOpen && (
                       <motion.div
-                        className="absolute right-0 mt-2 w-48 bg-[#5F4B8B] rounded-md shadow-lg py-1 z-50 border border-[#4E3D74]"
+                        className="absolute right-0 mt-2 w-48 bg-[#210021] rounded-md shadow-lg py-1 z-50 border border-[#4E3D74]"
                         initial={{ opacity: 0, y: -10 }}
                         animate={{ opacity: 1, y: 0 }}
                         exit={{ opacity: 0, y: -10 }}
@@ -217,7 +217,7 @@ export function Navbar() {
       <AnimatePresence>
         {isOpen && (
           <motion.div
-            className="md:hidden bg-[#5F4B8B]/95 backdrop-blur-xl border-t border-white/20"
+            className="md:hidden bg-[#210021]/95 backdrop-blur-xl border-t border-white/20"
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}

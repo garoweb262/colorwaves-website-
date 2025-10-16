@@ -56,7 +56,7 @@ export default function FAQsPage() {
   };
 
   return (
-    <div className="min-h-screen bg-[#4B369D]">
+    <div className="min-h-screen bg-[#210021]">
       <PageHeader
         title="Frequently Asked Questions"
         subtitle="Find Answers to Common Questions About Our Services"

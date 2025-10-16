@@ -132,7 +132,7 @@ const benefits = [
 
 export default function CareersPage() {
   return (
-    <div className="min-h-screen bg-[#4B369D]">
+    <div className="min-h-screen bg-[#210021]">
       <PageHeader
         title="Join Our Team"
         subtitle="Build Your Career in Color Innovation"

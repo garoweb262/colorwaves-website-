@@ -66,7 +66,7 @@ export default function ProjectsPage() {
   const showGrid = !loading && Array.isArray(projects) && projects.length > 0;
 
   return (
-    <div className="min-h-screen bg-[#4B369D]">
+    <div className="min-h-screen bg-[#210021]">
       <PageHeader
         title="Our Projects"
         subtitle="Showcasing Excellence in Every Transformation"

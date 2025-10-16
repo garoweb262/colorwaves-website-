@@ -79,7 +79,7 @@ export function Footer() {
   };
 
   return (
-    <footer className="relative bg-[#5F4B8B] text-white overflow-hidden">
+    <footer className="relative bg-[#210021] text-white overflow-hidden">
       {/* Animated Background Shapes */}
       <div className="absolute inset-0 pointer-events-none">
         <div className="footer-shape"></div>

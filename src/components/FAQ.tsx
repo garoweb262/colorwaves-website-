@@ -31,7 +31,7 @@ export default function FAQ() {
   const showSection = !loading && Array.isArray(data) && data.length > 0;
 
   return (
-    <section className="max-w-4xl mx-auto px-4 py-16 bg-indigo-950">
+    <section className="max-w-4xl mx-auto px-4 py-16">
       <div className="text-center mb-12">
         <h2 className="text-4xl font-bold bg-gradient-to-r from-palette-gold-400 to-palette-gold-500 bg-clip-text text-transparent mb-4">
           Frequently Asked Questions

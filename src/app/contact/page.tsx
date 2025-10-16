@@ -91,7 +91,7 @@ export default function ContactPage() {
   };
 
   return (
-    <div className="bg-[#4B369D] min-h-screen">
+    <div className="bg-[#210021] min-h-screen">
       <PageHeader
         title="Get In Touch"
         subtitle="Let's Transform Your Space Together"

@@ -87,7 +87,7 @@ export default function BlogDetailsPage({ params }: BlogDetailsPageProps) {
 
   if (loading) {
     return (
-      <div className="bg-indigo-950 min-h-screen flex items-center justify-center">
+      <div className="bg-[#210021] min-h-screen flex items-center justify-center">
         <div className="text-white text-xl">Loading blog post...</div>
       </div>
     );
@@ -98,7 +98,7 @@ export default function BlogDetailsPage({ params }: BlogDetailsPageProps) {
   }
 
   return (
-    <div className="bg-indigo-950 min-h-screen">
+    <div className="bg-[#210021] min-h-screen">
       <PageHeader
         title={post.title}
         subtitle={post.excerpt}

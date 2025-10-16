@@ -53,7 +53,7 @@ export default async function ProjectDetailsPage({ params }: ProjectDetailsPageP
   }
 
   return (
-    <div className="bg-indigo-950 min-h-screen">
+    <div className="bg-[#210021] min-h-screen">
       <PageHeader
         title={project.title}
         subtitle={project.description}
@@ -205,7 +205,7 @@ export default async function ProjectDetailsPage({ params }: ProjectDetailsPageP
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link
                 href="/project-request"
-                className="inline-flex items-center gap-2 bg-indigo-950 text-white px-8 py-4 rounded-full font-semibold hover:bg-indigo-900 transition-colors"
+                className="inline-flex items-center gap-2 bg-[#210021] text-white px-8 py-4 rounded-full font-semibold hover:bg-indigo-900 transition-colors"
               >
                 Request a Project
                 <ExternalLink className="w-5 h-5" />

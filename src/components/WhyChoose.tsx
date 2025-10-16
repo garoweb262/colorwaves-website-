@@ -36,7 +36,7 @@ const features = [
 
 export default function WhyChoose() {
   return (
-    <section className="max-w-7xl mx-auto px-4 py-16 bg-indigo-950">
+    <section className="max-w-7xl mx-auto px-4 py-16 bg-[#210021]">
       <div className="text-center mb-12">
         <h2 className="text-4xl font-bold text-white mb-4">
           Why Choose <span className="text-palette-gold-400">ColorWaves</span>

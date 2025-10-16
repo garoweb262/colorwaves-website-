@@ -50,7 +50,7 @@ export default function ServiceDetailsPage({ params }: ServiceDetailsPageProps) 
 
   if (loading) {
     return (
-      <div className="bg-indigo-950 min-h-screen flex items-center justify-center">
+      <div className="bg-[#210021] min-h-screen flex items-center justify-center">
         <div className="text-white text-xl">Loading...</div>
       </div>
     );
@@ -61,7 +61,7 @@ export default function ServiceDetailsPage({ params }: ServiceDetailsPageProps) 
   }
 
   return (
-    <div className="bg-indigo-950 min-h-screen">
+    <div className="bg-[#210021] min-h-screen">
       <PageHeader
         title={data.name}
         subtitle={data.description}
@@ -118,7 +118,7 @@ export default function ServiceDetailsPage({ params }: ServiceDetailsPageProps) 
                 <div className="space-y-3">
                   <Link
                     href="/project-request"
-                    className="block w-full bg-indigo-950 text-white text-center py-3 rounded-lg font-semibold hover:bg-indigo-900 transition-colors"
+                    className="block w-full bg-[#210021] text-white text-center py-3 rounded-lg font-semibold hover:bg-indigo-900 transition-colors"
                   >
                     Request Quote
                   </Link>

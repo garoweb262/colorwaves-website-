@@ -11,7 +11,7 @@ import { CTASection } from "@/components/sections/cta-section";
 
 export default function Home() {
   return (
-    <div className="bg-[#4B369D]">
+    <div className="bg-[#210021]">
       {/* Hero Slider */}
       <HeroSlider />
 

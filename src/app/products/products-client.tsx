@@ -74,7 +74,7 @@ export default function ProductsClient() {
   const showGrid = !loading && Array.isArray(products) && products.length > 0;
 
   return (
-    <div className="bg-[#4B369D] min-h-screen">
+    <div className="bg-[#210021] min-h-screen">
       <PageHeader
         title="Our Products"
         subtitle="Premium Paints and Coatings for Every Project"

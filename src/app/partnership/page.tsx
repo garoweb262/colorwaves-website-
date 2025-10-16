@@ -58,7 +58,7 @@ const partnerTypes = [
 
 export default function PartnershipPage() {
   return (
-    <div className="min-h-screen bg-[#4B369D]">
+    <div className="min-h-screen bg-[#210021]">
       <PageHeader
         title="Partnership Program"
         subtitle="Grow Your Business with ColorWaves"

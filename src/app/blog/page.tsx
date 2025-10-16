@@ -96,7 +96,7 @@ export default function BlogPage() {
 
   if (state.loading) {
     return (
-      <div className="bg-[#4B369D] min-h-screen">
+      <div className="bg-[#210021] min-h-screen">
         <PageHeader
           title="Our Blog"
           subtitle="Expert Insights, Tips, and Trends in Painting and Color Design"
@@ -112,7 +112,7 @@ export default function BlogPage() {
 
   if (state.error) {
     return (
-      <div className="bg-[#4B369D] min-h-screen">
+      <div className="bg-[#210021] min-h-screen">
         <PageHeader
           title="Our Blog"
           subtitle="Expert Insights, Tips, and Trends in Painting and Color Design"
@@ -126,7 +126,7 @@ export default function BlogPage() {
     );
   }
   return (
-    <div className="bg-[#4B369D] min-h-screen">
+    <div className="bg-[#210021] min-h-screen">
       <PageHeader
         title="Our Blog"
         subtitle="Expert Insights, Tips, and Trends in Painting and Color Design"
