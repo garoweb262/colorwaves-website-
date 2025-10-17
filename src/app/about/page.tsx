@@ -30,7 +30,7 @@ export const metadata: Metadata = {
     siteName: "ColorWaves",
     images: [
       {
-        url: "/images/hero-1.png",
+        url: "/images/teams/WhatsApp Image 2025-10-17 at 8.17.33 PM.jpeg",
         width: 1200,
         height: 630,
         alt: "ColorWaves Nigeria Limited - Paint Manufacturing Company",
@@ -43,7 +43,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "About Us | ColorWaves Nigeria Limited",
     description: "Learn about ColorWaves Nigeria Limited - Founded January 5, 2025, we are a fast-growing paint manufacturing and interior solutions company.",
-    images: ["/images/hero-1.png"],
+    images: ["/images/teams/team-f.jpeg"],
   },
   alternates: {
     canonical: "/about",
@@ -69,7 +69,7 @@ function AboutIntro() {
       <div className="flex justify-center md:justify-end">
         <div className="relative w-full max-w-md rounded-3xl overflow-hidden shadow-xl border border-white/10">
           <Image
-            src="/images/hero-1.png"
+            src="/images/teams/ceo.jpeg"
             alt="ColorWaves Team at Work"
             width={500}
             height={400}
@@ -166,7 +166,7 @@ export default function AboutPage() {
       <PageHeader
         title="About Us"
         subtitle="Crafting Excellence in Color, Design, and Innovation."
-        backgroundImage="https://images.unsplash.com/photo-1562259949-e8e7689d7828?q=80&w=2000"
+        backgroundImage="/images/about.jpg"
         gradientColor="from-palette-primary-500/80 to-palette-secondary-500/60"
       />
       <div className="bg-[#210021]">

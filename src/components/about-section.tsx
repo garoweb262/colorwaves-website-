@@ -80,7 +80,7 @@ export function AboutSection() {
           >
             <div className="relative rounded-2xl overflow-hidden">
               <img
-                src="/images/hero-1.png"
+                src="/images/about.jpg"
                 alt="ColorWaves Team at Work"
                 className="w-full h-96 object-cover"
               />
