@@ -20,7 +20,7 @@ export const metadata: Metadata = {
     siteName: "ColorWaves",
     images: [
       {
-        url: "https://images.unsplash.com/photo-1562259949-e8e7689d7828?w=1200&h=630&fit=crop",
+        url: "/images/about.jpg",
         width: 1200,
         height: 630,
         alt: "ColorWaves Project Request Form",
@@ -33,7 +33,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Request a Project | ColorWaves",
     description: "Submit your project request to ColorWaves. Get a free consultation.",
-    images: ["https://images.unsplash.com/photo-1562259949-e8e7689d7828?w=1200&h=630&fit=crop"],
+    images: ["/images/about.jpg"],
   },
   alternates: {
     canonical: "/project-request",

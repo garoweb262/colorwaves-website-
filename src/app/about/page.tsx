@@ -30,7 +30,7 @@ export const metadata: Metadata = {
     siteName: "ColorWaves",
     images: [
       {
-        url: "/images/teams/WhatsApp Image 2025-10-17 at 8.17.33 PM.jpeg",
+        url: "/images/about.jpg",
         width: 1200,
         height: 630,
         alt: "ColorWaves Nigeria Limited - Paint Manufacturing Company",
@@ -43,7 +43,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "About Us | ColorWaves Nigeria Limited",
     description: "Learn about ColorWaves Nigeria Limited - Founded January 5, 2025, we are a fast-growing paint manufacturing and interior solutions company.",
-    images: ["/images/teams/team-f.jpeg"],
+    images: ["/images/about.jpg"],
   },
   alternates: {
     canonical: "/about",

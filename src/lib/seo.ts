@@ -37,7 +37,7 @@ export interface SEOConfig {
   };
 }
 
-const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "https://colorwaves.com";
+const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "https://colorwaves.ng";
 const siteName = "ColorWaves";
 const defaultDescription = "Leading technology solutions provider specializing in web development, mobile apps, and digital innovation. Transform your business with our expert team.";
 
@@ -174,7 +174,7 @@ export function generateMetadata(config: SEOConfig): Metadata {
       siteName,
       images: openGraph?.images || [
         {
-          url: `${baseUrl}/images/og-image.jpg`,
+          url: `${baseUrl}/images/about.jpg`,
           width: 1200,
           height: 630,
           alt: `${title} - ${siteName}`,
@@ -185,7 +185,7 @@ export function generateMetadata(config: SEOConfig): Metadata {
       card: "summary_large_image",
       title: twitter?.title || fullTitle,
       description: twitter?.description || fullDescription,
-      images: twitter?.images || [`${baseUrl}/images/og-image.jpg`],
+      images: twitter?.images || [`${baseUrl}/images/about.jpg`],
       creator: "@colorwaves",
     },
     alternates: {

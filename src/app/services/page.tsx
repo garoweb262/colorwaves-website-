@@ -21,7 +21,7 @@ export const metadata: Metadata = {
     siteName: "ColorWaves",
     images: [
       {
-        url: "https://images.unsplash.com/photo-1589939705384-5185137a7f0f?w=1200&h=630&fit=crop",
+        url: "/images/about.jpg",
         width: 1200,
         height: 630,
         alt: "ColorWaves Professional Painting Services",
@@ -34,7 +34,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Our Services | ColorWaves",
     description: "Professional painting and color solution services in Nigeria.",
-    images: ["https://images.unsplash.com/photo-1589939705384-5185137a7f0f?w=1200&h=630&fit=crop"],
+    images: ["/images/about.jpg"],
   },
   alternates: {
     canonical: "/services",

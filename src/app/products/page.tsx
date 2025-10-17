@@ -21,7 +21,7 @@ export const metadata: Metadata = {
     siteName: "ColorWaves",
     images: [
       {
-        url: "https://images.unsplash.com/photo-1513467535987-fd81bc7d62f8?w=1200&h=630&fit=crop",
+        url: "/images/about.jpg",
         width: 1200,
         height: 630,
         alt: "ColorWaves Premium Paint Products",
@@ -34,7 +34,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Our Products | ColorWaves",
     description: "ColorWaves offers a complete range of paints and coating solutions designed for homes, offices, and industrial spaces.",
-    images: ["https://images.unsplash.com/photo-1513467535987-fd81bc7d62f8?w=1200&h=630&fit=crop"],
+    images: ["/images/about.jpg"],
   },
   alternates: {
     canonical: "/products",
