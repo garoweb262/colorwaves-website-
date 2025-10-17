@@ -129,7 +129,7 @@ export function ProjectRequestForm() {
       console.log("Result:", result);
       
       toast.success("Project request submitted successfully!", {
-        description: "We'll review your requirements and get back to you within 24 hours.",
+        description: "We&apos;ll review your requirements and get back to you within 24 hours.",
       });
       
       // Reset form

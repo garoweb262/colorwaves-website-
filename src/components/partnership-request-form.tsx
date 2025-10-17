@@ -74,7 +74,7 @@ export function PartnershipRequestForm() {
       await partnershipRequestsAPI.create(formData);
       
       toast.success("Partnership request submitted successfully!", {
-        description: "We'll review your request and get back to you within 48 hours.",
+        description: "We&apos;ll review your request and get back to you within 48 hours.",
       });
       
       setFormData({
