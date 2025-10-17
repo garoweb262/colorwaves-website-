@@ -137,7 +137,7 @@ function OurJourney() {
           Our Journey <span className="text-palette-gold-400">So Far</span>
         </h2>
         <p className="text-lg text-gray-300 max-w-3xl mx-auto">
-          From humble beginnings to preparing for national expansion, here are the key milestones that have shaped ColorWaves' growth story.
+          From humble beginnings to preparing for national expansion, here are the key milestones that have shaped ColorWaves&apos; growth story.
         </p>
       </div>
 
