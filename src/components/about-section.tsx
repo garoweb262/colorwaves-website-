@@ -33,8 +33,7 @@ export function AboutSection() {
             <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-1/3 h-1 bg-gradient-to-r from-palette-gold-500 to-transparent rounded-full"></div>
           </h2>
           <p className="text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed">
-            Transforming spaces with innovative color solutions and exceptional craftsmanship. 
-            We bring your vision to life through precision, creativity, and unwavering commitment to excellence.
+            Founded on January 5, 2025, ColorWaves Nigeria Limited is a fast-growing paint manufacturing and interior solutions company headquartered in Kano, Nigeria. We specialize in producing high-quality, durable, and affordable paints that bring color, life, and identity to spaces across Nigeria and Africa.
           </p>
         </motion.div>
 
@@ -49,17 +48,13 @@ export function AboutSection() {
             className="space-y-6"
           >
             <h3 className="text-3xl font-bold text-white mb-6">
-              Crafting Excellence in Every Color
+              Redefining Paint Manufacturing in Africa
             </h3>
             <p className="text-lg text-gray-300 leading-relaxed mb-6">
-              At ColorWaves, we believe that color has the power to transform not just spaces, 
-              but experiences. Our team of expert colorists and designers work tirelessly to 
-              bring your vision to life with precision and passion.
+              Since our inception, ColorWaves has focused on innovation, product excellence, and customer satisfaction. From our early days of research, testing, and quality control, to our current nationwide expansion, we&apos;re redefining what it means to paint and build in Africa.
             </p>
             <p className="text-lg text-gray-300 leading-relaxed mb-8">
-              From residential projects to commercial spaces, we deliver exceptional results 
-              that exceed expectations. Our commitment to quality, innovation, and customer 
-              satisfaction has made us a trusted partner for clients worldwide.
+              We combine traditional craftsmanship with modern techniques and premium materials to deliver premium-quality paints and coating solutions that combine beauty, protection, and sustainability — while empowering communities, supporting local industries, and promoting Made-in-Nigeria excellence.
             </p>
             
             {/* Curved Button */}
@@ -112,7 +107,7 @@ export function AboutSection() {
                 Mission
               </h3>
              <p className="text-sm sm:text-base lg:text-lg text-gray-300 leading-relaxed">
-                At ColorWaves, we believe in the power of color to bring spaces to life. Our approach blends creativity with precision, delivering bold, vibrant, and transformative results.
+                To deliver premium-quality paints and coating solutions that combine beauty, protection, and sustainability — while empowering communities, supporting local industries, and promoting Made-in-Nigeria excellence.
               </p>
               
               {/* Decorative element */}
@@ -135,7 +130,7 @@ export function AboutSection() {
                 Vision
               </h3>
               <p className="text-sm sm:text-base lg:text-lg text-gray-300 leading-relaxed">
-                Driven by a passion for innovation and a commitment to excellence, ColorWaves is your partner in turning vision into reality, one color wave at a time.
+                To become Africa&apos;s most trusted brand in paints and building materials — known for innovation, excellence, and lasting color that inspires creativity in every space.
               </p>
               
               {/* Decorative element */}

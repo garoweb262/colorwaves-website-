@@ -2,28 +2,38 @@
 
 import React from "react";
 import { motion } from "framer-motion";
-import { Award, Heart, Shield, Sparkles } from "lucide-react";
+import { Award, Heart, Shield, Sparkles, Users, Leaf } from "lucide-react";
 
 const coreValues = [
   {
     icon: Award,
-    title: "Excellence",
-    description: "We maintain the highest standards in every project we undertake.",
-  },
-  {
-    icon: Heart,
-    title: "Customer First",
-    description: "Your satisfaction is our priority, and we listen to your vision.",
+    title: "Quality First",
+    description: "Every drop matters — we never compromise on standards.",
   },
   {
     icon: Shield,
-    title: "Reliability",
-    description: "Consistent quality and timely delivery you can depend on.",
+    title: "Integrity",
+    description: "We build trust through transparency and accountability.",
   },
   {
     icon: Sparkles,
-    title: "Passion",
-    description: "We love what we do and it shows in our exceptional craftsmanship.",
+    title: "Innovation",
+    description: "We embrace technology and creativity in all we do.",
+  },
+  {
+    icon: Heart,
+    title: "Customer Commitment",
+    description: "We listen, deliver, and exceed expectations.",
+  },
+  {
+    icon: Leaf,
+    title: "Sustainability",
+    description: "We produce responsibly, with care for the environment.",
+  },
+  {
+    icon: Users,
+    title: "Teamwork",
+    description: "We grow through collaboration, passion, and shared success.",
   },
 ];
 
@@ -45,7 +55,7 @@ export default function CoreValues() {
         </p>
       </motion.div>
 
-      <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+      <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
         {coreValues.map((value, index) => {
           const Icon = value.icon;
           return (

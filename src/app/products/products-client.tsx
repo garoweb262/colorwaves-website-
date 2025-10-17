@@ -77,10 +77,29 @@ export default function ProductsClient() {
     <div className="bg-[#210021] min-h-screen">
       <PageHeader
         title="Our Products"
-        subtitle="Premium Paints and Coatings for Every Project"
+        subtitle="ColorWaves offers a complete range of paints and coating solutions designed for homes, offices, and industrial spaces."
         backgroundImage="/images/hero-2.png"
         gradientColor="from-palette-primary-500/80 to-palette-secondary-500/60"
       />
+
+      {/* Production & Capacity Section */}
+      <section className="py-20 bg-white/5">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl font-bold text-white mb-4">
+              Production & <span className="text-palette-gold-400">Capacity</span>
+            </h2>
+            <div className="max-w-4xl mx-auto space-y-6">
+              <p className="text-xl text-gray-300 leading-relaxed">
+                Our production facility, supported by a certified factory partnership, allows ColorWaves to double production capacity and meet increasing market demand.
+              </p>
+              <p className="text-xl text-gray-300 leading-relaxed">
+                We combine advanced formulation technology, cutting-edge equipment, and skilled professionals to maintain consistent quality, color richness, and competitive pricing — ensuring our paints stand out in both performance and appearance.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
 
       {/* Products Grid */}
       <section className="py-20">
@@ -90,7 +109,7 @@ export default function ProductsClient() {
               Our Product <span className="text-palette-gold-400">Range</span>
             </h2>
             <p className="text-xl text-gray-300 max-w-3xl mx-auto">
-              Premium quality paints and coatings for residential, commercial, and industrial applications
+              ColorWaves offers a complete range of paints and coating solutions designed for homes, offices, and industrial spaces.
             </p>
           </div>
 

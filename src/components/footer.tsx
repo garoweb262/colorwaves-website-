@@ -45,7 +45,7 @@ const socialLinks = [
 const contactInfo = {
   address: "54 Ahmadu Bello Way, Kano",
   phone: "+234 803 331 7338",
-  email: "example@email.com",
+  email: "info@colorwaves.ng",
 };
 
 export function Footer() {

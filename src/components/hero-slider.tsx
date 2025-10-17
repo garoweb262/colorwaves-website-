@@ -10,39 +10,30 @@ import Link from "next/link";
 const slides = [
   {
     id: 1,
-    title: "Transforming Your Visions",
-    description: "Into Reality.",
-    topText: "One ColorWave® at a time",
+    title: "Where Innovation",
+    description: "Meets Color.",
+    topText: "ColorWaves Nig. Ltd",
     backgroundImage: "/images/hero-0.png",
     button1: { text: "Discover More", link: "/about" },
-    button2: { text: "Get A Quote", link: "/project-request" },
+    button2: { text: "Our Products", link: "/products" },
   },
   {
     id: 2,
-    title: "Redefining Color,",
-    description: "Transforming Spaces.",
-    topText: "ColorWaves Excellence",
+    title: "Every Wall",
+    description: "Tells a Story.",
+    topText: "Creating Experiences",
     backgroundImage: "/images/hero-1.png",
-    button1: { text: "Our Mission", link: "/about" },
-    button2: { text: "Contact Us", link: "/contact" },
+    button1: { text: "View Portfolio", link: "/projects" },
+    button2: { text: "Get Quote", link: "/contact" },
   },
   {
     id: 3,
-    title: "Bringing Spaces",
-    description: "To Life.",
-    topText: "Creativity Meets Precision",
+    title: "Beauty, Durability,",
+    description: "& Distinction.",
+    topText: "Transform Your Space",
     backgroundImage: "/images/hero-2.png",
-    button1: { text: "View Portfolio", link: "/projects" },
-    button2: { text: "Start Project", link: "/project-request" },
-  },
-  {
-    id: 4,
-    title: "Innovation Through",
-    description: "Color.",
-    topText: "Bold & Vibrant Results",
-    backgroundImage: "/images/hero-3.png",
     button1: { text: "Our Services", link: "/services" },
-    button2: { text: "Get Quote", link: "/contact" },
+    button2: { text: "Start Project", link: "/project-request" },
   },
 ];
 
@@ -123,6 +114,7 @@ export function HeroSlider() {
                       <span>{slides[currentSlide].button2.text}</span>
                     </Button>
                   </Link>
+                  
                 </div>
 
                 

@@ -54,9 +54,48 @@ export default function Team() {
         <h2 className="text-4xl font-bold bg-gradient-to-r from-palette-gold-400 to-palette-gold-500 bg-clip-text text-transparent mb-4">
           Meet Our Team
         </h2>
-        <p className="text-lg text-gray-300">
+        <p className="text-lg text-gray-300 mb-8">
           The creative minds behind ColorWaves&apos; success
         </p>
+        
+        {/* Team Description */}
+        <div className="max-w-4xl mx-auto mb-12">
+          <p className="text-lg text-gray-300 mb-6">
+            ColorWaves is powered by a multidisciplinary team passionate about quality, creativity, and growth:
+          </p>
+          
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 text-left">
+            <div className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl p-6">
+              <h3 className="text-lg font-semibold text-palette-gold-400 mb-2">Production Team</h3>
+              <p className="text-gray-300 text-sm">Quality Control & Production Members</p>
+            </div>
+            
+            <div className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl p-6">
+              <h3 className="text-lg font-semibold text-palette-gold-400 mb-2">Designers</h3>
+              <p className="text-gray-300 text-sm">Interior, Exterior & Structural Design Experts</p>
+            </div>
+            
+            <div className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl p-6">
+              <h3 className="text-lg font-semibold text-palette-gold-400 mb-2">Architects</h3>
+              <p className="text-gray-300 text-sm">Structural, 3D & Animation Specialists</p>
+            </div>
+            
+            <div className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl p-6">
+              <h3 className="text-lg font-semibold text-palette-gold-400 mb-2">Engineers</h3>
+              <p className="text-gray-300 text-sm">Planning, Cost, Structural, Civil, Electrical & Mechanical Engineers</p>
+            </div>
+            
+            <div className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl p-6">
+              <h3 className="text-lg font-semibold text-palette-gold-400 mb-2">Marketing & Sales Team</h3>
+              <p className="text-gray-300 text-sm">Business development and customer relations</p>
+            </div>
+            
+            <div className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl p-6">
+              <h3 className="text-lg font-semibold text-palette-gold-400 mb-2">Administrative & HR Team</h3>
+              <p className="text-gray-300 text-sm">Operations and human resources management</p>
+            </div>
+          </div>
+        </div>
       </div>
 
       {loading && (

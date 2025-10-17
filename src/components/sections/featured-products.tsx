@@ -47,7 +47,7 @@ export function FeaturedProducts() {
             Premium <span className="text-palette-gold-400">Products</span>
           </h2>
           <p className="text-xl text-gray-300 max-w-3xl mx-auto">
-            High-quality paints and coatings for every project
+            ColorWaves offers a complete range of paints and coating solutions designed for homes, offices, and industrial spaces.
           </p>
         </motion.div>
 
