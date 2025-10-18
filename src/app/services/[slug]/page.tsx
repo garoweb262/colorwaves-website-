@@ -7,6 +7,7 @@ import { motion } from "framer-motion";
 import { ArrowLeft } from "lucide-react";
 import Link from "next/link";
 import PageHeader from "@/components/PageHeader";
+import { SocialShare } from "@/components/SocialShare";
 
 type ServiceBySlugApi = {
   name: string;
@@ -69,16 +70,25 @@ export default function ServiceDetailsPage({ params }: ServiceDetailsPageProps) 
         gradientColor="from-palette-primary-500/80 to-palette-secondary-500/60"
       />
 
-      {/* Back Button */}
+      {/* Back Button and Share */}
       <section className="py-8">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <Link
-            href="/services"
-            className="inline-flex items-center gap-2 text-palette-gold-400 hover:text-palette-gold-300 transition-colors"
-          >
-            <ArrowLeft className="w-4 h-4" />
-            Back to Services
-          </Link>
+          <div className="flex items-center justify-between">
+            <Link
+              href="/services"
+              className="inline-flex items-center gap-2 text-palette-gold-400 hover:text-palette-gold-300 transition-colors"
+            >
+              <ArrowLeft className="w-4 h-4" />
+              Back to Services
+            </Link>
+            <SocialShare
+              url={`${typeof window !== 'undefined' ? window.location.origin : ''}/services/${data.slug}`}
+              title={data.name}
+              description={data.description}
+              imageUrl={data.imageUrl}
+              hashtags={['services']}
+            />
+          </div>
         </div>
       </section>
 

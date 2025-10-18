@@ -13,6 +13,8 @@ type ProductBySlugApi = {
   imageUrls: string[];
   category: string;
   isActive: boolean;
+  benefits: string[];
+  features: string[];
   createdAt: string;
   updatedAt: string;
 };
@@ -73,7 +75,7 @@ export default function ProductDetailsPage({ params }: ProductDetailsPageProps) 
     gallery: data.imageUrls,
     category: data.category,
     price: { amount: "Contact for pricing", unit: "", range: "" },
-    features: [],
+    features: data.features || [],
     specifications: {
       type: "Premium Paint",
       finish: "Multiple Options",
@@ -88,7 +90,7 @@ export default function ProductDetailsPage({ params }: ProductDetailsPageProps) 
       popular: []
     },
     applications: [],
-    benefits: [],
+    benefits: data.benefits || [],
     technicalData: {
       thickness: "Contact for details",
       dilution: "Contact for details",

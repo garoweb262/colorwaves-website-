@@ -4,6 +4,7 @@ import Image from "next/image";
 import { MapPin, Calendar, ExternalLink, ArrowLeft } from "lucide-react";
 import Link from "next/link";
 import PageHeader from "@/components/PageHeader";
+import { SocialShare } from "@/components/SocialShare";
 import { fetchJson } from "@/lib/api";
 
 // Mock data - in a real app, this would come from a CMS or database
@@ -61,16 +62,25 @@ export default async function ProjectDetailsPage({ params }: ProjectDetailsPageP
         gradientColor="from-palette-primary-500/80 to-palette-secondary-500/60"
       />
 
-      {/* Back Button */}
+      {/* Back Button and Share */}
       <section className="py-8">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <Link
-            href="/projects"
-            className="inline-flex items-center gap-2 text-palette-gold-400 hover:text-palette-gold-300 transition-colors"
-          >
-            <ArrowLeft className="w-4 h-4" />
-            Back to Projects
-          </Link>
+          <div className="flex items-center justify-between">
+            <Link
+              href="/projects"
+              className="inline-flex items-center gap-2 text-palette-gold-400 hover:text-palette-gold-300 transition-colors"
+            >
+              <ArrowLeft className="w-4 h-4" />
+              Back to Projects
+            </Link>
+            <SocialShare
+              url={`${typeof window !== 'undefined' ? window.location.origin : ''}/projects/${project.slug}`}
+              title={project.title}
+              description={project.description}
+              imageUrl={project.image}
+              hashtags={project.scope}
+            />
+          </div>
         </div>
       </section>
 

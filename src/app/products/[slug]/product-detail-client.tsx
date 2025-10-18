@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { CheckCircle, ArrowLeft, Star, Award } from "lucide-react";
 import Link from "next/link";
 import PageHeader from "@/components/PageHeader";
+import { SocialShare } from "@/components/SocialShare";
 
 interface Product {
   slug: string;
@@ -52,7 +53,7 @@ interface ProductDetailClientProps {
 
 export default function ProductDetailClient({ product, relatedProducts }: ProductDetailClientProps) {
   return (
-    <div className="bg-indigo-950 min-h-screen">
+    <div className="bg-transparent min-h-screen">
       <PageHeader
         title={product.name}
         subtitle={product.shortDescription}
@@ -60,16 +61,25 @@ export default function ProductDetailClient({ product, relatedProducts }: Produc
         gradientColor="from-palette-primary-500/80 to-palette-secondary-500/60"
       />
 
-      {/* Back Button */}
+      {/* Back Button and Share */}
       <section className="py-8">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <Link
-            href="/products"
-            className="inline-flex items-center gap-2 text-palette-gold-400 hover:text-palette-gold-300 transition-colors"
-          >
-            <ArrowLeft className="w-4 h-4" />
-            Back to Products
-          </Link>
+          <div className="flex items-center justify-between">
+            <Link
+              href="/products"
+              className="inline-flex items-center gap-2 text-palette-gold-400 hover:text-palette-gold-300 transition-colors"
+            >
+              <ArrowLeft className="w-4 h-4" />
+              Back to Products
+            </Link>
+            <SocialShare
+              url={`${typeof window !== 'undefined' ? window.location.origin : ''}/products/${product.slug}`}
+              title={product.name}
+              description={product.shortDescription}
+              imageUrl={product.image}
+              hashtags={[product.category]}
+            />
+          </div>
         </div>
       </section>
 

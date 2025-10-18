@@ -3,9 +3,10 @@
 import React from "react";
 import { notFound } from "next/navigation";
 import { motion } from "framer-motion";
-import { Calendar, User, ArrowLeft, Share2 } from "lucide-react";
+import { Calendar, User, ArrowLeft } from "lucide-react";
 import Link from "next/link";
 import PageHeader from "@/components/PageHeader";
+import { SocialShare } from "@/components/SocialShare";
 import { blogAPI, Blog, newsletterAPI } from "@/lib/api";
 import { toast } from "sonner";
 
@@ -106,16 +107,25 @@ export default function BlogDetailsPage({ params }: BlogDetailsPageProps) {
         gradientColor="from-palette-primary-500/80 to-palette-secondary-500/60"
       />
 
-      {/* Back Button */}
+      {/* Back Button and Share */}
       <section className="py-8">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <Link
-            href="/blog"
-            className="inline-flex items-center gap-2 text-palette-gold-400 hover:text-palette-gold-300 transition-colors"
-          >
-            <ArrowLeft className="w-4 h-4" />
-            Back to Blog
-          </Link>
+          <div className="flex items-center justify-between">
+            <Link
+              href="/blog"
+              className="inline-flex items-center gap-2 text-palette-gold-400 hover:text-palette-gold-300 transition-colors"
+            >
+              <ArrowLeft className="w-4 h-4" />
+              Back to Blog
+            </Link>
+            <SocialShare
+              url={`${typeof window !== 'undefined' ? window.location.origin : ''}/blog/${post.slug}`}
+              title={post.title}
+              description={post.excerpt}
+              imageUrl={post.imageUrl}
+              hashtags={post.tags}
+            />
+          </div>
         </div>
       </section>
 
@@ -187,14 +197,6 @@ export default function BlogDetailsPage({ params }: BlogDetailsPageProps) {
                     </div>
                   </div>
                 )}
-
-                {/* Share Button */}
-                <div className="mt-8 pt-8 border-t border-white/10">
-                  <button className="inline-flex items-center gap-2 bg-palette-gold-500/20 border border-palette-gold-400/30 text-palette-gold-400 px-4 py-2 rounded-lg hover:bg-palette-gold-500/30 transition-colors">
-                    <Share2 className="w-4 h-4" />
-                    Share Article
-                  </button>
-                </div>
               </motion.article>
             </div>
 
