@@ -39,7 +39,7 @@ export interface SEOConfig {
 
 const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "https://colorwaves.ng";
 const siteName = "ColorWaves";
-const defaultDescription = "Leading technology solutions provider specializing in web development, mobile apps, and digital innovation. Transform your business with our expert team.";
+const defaultDescription = "Leading paint manufacturing and interior solutions company in Nigeria. We specialize in producing high-quality, durable, and affordable paints for homes, offices, and commercial spaces.";
 
 // Structured Data for SEO
 export const structuredData = {
@@ -50,20 +50,20 @@ export const structuredData = {
     "url": baseUrl,
     "logo": `${baseUrl}/images/logo/ColorWaves_Logo Horizontal White.png`,
     "description": defaultDescription,
-    "foundingDate": "2020",
+    "foundingDate": "2025-01-05",
     "contactPoint": {
       "@type": "ContactPoint",
-      "telephone": "+1-555-123-4567",
+      "telephone": "+234 803 331 7338",
       "contactType": "customer service",
-      "email": "contact@colorwaves.com"
+      "email": "info@colorwaves.ng"
     },
     "address": {
       "@type": "PostalAddress",
-      "streetAddress": "123 Business St",
-      "addressLocality": "City",
-      "addressRegion": "State",
-      "postalCode": "12345",
-      "addressCountry": "US"
+      "streetAddress": "54 Ahmadu Bello Way",
+      "addressLocality": "Kano",
+      "addressRegion": "Kano State",
+      "postalCode": "700001",
+      "addressCountry": "NG"
     },
     "sameAs": [
       "https://twitter.com/colorwaves",
@@ -86,44 +86,44 @@ export const structuredData = {
   services: {
     "@context": "https://schema.org",
     "@type": "Service",
-    "name": "Technology Solutions",
-    "description": "Comprehensive technology services including web development, mobile development, software consulting, and technical support",
+    "name": "Paint Manufacturing and Interior Solutions",
+    "description": "Comprehensive paint manufacturing and interior solutions including residential painting, commercial painting, color consulting, and professional painting services",
     "provider": {
       "@type": "Organization",
       "name": "ColorWaves"
     },
-    "serviceType": "Technology Services",
-    "areaServed": "Worldwide",
+    "serviceType": "Paint and Interior Services",
+    "areaServed": "Nigeria",
     "hasOfferCatalog": {
       "@type": "OfferCatalog",
-      "name": "Technology Services",
+      "name": "Paint and Interior Services",
       "itemListElement": [
         {
           "@type": "Offer",
           "itemOffered": {
             "@type": "Service",
-            "name": "Web Development"
+            "name": "Residential Painting"
           }
         },
         {
           "@type": "Offer",
           "itemOffered": {
             "@type": "Service",
-            "name": "Mobile Development"
+            "name": "Commercial Painting"
           }
         },
         {
           "@type": "Offer",
           "itemOffered": {
             "@type": "Service",
-            "name": "Software Consulting"
+            "name": "Color Consulting"
           }
         },
         {
           "@type": "Offer",
           "itemOffered": {
             "@type": "Service",
-            "name": "Technical Support"
+            "name": "Interior Design"
           }
         }
       ]
@@ -200,33 +200,33 @@ export function generateMetadata(config: SEOConfig): Metadata {
 
 // Common keywords for all pages
 export const commonKeywords = [
-  "technology solutions",
-  "web development",
-  "mobile development",
-  "software consulting",
-  "digital transformation",
-  "business technology",
-  "custom software",
-  "tech innovation",
+  "paint manufacturing Nigeria",
+  "interior solutions",
+  "professional painting",
+  "color consulting",
+  "residential painting",
+  "commercial painting",
+  "premium paints",
+  "Made-in-Nigeria paints",
 ];
 
 // Page-specific SEO configurations
 export const seoConfigs = {
   home: {
     title: "Home",
-    description: "ColorWaves - Leading technology solutions provider. We specialize in web development, mobile apps, software consulting, and digital transformation services.",
+    description: "ColorWaves Nigeria Limited - Leading paint manufacturing and interior solutions company. We specialize in producing high-quality, durable, and affordable paints for homes, offices, and commercial spaces across Nigeria.",
     keywords: [
       ...commonKeywords,
       "homepage",
-      "technology company",
-      "software development company",
-      "web design",
-      "mobile app development",
+      "paint company Nigeria",
+      "paint manufacturing Kano",
+      "interior design",
+      "color solutions",
     ],
   },
   about: {
     title: "About Us",
-    description: "Learn about ColorWaves - our mission, vision, and talented team of technology experts dedicated to delivering innovative solutions.",
+    description: "Learn about ColorWaves Nigeria Limited - Founded January 5, 2025, we are a fast-growing paint manufacturing and interior solutions company headquartered in Kano, Nigeria.",
     keywords: [
       ...commonKeywords,
       "about us",
@@ -235,35 +235,40 @@ export const seoConfigs = {
       "mission",
       "vision",
       "leadership",
+      "ColorWaves Nigeria Limited",
     ],
   },
   services: {
     title: "Our Services",
-    description: "Comprehensive technology services including web development, mobile development, software consulting, and 24/7 technical support.",
+    description: "Comprehensive paint manufacturing and interior solutions including residential painting, commercial painting, color consulting, and professional painting services across Nigeria.",
     keywords: [
       ...commonKeywords,
       "services",
-      "web development services",
-      "mobile app development",
-      "software consulting",
-      "technical support",
+      "painting services",
+      "color consulting",
+      "interior design",
+      "professional painters",
+      "residential painting",
+      "commercial painting",
     ],
   },
   products: {
     title: "Our Products",
-    description: "Explore ColorWaves' innovative technology products and solutions designed to streamline your business operations.",
+    description: "Explore ColorWaves' innovative paint products and coating solutions designed for homes, offices, and industrial spaces across Nigeria.",
     keywords: [
       ...commonKeywords,
       "products",
-      "software products",
-      "technology solutions",
-      "business software",
+      "paint products",
+      "coating solutions",
+      "premium paints",
+      "interior paints",
+      "exterior paints",
       "product catalog",
     ],
   },
   projects: {
     title: "Our Projects",
-    description: "Discover our portfolio of successful projects and case studies showcasing our expertise in technology solutions.",
+    description: "Discover our portfolio of successful painting projects and case studies showcasing our expertise in paint manufacturing and interior solutions across Nigeria.",
     keywords: [
       ...commonKeywords,
       "portfolio",
@@ -271,11 +276,13 @@ export const seoConfigs = {
       "case studies",
       "success stories",
       "client work",
+      "painting projects",
+      "interior projects",
     ],
   },
   careers: {
     title: "Careers",
-    description: "Join the ColorWaves team! Explore exciting career opportunities in technology, development, and innovation.",
+    description: "Join the ColorWaves team! Explore exciting career opportunities in paint manufacturing, interior design, color consulting, and professional painting services.",
     keywords: [
       ...commonKeywords,
       "careers",
@@ -284,11 +291,12 @@ export const seoConfigs = {
       "hiring",
       "work with us",
       "career opportunities",
+      "paint industry jobs",
     ],
   },
   contact: {
     title: "Contact Us",
-    description: "Get in touch with ColorWaves. Contact our team for inquiries, support, or to discuss your technology needs.",
+    description: "Get in touch with ColorWaves Nigeria Limited. Contact our team for inquiries, support, or to discuss your painting and interior solution needs.",
     keywords: [
       ...commonKeywords,
       "contact",
@@ -296,11 +304,13 @@ export const seoConfigs = {
       "support",
       "inquiry",
       "contact information",
+      "Kano office",
+      "Nigeria contact",
     ],
   },
   partnership: {
     title: "Partnership",
-    description: "Partner with ColorWaves to expand your business reach and leverage our technology expertise for mutual growth.",
+    description: "Partner with ColorWaves to expand your business reach and leverage our paint manufacturing expertise and interior solutions for mutual growth.",
     keywords: [
       ...commonKeywords,
       "partnership",
@@ -308,11 +318,12 @@ export const seoConfigs = {
       "collaboration",
       "strategic partnership",
       "partner program",
+      "paint distributors",
     ],
   },
   faqs: {
     title: "Frequently Asked Questions",
-    description: "Find answers to common questions about ColorWaves' services, products, and technology solutions.",
+    description: "Find answers to common questions about ColorWaves' paint products, services, and interior solutions.",
     keywords: [
       ...commonKeywords,
       "FAQ",
@@ -321,11 +332,12 @@ export const seoConfigs = {
       "support",
       "questions",
       "answers",
+      "paint questions",
     ],
   },
   gallery: {
     title: "Gallery",
-    description: "Visual showcase of ColorWaves' projects, team, office, and technology solutions in action.",
+    description: "Visual showcase of ColorWaves' painting projects, team, office, and paint manufacturing facilities in action.",
     keywords: [
       ...commonKeywords,
       "gallery",
@@ -333,19 +345,20 @@ export const seoConfigs = {
       "images",
       "visual showcase",
       "project gallery",
+      "painting gallery",
     ],
   },
   blog: {
     title: "Blog",
-    description: "Stay updated with the latest technology trends, insights, and news from the ColorWaves team.",
+    description: "Stay updated with the latest painting trends, color insights, and interior design tips from the ColorWaves team.",
     keywords: [
       ...commonKeywords,
       "blog",
-      "technology blog",
-      "tech news",
-      "insights",
-      "articles",
-      "tech trends",
+      "painting blog",
+      "color tips",
+      "interior design",
+      "painting trends",
+      "color inspiration",
     ],
   },
 };

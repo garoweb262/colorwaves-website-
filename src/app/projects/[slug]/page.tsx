@@ -6,6 +6,8 @@ import Link from "next/link";
 import PageHeader from "@/components/PageHeader";
 import { SocialShare } from "@/components/SocialShare";
 import { fetchJson } from "@/lib/api";
+import type { Metadata } from "next";
+import { generateMetadata as generateSEOMetadata } from "@/lib/seo";
 
 // Mock data - in a real app, this would come from a CMS or database
 // const projects = []; // Commented out unused projects array
@@ -27,6 +29,51 @@ type ProjectBySlugApi = {
   client?: string;
   videoUrl?: string;
 };
+
+export async function generateMetadata({ params }: ProjectDetailsPageProps): Promise<Metadata> {
+  const { slug } = await params;
+  
+  try {
+    const { data: projectData } = await fetchJson<ProjectBySlugApi>(`/projects/public/slug/${slug}`);
+    
+    if (projectData) {
+      return generateSEOMetadata({
+        title: projectData.title,
+        description: projectData.description,
+        keywords: [
+          "paint manufacturing Nigeria",
+          "interior solutions",
+          "professional painting",
+          "color consulting",
+          projectData.title.toLowerCase(),
+          "painting projects",
+          "interior projects",
+        ],
+        canonical: `/projects/${slug}`,
+        openGraph: {
+          title: `${projectData.title} | ColorWaves`,
+          description: projectData.description,
+          images: projectData.imageUrls?.[0] ? [{
+            url: projectData.imageUrls[0],
+            width: 1200,
+            height: 630,
+            alt: `${projectData.title} - ColorWaves Project`,
+          }] : undefined,
+        },
+      });
+    }
+  } catch (error) {
+    console.error('Error generating metadata for project:', error);
+  }
+  
+  // Fallback metadata
+  return generateSEOMetadata({
+    title: "Project Details",
+    description: "Discover our successful painting and interior solution projects across Nigeria.",
+    keywords: ["paint manufacturing Nigeria", "interior solutions", "professional painting"],
+    canonical: `/projects/${slug}`,
+  });
+}
 
 
 export default async function ProjectDetailsPage({ params }: ProjectDetailsPageProps) {
